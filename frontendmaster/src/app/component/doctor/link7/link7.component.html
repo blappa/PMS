@@ -8,13 +8,15 @@
                     <th scope="col">Time</th>
                     <th scope="col">Appointment type</th>
                     <th scope="col"> Cancel Appointment</th>
+                    <th scope="col"> Reschedule Appointment</th>
+
                 </tr>
             </thead>
             <!-- <tr class = "hoverLine" *ngFor='let appointment of appointments' (click)="patientInfo()">
-                <td>{{appointment.hospital_user.f_name}} {{appointment.hospital_user.l_name}}</td>
+                <td> (click)="patientInfo()"{{appointment.hospital_user.f_name}} {{appointment.hospital_user.l_name}}</td>
                 <td>{{appointment.time}} {{time}}</td>
                 <td>{{appointment.appointment_type}}</td>
-                <td><button>Submit</button></td>
+                <td><button class="btn btn-danger" (click)="cancelAppointment()"> Cancel</button></td>
             </tr> -->
 
             <tr class = "hoverLine">
@@ -22,14 +24,8 @@
                 <td>dd</td>
                 <td>rr</td>
                 <td><button class="btn btn-danger" (click)="cancelAppointment()"> Cancel</button></td>
+                <td><button class="btn btn-success" (click)="reschedulelAppointment()"> Reschedule</button></td>
             </tr>
-
-            <tr class = "hoverLine">
-                    <td (click)="patientInfo()">aa</td>
-                    <td>dd</td>
-                    <td>rr</td>
-                    <td><button class="btn btn-danger" (click)="cancelAppointment()"> Cancel</button></td>
-                </tr>
         </table>
     </div>
 
@@ -57,11 +53,15 @@
                     <a href="#">Download file</a><br>
             </div>
             <div class="form-group">
-                    <h4>Instructions</h4>
-                    <textarea class="form-control" rows="3" [(ngModel)] = "instructions"></textarea>
-                    <button (click)="sendToReceptionist()">Send</button>
+                    <h5>Send Instructions</h5>
+                    <textarea class="form-control sendInstructions" rows="3" [(ngModel)] = "instructions"></textarea>
+                    <button type="button" class="btn btn-success" (click)="sendToReceptionist()">Send</button>
             </div>
        </div>
+    </div>
+
+    <div>
+        
     </div>
 
 

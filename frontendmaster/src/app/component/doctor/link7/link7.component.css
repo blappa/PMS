@@ -21,3 +21,11 @@ th, td {
 h4 {
     font-weight: bolder;
 }
+
+.table-appointment {
+    padding: 5%;
+}
+
+.sendInstructions {
+    margin-bottom: 10px;
+}

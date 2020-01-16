@@ -42,4 +42,10 @@ export class Link7Component implements OnInit {
     console.log("Sent to receptionist");
   }
 
+  reschedulelAppointment(){
+    //sheffulai has a component to view the schedule, so we can call the component here, and make changes
+    //into appointment
+    console.log("Reschedule appointment");
+  }
+
 }
