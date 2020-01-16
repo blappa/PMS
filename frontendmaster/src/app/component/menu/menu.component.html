@@ -50,7 +50,7 @@
         <div class="dropdown">
             <button class="dropbtn">Setting</button>
             <div class="dropdown-content">
-              <a><button class="button" >Create Users</button> </a>
+              <a><button (click) = "clink16()" class="button" >Create Users</button> </a>
               <a><button  (click) = "logout()" class="button" >Logout</button>  </a>
             </div>
         </div>
@@ -113,8 +113,9 @@
     <app-link15></app-link15>
   </div>
 
-  <div *ngIf="out" >
-    <app-link15></app-link15>
+  <!---user-->
+  <div *ngIf="link16" >
+    <app-link16></app-link16>
   </div>
 
 </div>
