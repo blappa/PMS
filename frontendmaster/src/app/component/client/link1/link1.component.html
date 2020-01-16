@@ -1,12 +1,14 @@
-    <p>What is the reason for your visit?</p> <input type="text">
+    <div class = "form">
+        
+    <p class = "formtext">What is the reason for your visit?</p> <input type="text" class = "formfield">
 
-    <p>List all known allergies</p> <input type="text">
+    <p class = "formtext">List all known allergies</p> <input type="text" class = "formfield">
 
-    <p>List the medications you are currently taking</p> <input type="text">
+    <p class = "formtext">List the medications you are currently taking</p> <input type="text" class = "formfield">
 
-    <p>What type of appointment will this be?</p>
+    <p class = "formtext">What type of appointment will this be?</p>
 
-    <select id="appointmenttype">
+    <select class = "formselect">
 
         <option value="consultation">Consultation</option>
 
@@ -15,3 +17,41 @@
         <option value="procedure">Procedure</option>
 
     </select>
+
+    <p class = "formtext">Select Doctor</p>
+
+    <select class = "formselect">
+
+        <option value="Mathew Abbas">Mathew Abbas</option>
+
+        <option value="Britany Black">Britany Black</option>
+
+        <option value="Shady White">Shady White</option>
+
+        <option value="Thomas Akbar">Thomas Akbar</option>
+
+        <option value="Phillip Brown">Phillip Brown</option>
+
+        <option value="Kristina Aker">Kristina Aker</option>
+
+        <option value="Frederick Ali">Frederick Ali</option>
+
+        <option value="John Michalson">John Michalson </option>
+        
+        <option value="Mark Abram">Mark Abram </option>
+
+        <option value="Denise Addison">Denise Addison </option>
+
+        <option value="Sara Agrin">Sara Agrin</option>
+
+        <option value="Ben Allan">Ben Allan</option>
+
+    </select><br>
+    <p class = "formtext">Time of Appointment</p>
+
+    <select class = "formselect">
+        <option value="time">Sample Available Time</option>
+    </select><br>
+
+    <button id="checkin" (click) = "checkin()">Checkin</button>
+    </div>

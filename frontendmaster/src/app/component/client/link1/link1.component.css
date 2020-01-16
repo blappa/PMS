@@ -1,0 +1,33 @@
+#checkin {
+background-color: rgb(129, 152, 202);
+  border: none;
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.form{
+    text-align: center;
+}
+
+.formselect{
+    font-size: larger;
+    margin:20px;
+    width: auto;
+    height: auto;
+}
+
+.formtext {
+    font-size: larger;
+    font-weight: 500;
+}
+
+.formfield {
+    margin: 20px;
+    height: 20px;
+    width: 250px;
+}

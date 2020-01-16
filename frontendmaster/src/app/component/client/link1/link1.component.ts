@@ -15,11 +15,16 @@ import { Injectable } from '@angular/core';
 
 
 
+
 export class Link1Component implements OnInit {
 
   constructor(public router: Router) { }
 
   ngOnInit() {
   }
+
+checkin(){
+  
+}
 
 }
