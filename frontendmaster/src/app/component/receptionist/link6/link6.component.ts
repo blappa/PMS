@@ -16,6 +16,13 @@ export class Link6Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const body = <HTMLDivElement> document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = '/assets/js/javascripts.js';
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
   }
 
 }

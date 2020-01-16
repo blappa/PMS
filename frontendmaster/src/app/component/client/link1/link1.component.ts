@@ -13,14 +13,24 @@ import { Injectable } from '@angular/core';
 })
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/frontendmaster
 export class Link1Component implements OnInit {
 
   constructor(public router: Router) { }
 
   ngOnInit() {
+    const body = <HTMLDivElement> document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = '/assets/js/javascripts.js';
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
   }
 
 checkin(){

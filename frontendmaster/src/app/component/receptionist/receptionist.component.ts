@@ -15,10 +15,6 @@ import { MenuComponent } from '../menu/menu.component';
 
 export class ReceptionistComponent implements OnInit {
 
-  link4 :boolean ;
-  link5 :boolean ;
-  link6 :boolean ;
-  link :string;
 
   constructor(public router: Router) {}
 
