@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Directive } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Injectable } from '@angular/core';
 
@@ -13,9 +13,9 @@ import { Injectable } from '@angular/core';
 })
 export class Link4Component implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
   }
+
+  ngOnInit() {}
 
 }

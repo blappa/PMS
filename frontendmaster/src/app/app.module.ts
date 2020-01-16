@@ -29,6 +29,8 @@ import { Link15Component } from './component/about/link15/link15.component';
 import { UserComponent } from './component/user/user.component';
 import { Link16Component } from './component/user/link16/link16.component';
 
+import * as $ from 'jquery';
+
 @NgModule({
   declarations: [
     AppComponent,
