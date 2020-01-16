@@ -1,5 +1,7 @@
 package com.project2.models;
 
+import java.util.Arrays;
+
 public class Appointment {
 	
 	private int u_id;
@@ -10,7 +12,7 @@ public class Appointment {
     private int doctor;
     private int appointment_time;
     private String pcp;
-//    private String load_file;
+    private byte[] load_file;
     
   //pcp => primary care phisician
     
@@ -19,7 +21,7 @@ public class Appointment {
     }
     
 	public Appointment(int u_id, String visit_reason, String allergy, String medication_list, String appointment_type,
-			int doctor, int appointment_time, String pcp) {
+			int doctor, int appointment_time, String pcp, byte[] load_file) {
 		super();
 		this.u_id = u_id;
 		this.visit_reason = visit_reason;
@@ -29,6 +31,7 @@ public class Appointment {
 		this.doctor = doctor;
 		this.appointment_time = appointment_time;
 		this.pcp = pcp;
+		this.load_file = load_file;
 	}
 
 	public int getU_id() {
@@ -94,17 +97,25 @@ public class Appointment {
 	public void setPcp(String pcp) {
 		this.pcp = pcp;
 	}
+	
+
+	public byte[] getLoad_file() {
+		return load_file;
+	}
+
+	public void setLoad_file(byte[] load_file) {
+		this.load_file = load_file;
+	}
 
 	@Override
 	public String toString() {
 		return "Appointment [u_id=" + u_id + ", visit_reason=" + visit_reason + ", allergy=" + allergy
 				+ ", medication_list=" + medication_list + ", appointment_type=" + appointment_type + ", doctor="
-				+ doctor + ", appointment_time=" + appointment_time + ", pcp=" + pcp + "]";
+				+ doctor + ", appointment_time=" + appointment_time + ", pcp=" + pcp + ", load_file="
+				+ Arrays.toString(load_file) + "]";
 	}
 
-    
-    
-    
+	
     
 
 }
