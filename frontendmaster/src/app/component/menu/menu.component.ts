@@ -32,12 +32,16 @@ export class MenuComponent implements OnInit {
   link13 :boolean;
   link14 :boolean;
   link15 :boolean;
+  out :boolean;
   
   constructor(public router: Router) {}
 
   ngOnInit() {
   }
 
+  logout(){
+    this.checkLink('out');
+  }
   
   clink1(){
     this.checkLink('link1');
@@ -352,6 +356,25 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = true;
+    }
+
+    if(link == "out"){
+      this.link1 = false;
+      this.link2 = false;
+      this.link3 = false;
+      this.link4 = false;
+      this.link5 = false;
+      this.link6 = false;
+      this.link7 = false;
+      this.link8 = false;
+      this.link9 = false;
+      this.link10 = false;
+      this.link11 = false;
+      this.link12 = false;
+      this.link13 = false;
+      this.link14 = false;
+      this.link15 = false;
+      this.out = true;
     }
   }
 

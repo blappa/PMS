@@ -6,9 +6,10 @@
 
 .content{
   margin-top: 40px;
-  margin-left: 444px;
-  /*background-color:aquamarine;*/
-  margin-right: 400px;
+  margin-left: 450px;
+  background-color:aquamarine;
+  margin-right: 370px;
+  border-radius: 8px;
 }
 
 .header{
@@ -16,15 +17,15 @@
 	top: calc(50% - 35px);
 	left: calc(50% - 255px);
   z-index: 2;
-  margin-top: -260px;
-  margin-left: -270px;
+  margin-top: -300px;
+  margin-left: -320px;
 }
 
  /* Dropdown Button */
  .dropbtn {
     background-color: #4CAF50;
     color: white;
-    padding: 16px;
+    padding: 25px;
     font-size: 16px;
     border: none;
   }
