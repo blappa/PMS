@@ -1,11 +1,27 @@
 
-<div class="majeni-app">
-  <!--<app-login></app-login>-->
-  <router-outlet></router-outlet>
-  <!--<app-welcome></app-welcome>
-  <app-client></app-client>
-  <app-receptionist></app-receptionist>
-  <app-doctor></app-doctor>
-  <app-contact></app-contact>
-  <app-about></app-about>-->
+<div class="body">
+
+</div>
+<div class="grad">
+
+</div>
+
+<br>
+<!--- menu-->
+<div *ngIf="ismenu" >
+  <app-menu></app-menu>
+</div>
+
+<!---login-->
+<div *ngIf="islogin" >
+  <div class="header">
+    <div>
+          Site<span>MedPark</span>
+    </div>
+  </div>
+   <div class="login">
+				<input type="text" placeholder="username" name="user"><br>
+				<input type="password" placeholder="password" name="password"><br>
+        <button  (click) = "menu()" class="button" >Login</button>   
+  </div>
 </div>
