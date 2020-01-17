@@ -1,0 +1,27 @@
+@import url(https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css);
+
+.myForm {
+    width: 80%;
+}
+
+
+.recep{
+	
+    background: #fff;
+    margin: 0px;
+	
+	font-family: Arial;
+	font-size: 16px;
+}
+
+.button {
+    background-color: rgb(129, 152, 202);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+  }
