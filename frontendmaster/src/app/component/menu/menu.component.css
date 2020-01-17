@@ -5,11 +5,12 @@
 }
 
 .content{
-  margin-top: 40px;
+  margin-top: 0px;
   margin-left: 450px;
-  background-color:aquamarine;
+  /*background-color:aquamarine;*/
   margin-right: 370px;
   border-radius: 8px;
+  padding: 16px 20px 125px 20px;
 }
 
 .header{

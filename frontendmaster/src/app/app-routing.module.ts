@@ -15,6 +15,7 @@ import { Link12Component } from './component/contact/link12/link12.component';
 import { Link13Component } from './component/about/link13/link13.component';
 import { Link14Component } from './component/about/link14/link14.component';
 import { Link15Component } from './component/about/link15/link15.component';
+import { Link16Component } from './component/user/link16/link16.component';
 
 const routes: Routes = [
   {path : 'link1', component : Link1Component},
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path : 'link12', component : Link12Component},
   {path : 'link13', component : Link13Component},
   {path : 'link14', component : Link14Component},
-  {path : 'link15', component : Link15Component}
+  {path : 'link15', component : Link15Component},
+  {path : 'link16', component : Link16Component}
 ];
 
 @NgModule({

@@ -26,6 +26,10 @@ import { Link12Component } from './component/contact/link12/link12.component';
 import { Link13Component } from './component/about/link13/link13.component';
 import { Link14Component } from './component/about/link14/link14.component';
 import { Link15Component } from './component/about/link15/link15.component';
+import { UserComponent } from './component/user/user.component';
+import { Link16Component } from './component/user/link16/link16.component';
+
+import * as $ from 'jquery';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,9 @@ import { Link15Component } from './component/about/link15/link15.component';
     Link12Component,
     Link13Component,
     Link14Component,
-    Link15Component
+    Link15Component,
+    UserComponent,
+    Link16Component
   ],
   imports: [
     BrowserModule,

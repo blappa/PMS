@@ -1,18 +1,18 @@
 <div class = "recep">
 
-<h5>Please select Doctor</h5> 
- <select name="" id=""  class="form-control myForm">
-    <option value="">Doctor</option>
-    <option value="">bibobln</option>
-</select>
+  <h5>Please select Doctor</h5> 
+     <select name="" id=""  class="form-control myForm">
+        <option value="">Doctor</option>
+        <option value="">bibobln</option>
+  </select>
 
-<h5>Please select date</h5>
-<input type="date">
+   <h5>Please select date</h5>
+   <input type="date">
 
-<button (click) = "viewAppts()"  class= "button">View Appointments</button>
+  <button (click) = "viewAppts()"  class= "button">View Appointments</button>
 
 
-<div class="bg-secondary text-white" *ngIf="appts">
+  <div class="bg-secondary text-white" *ngIf="appts">
     <table class="table table-hover">
         <thead>
           <tr>
@@ -48,14 +48,9 @@
       </table>
       
 </div>
-
-
-
-
-
-    <div class="p-3 mb-2 bg-secondary text-white" *ngIf="detail">
-        <div class="row">
-            <div class="col-6 col-sm-3">
+<div class="p-3 mb-2 bg-secondary text-white" *ngIf="detail">
+     <div class="row">
+         <div class="col-6 col-sm-3">
         
                 <h5> Name : <output>fname</output>,  <output>lname</output></h5>  
                 <h5> Contact: <output>contact</output></h5> 
@@ -65,33 +60,27 @@
                 <h5> Primary Care Physician: <output>pcp</output></h5>
     
             </div>
-
-                <div class="col-6 col-sm-3">
+            <div class="col-6 col-sm-3">
                 <h5>Allergy: <output>Allergies</output></h5> 
 
                 <p></p>
                 <h5>Medication List: <output>Medicationsss</output></h5>
      
-                </div>
-    
-                    <div class="col-6 col-sm-3">
+             </div>
+            <div class="col-6 col-sm-3">
                         <h5>Appointment Type: <output>appointment type</output></h5>
                         <br><h5>Appointment date: <output>date</output></h5><h5>Appointment time: <output>time</output></h5>
                         <h5>Duration: <output>duration</output></h5> 
-                        
-                    </div>
-                    <div class="col-6 col-sm-3">
+           </div>
+           <div class="col-6 col-sm-3">
                     <h5>Reason for Visit: <output>Reason</output></h5>
                         <div id = "attch">
                         <output>Attachment: </output>
                         <p></p>
                         <button class= "button">Download</button>
-                        </div>   
-                
-                    
-     
+         </div>  
         </div>
-                <button (click) = "createMsg()"  class= "button">Send Message</button>
+            <button (click) = "createMsg()"  class= "button">Send Message</button>
                         <p></p>
                             <div *ngIf="test">
                             Send to: <select><option>Appoinment Doctor</option><option>Patient</option></select>
@@ -99,8 +88,6 @@
                             <button (click) = "sendMsg()"  class= "button">Send</button>
                             </div>
                             <p></p>
-        <p><button (click)="closeDetail()"  class= "button">Close</button>  </p>        
-            
-    </div>
-
+        <p><button (click)="closeDetail()"  class= "button">Close</button>  </p>              
+  </div>
 </div>

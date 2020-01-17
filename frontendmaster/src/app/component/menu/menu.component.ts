@@ -32,7 +32,7 @@ export class MenuComponent implements OnInit {
   link13 :boolean;
   link14 :boolean;
   link15 :boolean;
-  out :boolean;
+  link16 :boolean;
   
   constructor(public router: Router) {}
 
@@ -40,7 +40,8 @@ export class MenuComponent implements OnInit {
   }
 
   logout(){
-    this.checkLink('out');
+    location.reload();
+    this.router.navigate(['/']);
   }
   
   clink1(){
@@ -103,6 +104,10 @@ export class MenuComponent implements OnInit {
     this.checkLink('link15');
     this.router.navigate(['link15']);
   }
+  clink16(){
+    this.checkLink('link16');
+    this.router.navigate(['link16']);
+  }
 
   checkLink(link :string){
     if(link == "link1"){
@@ -121,6 +126,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link2"){
       this.link1 = false;
@@ -138,6 +144,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link3"){
       this.link1 = false;
@@ -155,6 +162,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link4"){
       this.link1 = false;
@@ -172,6 +180,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link5"){
       this.link1 = false;
@@ -189,6 +198,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link6"){
       this.link1 = false;
@@ -206,6 +216,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link7"){
       this.link1 = false;
@@ -223,6 +234,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link8"){
       this.link1 = false;
@@ -240,6 +252,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link9"){
       this.link1 = false;
@@ -257,6 +270,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link10"){
       this.link1 = false;
@@ -271,6 +285,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link11"){
       this.link1 = false;
@@ -288,6 +303,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link12"){
       this.link1 = false;
@@ -305,6 +321,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link13"){
       this.link1 = false;
@@ -322,6 +339,7 @@ export class MenuComponent implements OnInit {
       this.link13 = true;
       this.link14 = false;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link14"){
       this.link1 = false;
@@ -339,6 +357,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = true;
       this.link15 = false;
+      this.link16 = false;
     }
     if(link == "link15"){
       this.link1 = false;
@@ -356,9 +375,9 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = true;
+      this.link16 = false;
     }
-
-    if(link == "out"){
+    if(link == "link16"){
       this.link1 = false;
       this.link2 = false;
       this.link3 = false;
@@ -374,7 +393,7 @@ export class MenuComponent implements OnInit {
       this.link13 = false;
       this.link14 = false;
       this.link15 = false;
-      this.out = true;
+      this.link16 = true;
     }
   }
 
