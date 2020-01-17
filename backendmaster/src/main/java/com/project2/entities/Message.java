@@ -11,8 +11,8 @@ public class Message {
 	@Id
 	@GeneratedValue
 	@Column(name="ms_id")
-	
 	private int ms_id;
+	
 	private int sender;
 	private int receiver;
 	private String message;
