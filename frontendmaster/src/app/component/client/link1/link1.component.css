@@ -1,4 +1,6 @@
-<<<<<<< HEAD
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css );
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css )	;
+
 #checkin {
 background-color: rgb(129, 152, 202);
   border: none;
@@ -31,10 +33,7 @@ background-color: rgb(129, 152, 202);
     margin: 20px;
     height: 20px;
     width: 250px;
-=======
-@import url(https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css );
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css )	;
-
+}
 * {
     margin: 0;
     padding: 0
@@ -182,7 +181,8 @@ select.list-dt:focus {
 }
 
 #progressbar .active {
-    color: #000000
+    color: #000000;
+    font-family: FontAwesome;
 }
 
 #progressbar li {
@@ -193,12 +193,38 @@ select.list-dt:focus {
     position: relative
 }
 
-#progressbar #account:before {
+#progressbar #reason:before {
     font-family: FontAwesome;
     content: "\f023"
 }
 
-#progressbar #personal:before {
+#progressbar #reason:before {
+    font-family: FontAwesome;
+    content: "\f007"
+}
+
+#progressbar #allergies:before {
+    font-family: FontAwesome;
+    content: "\f007"
+}
+
+
+#progressbar #medications:before {
+    font-family: FontAwesome;
+    content: "\f007"
+}
+
+#progressbar #appointmenttype:before {
+    font-family: FontAwesome;
+    content: "\f007"
+}
+
+#progressbar #doctor:before {
+    font-family: FontAwesome;
+    content: "\f007"
+}
+
+#progressbar #time:before {
     font-family: FontAwesome;
     content: "\f007"
 }
@@ -270,5 +296,4 @@ select.list-dt:focus {
 .fit-image {
     width: 100%;
     object-fit: cover
->>>>>>> origin/frontendmaster
 }

@@ -12,13 +12,6 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./link1.component.css','../client.component.css']
 })
 
-
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> origin/frontendmaster
 export class Link1Component implements OnInit {
 
   constructor(public router: Router) { }
