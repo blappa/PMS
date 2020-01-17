@@ -1,5 +1,6 @@
-<div class = "recep">
-
+<div class="contentcomp">
+  <!-- Your code here-->
+ <div class="recep">
   <h5>Please select Doctor</h5> 
      <select name="" id=""  class="form-control myForm">
         <option value="">Doctor</option>
@@ -45,10 +46,9 @@
             <td></td>
           </tr>
         </tbody>
-      </table>
-      
-</div>
-<div class="p-3 mb-2 bg-secondary text-white" *ngIf="detail">
+      </table>     
+   </div>
+   <div class="p-3 mb-2 bg-secondary text-white" *ngIf="detail">
      <div class="row">
          <div class="col-6 col-sm-3">
         
@@ -74,12 +74,12 @@
            </div>
            <div class="col-6 col-sm-3">
                     <h5>Reason for Visit: <output>Reason</output></h5>
-                        <div id = "attch">
+                    <div id = "attch">
                         <output>Attachment: </output>
                         <p></p>
                         <button class= "button">Download</button>
-         </div>  
-        </div>
+                   </div>  
+           </div>
             <button (click) = "createMsg()"  class= "button">Send Message</button>
                         <p></p>
                             <div *ngIf="test">
@@ -89,5 +89,7 @@
                             </div>
                             <p></p>
         <p><button (click)="closeDetail()"  class= "button">Close</button>  </p>              
+     </div>
+    </div>
   </div>
 </div>
