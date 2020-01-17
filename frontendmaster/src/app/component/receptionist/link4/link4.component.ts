@@ -18,4 +18,42 @@ export class Link4Component implements OnInit {
   ngOnInit() {
   }
 
+
+   test :boolean;
+
+   createMsg(){
+     this.test = true;
+   }
+
+   sendMsg(){
+     alert("Message Sent");
+     this.test = false;
+
+   }
+
+   appts :boolean;
+
+   viewAppts(){
+     this.appts = true;
+   }
+
+   detail :boolean;
+   viewDetail(){
+     this.appts = false;
+     this.detail = true;
+   }
+
+   closeDetail(){
+     this.detail = false;
+     this.appts = true;
+   }
+
+
+
+  // isShow = false;
+ 
+  // sndMsg() {
+  //   this.isShow = !this.isShow;
+  // }
+
 }

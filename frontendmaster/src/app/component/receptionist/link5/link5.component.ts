@@ -18,4 +18,10 @@ export class Link5Component implements OnInit {
   ngOnInit() {
   }
 
+  drSchedule :boolean;
+
+  viewSchedule(){
+    this.drSchedule = true;
+  }
+
 }
