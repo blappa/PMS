@@ -2,7 +2,7 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css )	;
 
 #checkin {
-background-color: rgb(129, 152, 202);
+  background-color: rgb(129, 152, 202);
   border: none;
   color: white;
   border-radius: 15px;
@@ -167,7 +167,9 @@ select.list-dt:focus {
     z-index: 0;
     border: none;
     border-radius: 0.5rem;
-    position: relative
+    position: relative;
+    margin-right: -220px;
+    margin-left: -215px;
 }
 
 .fs-title {

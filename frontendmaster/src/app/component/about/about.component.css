@@ -1,5 +1,10 @@
-.content{
-    margin-top: 150px;
-    margin-left: 450px;
-    background-color: aquamarine;
+.contentcomp{
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative;
+    margin-right: -23px;
+    margin-left: -18px;
+    color:black;
+    background-color: white;
 }

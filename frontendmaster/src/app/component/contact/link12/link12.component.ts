@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 @Component({
   selector: 'app-link12',
   templateUrl: './link12.component.html',
-  styleUrls: ['./link12.component.css']
+  styleUrls: ['./link12.component.css','../contact.component.css']
 })
 export class Link12Component implements OnInit {
 
