@@ -13,7 +13,8 @@ export class LoginService {
   constructor(private http :HttpClient) {}
 
   getUser(username :string) :Observable<String> {
-    return this.http.get<String>("http://localhost:8080/?username="+username);
+    console.log(username);
+    return this.http.get<String>("http://localhost:8080/hospital_username/"+username);
   }
 
 

@@ -12,8 +12,6 @@ export class UserService {
   
   constructor(private http :HttpClient) {}
 
-  addUser(user :User) :Observable<User> {
-    return this.http.post<User>("http://localhost:8080/PokeApp/addPokemon.do", user, {headers: this.headers});
-  }
+ 
 
 }

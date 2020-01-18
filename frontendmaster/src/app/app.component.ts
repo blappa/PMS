@@ -15,25 +15,52 @@ export class AppComponent {
   title = 'frontendmaster';
 
   username :string;
+  password :string;
+  msg :string;
   ismenu :boolean = false;
   islogin :boolean = true;
   isregister :boolean = false;
+  ismsg :boolean = false;
 
   constructor(private loginService :LoginService){}
 
   ngOnInit() {
   }
 
-  menu(){
-    if(this.loginService.getUser(this.username))
-    this.ismenu  = true;
-    this.islogin  = false;
+  loginUser(){
+    this.loginService.getUser(this.username).subscribe(
+      (response) => {
+        console.log(typeof(response));
+        if(response == this.password){
+          this.ismenu  = true;
+          this.islogin  = false;
+          this.ismsg  = false;
+        }
+        if(response == null){
+          this.ismenu  = false;
+          this.isregister  = false;
+          this.islogin  = true;
+          this.ismsg  = true;
+          this.msg = "Username or Password Invalid!";
+        }
+      },
+      /*(response) => {
+        
+      }*/
+     );
   }
 
-  register(){
+  registerPage(){
     this.isregister  = true;
-    this.ismenu  = false;
+    this.ismsg  = false;
     this.islogin  = false;
+    this.ismenu  = false;
   }
-  
+
+  loginPage(){
+    this.isregister  = false;
+    this.ismsg  = false;
+    this.islogin  = true;
+    this.ismenu  = false;
+  }
 }
