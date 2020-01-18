@@ -12,43 +12,55 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./link4.component.css','../receptionist.component.css']
 })
 export class Link4Component implements OnInit {
+  tableVar : boolean;
+  infoVar : boolean;
+  f_name :String;
+  l_name :String;
+  time :String;
+  appointment_type :String;
+
+  
+  cancelNote :boolean;
+  message : String;
 
   constructor() {
   }
 
-   test :boolean;
+  startCancel(){
+    this.tableVar = false;
+    this.cancelNote = true;
+  }
 
-   createMsg(){
-     this.test = true;
-   }
+  viewAppts(){
+    this.tableVar = true;
+    this.infoVar = false;
+  }
 
-   sendMsg(){
-     alert("Message Sent");
-     this.test = false;
+  patientInfo(){
+    // make a reference to the patient information
+    this.tableVar = false;
+    this.infoVar = true;
+    console.log("check row click");
+  }
 
-   }
+  cancelAppointment(){
+    //cancel an appointment
+    this.tableVar = true;
+    this.cancelNote = false;
+    
+    console.log("Canceled");
+  }
 
-   appts :boolean;
+  sendMessage(){
+    //method to create message.
+    this.message = '';
+    console.log("Sent to message");
+  }
 
-   viewAppts(){
-     this.appts = true;
-   }
-
-   detail :boolean;
-   viewDetail(){
-     this.appts = false;
-     this.detail = true;
-   }
-
-   closeDetail(){
-     this.detail = false;
-     this.appts = true;
-   }
+  reschedulelAppointment(){
+    //this should cancel appointment and make new appointment
+    console.log("Reschedule appointment");
+  }
   
-  // isShow = false;
- 
-  // sndMsg() {
-  //   this.isShow = !this.isShow;
-  // }
   ngOnInit() {}
 }

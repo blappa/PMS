@@ -16,12 +16,17 @@ export class Link5Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    const body = <HTMLDivElement> document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = '/assets/js/javascripts.js';
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
   }
 
-  drSchedule :boolean;
-
-  viewSchedule(){
-    this.drSchedule = true;
-  }
+  createAppt(){
+  
+}
 
 }
