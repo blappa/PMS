@@ -49,7 +49,7 @@ public class Hospital_UserController {
 		return hu.deleteHospital_User(hu.getHospital_UserById(id));
 	}
 	
-	@GetMapping(value="/hospital_users/{username}")
+	@GetMapping(value="/hospital_user/{username}")
 	public String login(@PathVariable("username") String username) {
 		Hospital_User h =  hu.getHospital_UserByUsername(username);
 		if( h != null) {
