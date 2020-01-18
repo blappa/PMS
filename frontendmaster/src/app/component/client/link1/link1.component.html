@@ -99,26 +99,12 @@
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">List the medications you are currently taking</h2> 
-                                    <input type="text" name="medication1" placeholder="Medication 1" /> 
-                                    <input type="text" name="medication2" placeholder="Medication 2" /> 
-                                    <input type="text" name="medication3" placeholder="Medication 3" /> 
-                                    <input type="text" name="medication4" placeholder="Medication 4" />
+                                    <input type="text" name="medication1" placeholder="Medications" /> 
                                 </div> 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
                                 <input type="button" name="next" class="next action-button" value="Next Step" />
                             </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">What type of appointment will this be?</h2> 
-                                    <select>
-                                        <option value="consultation">Consultation</option>
-                                        <option value="followup">Follow Up</option>
-                                        <option value="procedure">Procedure</option>
-                                    </select>  
-                                </div> 
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
+                            
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">What is the name of your doctor?</h2> 
@@ -140,13 +126,27 @@
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                                 <input type="button" name="next" class="next action-button" value="Next Step" />
                             </fieldset>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">What type of appointment will this be?</h2> 
+                                    <select>
+                                        <option value="consultation">Consultation</option>
+                                        <option value="followup">Follow Up</option>
+                                        <option value="procedure">Procedure</option>
+                                    </select>  
+                                </div> 
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+                            
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">What time will your appointment be?</h2> 
                                     <input type="text" name="reason" placeholder="Appointment time " />  
                                 </div> 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next Step" />
+                                <input type="button" name="next" (click) = "checkin()" class="next action-button" value="Next Step" />
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">

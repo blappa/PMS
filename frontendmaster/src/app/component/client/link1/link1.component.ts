@@ -27,7 +27,9 @@ export class Link1Component implements OnInit {
   }
 
 checkin(){
-  
+  console.log("Checkin function fired")
 }
+
+
 
 }
