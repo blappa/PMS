@@ -1,102 +1,100 @@
 <div class="container-fluid" id="grad1">
-        <div class="row justify-content-center mt-0">
-            <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
-                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                    <h2><strong>Fill Out Your Appointment</strong></h2>
-                    <p>Fill all form fields to go to next step</p>
-                    <div class="row">
-                        <div class="col-md-12 mx-0">
-                            <div id="msform">
-                                <!-- progressbar -->
-                                <ul id="progressbar">
-                                    <li class="active" id = "reason"><strong>Reasons</strong></li>
-                                    <li class="active" id = "allergies"><strong>Allergies</strong></li>
-                                    <li id="medications"><strong>Medications</strong></li>
-                                    <li id="appointmenttype"><strong>Appointment type</strong></li>
-                                    <li id="doctor"><strong>Doctor Name</strong></li>
-                                    <li id="time"><strong>Appointment Time</strong></li>
-                                    <li id="confirm"><strong>Finish</strong></li>
-                                </ul> <!-- fieldsets -->
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">What is the reason for your visit?</h2> 
-                                        <input type="text" name="reason" placeholder="Reason " />  
-                                    </div> 
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">List any allergies</h2> 
-                                        <input type="text" name="reason" placeholder="Allergies " />  
-                                    </div> 
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
-                                </fieldset>
-                               
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">List the medications you are currently taking</h2> 
-                                        <input type="text" name="medication1" placeholder="Medication 1" /> 
-                                        <input type="text" name="medication2" placeholder="Medication 2" /> 
-                                        <input type="text" name="medication3" placeholder="Medication 3" /> 
-                                        <input type="text" name="medication4" placeholder="Medication 4" />
-                                    </div> 
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">What type of appointment will this be?</h2> 
-                                        <select>
-                                            <option value="consultation">Consultation</option>
-                                            <option value="followup">Follow Up</option>
-                                            <option value="procedure">Procedure</option>
-                                        </select>  
-                                    </div> 
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">What is the name of your doctor?</h2> 
-                                        <select>
-                                            <option value="mathewabas">Mathew Abas</option>
-                                            <option value="britanyblack">Britanny Black</option>
-                                            <option value="shadywhite">Shady White</option>
-                                            <option value="thomasakbar">Thomas Akbar</option>
-                                            <option value="phillipbrown">Phillip Brown</option>
-                                            <option value="kristinaaker">Kristina Aker</option>
-                                            <option value="frederickali">Frederick Ali</option>
-                                            <option value="johnmichalson">John Michalson</option>
-                                            <option value="markabram">Mark Abram</option>
-                                            <option value="deniseaddison">denise Addison</option>
-                                            <option value="saraagrin">Sara Agrin</option>
-                                            <option value="benallan">Ben Allan</option>
-                                        </select>
-                                    </div> 
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">What time will your appointment be?</h2> 
-                                        <input type="text" name="reason" placeholder="Appointment time " />  
-                                    </div> 
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <!--call checkin method-->
-                                    <input type="button" name="next" class="next action-button" (click) = "checkin()" value="Next Step" />
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title text-center">Success !</h2> <br><br>
-                                        <div class="row justify-content-center">
-                                            <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
-                                        </div> <br><br>
-                                        <div class="row justify-content-center">
-                                            <div class="col-7 text-center">
-                                                <h5>You Have Successfully Filled Out Your Appointment</h5>
-                                            </div>
+    <div class="row justify-content-center mt-0">
+        <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2><strong>Fill Out Your Appointment</strong></h2>
+                <p>Fill all form fields to go to next step</p>
+                <div class="row">
+                    <div class="col-md-12 mx-0">
+                        <div id="msform">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id = "reason"><strong>Reasons</strong></li>
+                                <li class="active" id = "allergies"><strong>Allergies</strong></li>
+                                <li id="medications"><strong>Medications</strong></li>
+                                <li id="appointmenttype"><strong>Appointment type</strong></li>
+                                <li id="doctor"><strong>Doctor Name</strong></li>
+                                <li id="time"><strong>Appointment Time</strong></li>
+                                <li id="confirm"><strong>Finish</strong></li>
+                            </ul> <!-- fieldsets -->
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">What is the reason for your visit?</h2> 
+                                    <input type="text" name="reason" placeholder="Reason " />  
+                                </div> 
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">List any allergies</h2> 
+                                    <input type="text" name="reason" placeholder="Allergies " />  
+                                </div> 
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+                           
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">List the medications you are currently taking</h2> 
+                                    <input type="text" name="medication1" placeholder="Medications" /> 
+                                </div> 
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
+                                <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+                            
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">What is the name of your doctor?</h2> 
+                                    <select>
+                                        <option value="mathewabas">Mathew Abas</option>
+                                        <option value="britanyblack">Britanny Black</option>
+                                        <option value="shadywhite">Shady White</option>
+                                        <option value="thomasakbar">Thomas Akbar</option>
+                                        <option value="phillipbrown">Phillip Brown</option>
+                                        <option value="kristinaaker">Kristina Aker</option>
+                                        <option value="frederickali">Frederick Ali</option>
+                                        <option value="johnmichalson">John Michalson</option>
+                                        <option value="markabram">Mark Abram</option>
+                                        <option value="deniseaddison">denise Addison</option>
+                                        <option value="saraagrin">Sara Agrin</option>
+                                        <option value="benallan">Ben Allan</option>
+                                    </select>
+                                </div> 
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">What type of appointment will this be?</h2> 
+                                    <select>
+                                        <option value="consultation">Consultation</option>
+                                        <option value="followup">Follow Up</option>
+                                        <option value="procedure">Procedure</option>
+                                    </select>  
+                                </div> 
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="next" class="next action-button" value="Next Step" />
+                            </fieldset>
+                            
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">What time will your appointment be?</h2> 
+                                    <input type="text" name="reason" placeholder="Appointment time " />  
+                                </div> 
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                                <input type="button" name="next" (click) = "checkin()" class="next action-button" value="Next Step" />
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title text-center">Success !</h2> <br><br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
+                                    </div> <br><br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-7 text-center">
+                                            <h5>You Have Successfully Filled Out Your Appointment</h5>
                                         </div>
                                     </div>
                                 </fieldset>
