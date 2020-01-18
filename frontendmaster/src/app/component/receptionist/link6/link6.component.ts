@@ -13,9 +13,14 @@ import { Injectable } from '@angular/core';
 })
 export class Link6Component implements OnInit {
 
-  constructor() { }
+
+  constructor(public router: Router) {}
 
   ngOnInit() {
   }
+
+ 
+
+
 
 }

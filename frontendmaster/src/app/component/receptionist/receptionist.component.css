@@ -1,3 +1,5 @@
+@import url(https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css);
+
 .contentcomp{
     z-index: 0;
     border: none;
@@ -10,22 +12,34 @@
 }
 
 
-select {
-    background-repeat:no-repeat;
-    background-position:300px;
-    width:353px;
-    padding:12px;
-    margin-top:8px;
-    font-family:Cursive;
-    line-height:1;
-    border-radius:5px;
-    background-color:#A2A499;
-    color:#ff0;
-    font-size:20px;
-    -webkit-appearance:none;
-    box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.6);
-    outline:none
-    }
-    select:hover {
-    color:#00ff7f
-    }
+.myTable {
+    width: 85%;
+    margin: 0 auto;
+    background-color: white;
+}
+th, td {
+    border: solid 2px rgba(0, 0, 0, 0.308);
+}
+
+.hoverLine:hover {
+    background-color: rgba(178, 236, 219, 0.39);
+}
+
+.common {
+    border: solid 2px   rgba(0, 0, 0, 0.308);
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-weight: bolder;
+}
+
+.table-appointment {
+    padding: 5%;
+}
+
+.sendInstructions {
+    margin-bottom: 10px;
+}
+
+
