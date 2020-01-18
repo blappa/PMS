@@ -12,7 +12,8 @@ import { Injectable } from '@angular/core';
   styleUrls: ['./link7.component.css','../doctor.component.css']
 })
 export class Link7Component implements OnInit {
-  boolVar : boolean = true;
+  client_info : boolean = true;
+  appointments : boolean = true;
   f_name :String;
   l_name :String;
   time :String;
@@ -27,8 +28,14 @@ export class Link7Component implements OnInit {
 
   patientInfo(){
     // make a reference to the patient information
-    this.boolVar = false;
+    this.client_info = false;
     console.log("check row click");
+  }
+
+  showAppointments(){
+    // make a reference to the patient information
+    this.appointments = false;
+    console.log("show list of appointments");
   }
 
   cancelAppointment(){
