@@ -6,7 +6,7 @@ import { MenuComponent } from '../menu/menu.component';
 @Component({
   selector: 'app-receptionist',
   templateUrl: './receptionist.component.html',
-  styleUrls: ['./receptionist.component.css','../../app.component.css']
+  styleUrls: ['./receptionist.component.css','../menu/menu.component.css']
 })
 
 @Injectable({

@@ -6,7 +6,7 @@ import { MenuComponent } from '../menu/menu.component';
 @Component({
   selector: 'app-doctor',
   templateUrl: './doctor.component.html',
-  styleUrls: ['./doctor.component.css','../../app.component.css']
+  styleUrls: ['./doctor.component.css','../menu/menu.component.css']
 })
 
 @Injectable({

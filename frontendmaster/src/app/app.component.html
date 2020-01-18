@@ -3,10 +3,14 @@
 
 </div>
 <div class="grad">
-<!--- menu-->
-<div *ngIf="ismenu" >
-  <app-menu></app-menu>
-</div>
+   <!--- menu-->
+   <div *ngIf="ismenu" >
+      <app-menu></app-menu>
+   </div>
+   <!--- register-->
+  <div *ngIf="isregister" >
+    <app-link16></app-link16>
+  </div>
 </div>
 
 <br>
@@ -21,7 +25,8 @@
   </div>
    <div class="login">
 				<input type="text" placeholder="username" name="user"><br>
-				<input type="password" placeholder="password" name="password"><br>
-        <button  (click) = "menu()" class="button" >Login</button>   
+        <input type="password" placeholder="password" name="password"><br>
+        <button  (click) = "menu()" class="button" >Login</button>
+        <button  (click) = "register()" class="button" >Create account</button>
   </div>
 </div>
