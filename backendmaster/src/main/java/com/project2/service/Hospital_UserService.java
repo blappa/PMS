@@ -38,5 +38,9 @@ public class Hospital_UserService implements IHospital_UserService{
 	public List<Hospital_User> allHospital_Users(){
 		return (List<Hospital_User>) hr.findAll();
 	}
+	
+	public Hospital_User getHospital_UserByUsername(String username) {
+		return hr.findByUsername(username);
+	}
 
 }

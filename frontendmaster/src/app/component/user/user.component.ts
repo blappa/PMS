@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css','../../app.component.css']
+  styleUrls: ['./user.component.css','../menu/menu.component.css']
 })
 export class UserComponent implements OnInit {
 
