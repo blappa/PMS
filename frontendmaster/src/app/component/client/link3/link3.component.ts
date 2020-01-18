@@ -16,6 +16,16 @@ export class Link3Component implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.loadDoctorList();
+  }
+
+  loadDoctorList(){
+    console.log("Doctor List Loaded")
+
+  }
+
+  sendChat(){
+    console.log("Sending a chat")
   }
 
 }

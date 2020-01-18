@@ -4,3 +4,19 @@
 .table-bordered{
     background-color:white
 }
+
+.col-md-6{
+    border: 2px solid gray;
+}
+
+.chat-body{
+    /* border: 2px solid lightgray; */
+    background-color: rgb(129, 152, 209);
+    border-radius: 25px;
+}
+
+.active{
+    border: 2px solid;
+    border-radius: 25px;
+}
+

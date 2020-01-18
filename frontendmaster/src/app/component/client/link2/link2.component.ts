@@ -18,4 +18,8 @@ export class Link2Component implements OnInit {
   ngOnInit() {
   }
 
+  viewDoctorSchedule(){
+    console.log("This views the doctor's schedule")
+  }
+
 }
