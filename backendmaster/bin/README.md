@@ -1,2 +1,0 @@
-# PMS
-Patient Managment System
