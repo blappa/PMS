@@ -1,0 +1,11 @@
+@import url(https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css);
+
+.bodyClass {
+    padding: 5%;
+}
+
+.scheduleDate {
+    font-weight: bold;
+    font-size: medium;
+    margin-left: 10px;
+}

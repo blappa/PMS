@@ -18,4 +18,8 @@ export class Link8Component implements OnInit {
   ngOnInit() {
   }
 
+  updateSchedule() {
+    console.log("Updateschedule");
+  }
+
 }
