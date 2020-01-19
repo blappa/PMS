@@ -1,5 +1,9 @@
 @import url(https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css);
 
+.bodyClass {
+    padding: 5%;
+}
+
 .myTable {
     width: 85%;
     margin: 0 auto;
@@ -30,4 +34,5 @@ h4 {
     margin-bottom: 10px;
 }
 
-
+/* .manyDates {
+} */

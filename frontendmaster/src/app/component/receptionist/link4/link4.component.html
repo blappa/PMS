@@ -1,95 +1,103 @@
 <div class="contentcomp">
   <!-- Your code here-->
- <div class="recep">
-  <h5>Please select Doctor</h5> 
-     <select name="" id=""  class="form-control myForm">
-        <option value="">Doctor</option>
-        <option value="">bibobln</option>
-  </select>
+ 
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text"  for="inputGroupSelect01">Physician</label>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01">
+      <option selected>select physician...</option>
+      <option>Ahmed Sulaiman</option>
+      <option>Buju banton</option>
+      <option>etc</option>
+    </select>
+  </div>
 
    <h5>Please select date</h5>
    <input type="date">
 
-  <button (click) = "viewAppts()"  class= "button">View Appointments</button>
+  <button (click) = "viewAppts()"  class="btn btn-secondary">View Appointments</button>
 
 
-  <div class="bg-secondary text-white" *ngIf="appts">
-    <table class="table table-hover">
-        <thead>
-          <tr>
-           
-            <th>Appointment ID</th>
-            <th>Patient Name</th>
-            <th>Doctor Name</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Appointment Type</th>
-          </tr>
-        </thead>
-        <tbody (click) = "viewDetail()">
-          <tr>
-            
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-           
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>     
-   </div>
-   <div class="p-3 mb-2 bg-secondary text-white" *ngIf="detail">
-     <div class="row">
-         <div class="col-6 col-sm-3">
-        
-                <h5> Name : <output>fname</output>,  <output>lname</output></h5>  
-                <h5> Contact: <output>contact</output></h5> 
-                <p></p>
-                <h5>Age: <output>10000000</output></h5>
-                <p></p>
-                <h5> Primary Care Physician: <output>pcp</output></h5>
-    
-            </div>
-            <div class="col-6 col-sm-3">
-                <h5>Allergy: <output>Allergies</output></h5> 
+  <div class="contentcomp">
+    <div *ngIf='tableVar' class="table-appointment">
+        <table class="table table-bordered myTable">
+            <thead>
+                <tr>
+                    <th scope="col">Patient Name</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Appointment type</th>
+                    <th scope="col"> Cancel Appointment</th>
+                    <th scope="col"> Reschedule Appointment</th>
+                </tr>
+            </thead>
+            <!-- <tr class = "hoverLine" *ngFor='let appointment of appointments' (click)="patientInfo()">
+                <td> (click)="patientInfo()"{{appointment.hospital_user.f_name}} {{appointment.hospital_user.l_name}}</td>
+                <td>{{appointment.time}} {{time}}</td>
+                <td>{{appointment.appointment_type}}</td>
+                <td><button class="btn btn-danger" (click)="cancelAppointment()"> Cancel</button></td>
+            </tr> -->
 
-                <p></p>
-                <h5>Medication List: <output>Medicationsss</output></h5>
-     
-             </div>
-            <div class="col-6 col-sm-3">
-                        <h5>Appointment Type: <output>appointment type</output></h5>
-                        <br><h5>Appointment date: <output>date</output></h5><h5>Appointment time: <output>time</output></h5>
-                        <h5>Duration: <output>duration</output></h5> 
-           </div>
-           <div class="col-6 col-sm-3">
-                    <h5>Reason for Visit: <output>Reason</output></h5>
-                    <div id = "attch">
-                        <output>Attachment: </output>
-                        <p></p>
-                        <button class= "button">Download</button>
-                   </div>  
-           </div>
-            <button (click) = "createMsg()"  class= "button">Send Message</button>
-                        <p></p>
-                            <div *ngIf="test">
-                            Send to: <select><option>Appoinment Doctor</option><option>Patient</option></select>
-                            <textarea max = 500></textarea>
-                            <button (click) = "sendMsg()"  class= "button">Send</button>
-                            </div>
-                            <p></p>
-        <p><button (click)="closeDetail()"  class= "button">Close</button>  </p>              
-     </div>
+            <tr class = "hoverLine">
+                <td (click)="patientInfo()">aa</td>
+                <td>dd</td>
+                <td>rr</td>
+                <td><button class="btn btn-danger" (click)="startCancel()"> Cancel</button></td>
+                <td><button class="btn btn-success" (click)="reschedulelAppointment()"> Reschedule</button></td>
+            </tr>
+        </table>
     </div>
+    <div class="form-group cancelForm"  *ngIf="cancelNote" >
+      <h5>Please enter reason for cancellation</h5>
+      <textarea class="form-control sendInstructions" rows="3" [(ngModel)] = "cancelReason"></textarea>
+      <button type="button" class="btn btn-danger" (click)="cancelAppointment()">Send</button>
+    </div>
+
+
+    <div *ngIf='infoVar' class="table-appointment">
+       <div class="container">
+            <div class="basic_info common"> 
+                <h4>Basic Information</h4>
+                <span>First Name: {{f_name}}</span><br>
+                <span>Last Name: {{l_name}}</span><br>
+                <span>Age: {{age}}</span>
+            </div>
+
+            <div class="contact_info common"> 
+                    <h4>Contact Information</h4>
+                    <span>Phone: {{phone}}</span><br>
+                    <span>Email: {{email}}</span>
+            </div>
+
+            <div class="medical_info common"> 
+                    <h4>Medical Information</h4>
+                    <span>Allergy: {{allergy}}</span><br>
+                    <span>Medication List: {{medication_list}}</span><br>
+                    <span>Primary Care Physician: {{pcp}}</span><br>
+                    <span>See extra files: </span>
+                    <a href="#">Download file</a><br>
+            </div>
+            <div class="form-group">
+              <h5>Send Message</h5>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text"  for="inputGroupSelect01">Recipient</label>
+                  </div>
+                  <select class="custom-select width:70%;" id="inputGroupSelect01">
+                    <option selected>select recipient...</option>
+                    <option>Appointment Physician</option>
+                    <option>Patient</option>
+                  </select>
+                </div>
+              
+              <textarea class="form-control sendInstructions" rows="3" [(ngModel)] = "message"></textarea>
+              <button type="button" class="btn btn-success" (click)="sendMsg()">Send</button>
+      </div>
+       </div>
+     </div>
+
+    <div>
+        
   </div>
+</div>
 </div>

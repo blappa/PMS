@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { UserService } from '../../menu/services/user.service';
+import { User } from '../../../models/User';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,14 @@ import { Injectable } from '@angular/core';
 })
 export class Link16Component implements OnInit {
 
-  constructor(public router: Router) { }
+  user :User = new User();
+  issucces :boolean;
+
+
+  constructor(public router: Router, private userService: UserService) {
+
+    this.issucces =  false;
+   }
 
   ngOnInit() {
     const body = <HTMLDivElement> document.body;
@@ -25,8 +34,21 @@ export class Link16Component implements OnInit {
     body.appendChild(script);
   }
 
-  saveUser(){
-    console.log("ssssssssssssssssssssss");
+
+  createUser() {
+    console.log(this.user);
+    this.userService.createUser(this.user)
+        .subscribe( data => {
+          if(data != null){
+            this.issucces =  true;
+          }else{
+            this.issucces =  false;
+          }
+        });
+  };
+
+  loginPage(){
+    location.replace("/");
   }
 
 }

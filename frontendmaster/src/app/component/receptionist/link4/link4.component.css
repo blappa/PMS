@@ -1,17 +1,35 @@
 @import url(https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css);
 
-.myForm {
-    width: 80%;
+.myTable {
+    width: 85%;
+    margin: 0 auto;
+    background-color: white;
+}
+th, td {
+    border: solid 2px rgba(0, 0, 0, 0.308);
 }
 
-
-.recep{
-    padding: 24px;
+.hoverLine:hover {
+    background-color: rgba(178, 236, 219, 0.39);
 }
 
-.bg-secondary {
-    margin: 25px;
+.common {
+    border: solid 2px   rgba(0, 0, 0, 0.308);
+    margin-bottom: 10px;
 }
+
+h4 {
+    font-weight: bolder;
+}
+
+.table-appointment {
+    padding: 5%;
+}
+
+.sendInstructions {
+    margin-bottom: 10px;
+}
+
 
 .button {
     background-color: rgb(129, 152, 202);

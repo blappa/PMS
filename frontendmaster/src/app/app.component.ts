@@ -8,9 +8,7 @@ import { LoginService } from './component/menu/services/login.service';
   styleUrls: ['./app.component.css']
 })
 
-@Injectable({
-  providedIn: 'root'
-})
+
 export class AppComponent {
   title = 'frontendmaster';
 
@@ -21,33 +19,39 @@ export class AppComponent {
   islogin :boolean = true;
   isregister :boolean = false;
   ismsg :boolean = false;
+  response :string;
 
-  constructor(private loginService :LoginService){}
+  constructor(private loginService :LoginService){
+    this.password = '';
+  }
 
   ngOnInit() {
   }
 
   loginUser(){
     this.loginService.getUser(this.username).subscribe(
-      (response) => {
-        console.log(typeof(response));
-        if(response == this.password){
+      (resp) => {
+        this.response = JSON.parse(resp.toString());
+        console.log(this.response);
+        if(this.response['0'].toString() === this.password.toString()){
           this.ismenu  = true;
           this.islogin  = false;
           this.ismsg  = false;
+          sessionStorage.setItem("name", this.response['1']);
+          sessionStorage.setItem("role", this.response['2']);
         }
-        if(response == null){
+        if(this.response['0'].toString() == '0'){
           this.ismenu  = false;
           this.isregister  = false;
           this.islogin  = true;
           this.ismsg  = true;
           this.msg = "Username or Password Invalid!";
         }
-      },
-      /*(response) => {
-        
-      }*/
+      }
      );
+     /*this.loginService.getUser(this.username).subscribe( data => {
+      console.log(data);
+    });*/
   }
 
   registerPage(){

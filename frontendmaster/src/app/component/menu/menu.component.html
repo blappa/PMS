@@ -3,35 +3,39 @@
   <div class="top">
        <div class="header">
            <div>
-            Med<span>Park</span>
+            Social<span>MedicalCenter</span>
           </div>
         </div>
-    
         <div class="dropdown">
-            <button class="dropbtn">Client (Remington)</button>
+           <button class="dropbtn" (click) = "showDashboard()" >Dashboard</button>
             <div class="dropdown-content">
-              <a><button  (click) = "clink1()" class="button" >Appointment</button>  </a>
+            </div>
+        </div> 
+        <div *ngIf="role == 'client' || role == 'admin'" class="dropdown">
+            <button class="dropbtn">Client</button>
+            <div class="dropdown-content">
+              <a><button  (click) = "clink1()" class="button" >Make New Appointment</button>  </a>
               <a><button  (click) = "clink2()" class="button" >View Doctor Schedule</button>  </a>
-              <a><button  (click) = "clink3()" class="button" >Link 3</button>  </a>
+              <a><button  (click) = "clink3()" class="button" >Start a Chat</button>  </a>
             </div>
         </div> 
-        <div class="dropdown">
-            <button class="dropbtn">Receptionist (Shef)</button>
+        <div *ngIf="role == 'receptionist' || role == 'admin'" class="dropdown">
+            <button class="dropbtn">Receptionist</button>
             <div class="dropdown-content">
-              <a><button  (click) = "clink4()" class="button" >Link 4</button>  </a>
-              <a><button  (click) = "clink5()" class="button" >Link 5</button>  </a>
-              <a><button  (click) = "clink6()" class="button" >Link 6</button>  </a>
+              <a><button  (click) = "clink4()" class="button" >View Appointments</button>  </a>
+              <a><button  (click) = "clink5()" class="button" >Create Appointment</button>  </a>
+              <a><button  (click) = "clink6()" class="button" >Messages</button>  </a>
             </div>
         </div> 
-        <div class="dropdown">
-            <button class="dropbtn">Doctors (Nicole)</button>
+        <div *ngIf="role == 'doctor' || role == 'admin'" class="dropdown">
+            <button class="dropbtn">Doctors</button>
             <div class="dropdown-content">
               <a><button  (click) = "clink7()" class="button" >View Appointments</button>  </a>
-              <a><button  (click) = "clink8()" class="button" >Refresh Schedule</button>  </a>
-              <a><button  (click) = "clink9()" class="button" >Link 9</button>  </a>
+              <a><button  (click) = "clink8()" class="button" >Manage Schedule</button>  </a>
+              <a><button  (click) = "clink9()" class="button" >Message</button>  </a>
             </div>
         </div>
-        <div class="dropdown">
+        <div  class="dropdown">
             <button class="dropbtn">Contact</button>
             <div class="dropdown-content">
               <a><button  (click) = "clink10()" class="button" >Link 10</button>  </a>
@@ -39,7 +43,7 @@
               <a><button  (click) = "clink12()" class="button" >Link 12</button>  </a>
             </div>
         </div>
-        <div class="dropdown">
+        <div  class="dropdown">
           <button class="dropbtn">About</button>
           <div class="dropdown-content">
             <a><button  (click) = "clink13()" class="button" >Link 13</button>  </a>
@@ -47,18 +51,22 @@
             <a><button  (click) = "clink15()" class="button" >Link 15</button>  </a>
           </div>
       </div>
-        <div class="dropdown">
+        <div  class="dropdown">
             <button class="dropbtn">Setting</button>
             <div class="dropdown-content">
-              <a><button (click) = "clink16()" class="button" >Create Users</button> </a>
-              <a><button  (click) = "logout()" class="button" >Logout</button>  </a>
+              <a *ngIf="role == 'admin'"><button (click) = "clink16()" class="button" >Create Users</button> </a>
+              <a ><button  (click) = "logout()" class="button" >Logout</button>  </a>
             </div>
         </div>
     </div>
 </div>
-
 <div class="content">
   <!---client-->
+  <div *ngIf="role == 'client'  && showdasbord " >
+    <h2>My Dashboard</h2>
+    <p id="dashboard">Welcome {{name}}</p>
+    <app-client></app-client>
+  </div>
   <div *ngIf="link1" >
     <app-link1></app-link1>
   </div>
@@ -70,6 +78,11 @@
   </div>
 
   <!-- receptionist-->
+  <div *ngIf="role == 'receptionist' && showdasbord " >
+    <h2>My Dashboard</h2>
+    <p id="dashboard">Welcome {{name}}</p>
+    <app-receptionist></app-receptionist>
+  </div>
   <div *ngIf="link4" >
     <app-link4></app-link4>
   </div>
@@ -81,6 +94,11 @@
   </div>
 
   <!---doctor-->
+  <div *ngIf="role == 'doctor'  && showdasbord" >
+    <h2>My Dashboard</h2>
+    <p id="dashboard">Welcome {{name}}</p>
+    <app-doctor></app-doctor>
+  </div>
   <div *ngIf="link7" >
     <app-link7></app-link7>
   </div>

@@ -163,7 +163,15 @@ select.list-dt:focus {
     border-bottom: 2px solid skyblue
 }
 
-
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative;
+    margin-right: -220px;
+    margin-left: -215px;
+}
+/*
 .card {
     z-index: 0;
     border: none;
@@ -177,7 +185,7 @@ select.list-dt:focus {
     top: 110px;
     width: 525px;
 }
-
+*/
 .fs-title {
     font-size: 25px;
     color: #2C3E50;

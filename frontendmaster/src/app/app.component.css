@@ -57,7 +57,7 @@ body{
 .header{
 	position: absolute;
 	top: calc(44% - 35px);
-	left: calc(43% - 255px);
+	left: calc(33% - 255px);
 	/*z-index: 2;*/
 	top: 237px;
 }

@@ -4,6 +4,13 @@
     margin-left: 450px;
 }
 
+#dashboard{
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+  background-color:#4CAF50;
+}
+
 .content{
   margin-top: 0px;
   margin-left: 450px;
