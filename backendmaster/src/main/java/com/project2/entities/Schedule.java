@@ -1,9 +1,13 @@
 package com.project2.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Schedule {
@@ -15,6 +19,9 @@ public class Schedule {
 	private String dates;
 	private String time;
 	private String status;
+	
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
+	private List<Appointment> appointments;
 	
 	@ManyToOne
 	private Hospital_User hospital_user;
