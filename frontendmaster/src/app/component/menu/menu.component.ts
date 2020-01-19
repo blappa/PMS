@@ -298,10 +298,13 @@ export class MenuComponent implements OnInit {
     if(link == "link10"){
       this.link1 = false;
       this.link2 = false;
+      this.link3 = false;
+      this.link4 = false;
+      this.link5 = false;
       this.link6 = false;
       this.link7 = false;
       this.link8 = false;
-      this.link9 = false;
+      this.link9 =false;
       this.link10 = true;
       this.link11 = false;
       this.link12 = false;

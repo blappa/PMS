@@ -61,6 +61,11 @@
     </div>
 </div>
 <div class="content">
+    <!---admin-->
+  <div *ngIf="role == 'admin'  && showdasbord " >
+    <h2>My Dashboard</h2>
+    <p id="dashboard">Welcome {{name}}</p>
+  </div>
   <!---client-->
   <div *ngIf="role == 'client'  && showdasbord " >
     <h2>My Dashboard</h2>
