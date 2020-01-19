@@ -1,21 +1,17 @@
 package com.project2.entities;
 
-import java.util.Arrays;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Appointment {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="ap_id")
-	private int ap_id;
-	
-	private int u_id;	
+	private int id;
+		
     private String visit_reason;
     private String allergy;
     private String medication_list;
@@ -25,41 +21,21 @@ public class Appointment {
     private String pcp;
     private byte[] load_file;
     
+    @ManyToOne
+	private Hospital_User hospital_user;
+    
   //pcp => primary care phisician
     
     public Appointment() {
     	super();
     }
-    
-	public Appointment(int u_id, String visit_reason, String allergy, String medication_list, String appointment_type,
-			int doctor, int appointment_time, String pcp, byte[] load_file) {
-		super();
-		this.u_id = u_id;
-		this.visit_reason = visit_reason;
-		this.allergy = allergy;
-		this.medication_list = medication_list;
-		this.appointment_type = appointment_type;
-		this.doctor = doctor;
-		this.appointment_time = appointment_time;
-		this.pcp = pcp;
-		this.load_file = load_file;
-	}
-	
 
-	public int getAp_id() {
-		return ap_id;
+	public int getId() {
+		return id;
 	}
 
-	public void setAp_id(int ap_id) {
-		this.ap_id = ap_id;
-	}
-
-	public int getU_id() {
-		return u_id;
-	}
-
-	public void setU_id(int u_id) {
-		this.u_id = u_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getVisit_reason() {
@@ -117,7 +93,6 @@ public class Appointment {
 	public void setPcp(String pcp) {
 		this.pcp = pcp;
 	}
-	
 
 	public byte[] getLoad_file() {
 		return load_file;
@@ -127,14 +102,15 @@ public class Appointment {
 		this.load_file = load_file;
 	}
 
-	@Override
-	public String toString() {
-		return "Appointment [ap_id=" + ap_id + ", u_id=" + u_id + ", visit_reason=" + visit_reason + ", allergy="
-				+ allergy + ", medication_list=" + medication_list + ", appointment_type=" + appointment_type
-				+ ", doctor=" + doctor + ", appointment_time=" + appointment_time + ", pcp=" + pcp + ", load_file="
-				+ Arrays.toString(load_file) + "]";
+	public Hospital_User getHospital_user() {
+		return hospital_user;
 	}
 
- 
+	public void setHospital_user(Hospital_User hospital_user) {
+		this.hospital_user = hospital_user;
+	}
+    
+    
+	
 
 }

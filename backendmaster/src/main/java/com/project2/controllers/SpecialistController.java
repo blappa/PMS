@@ -21,7 +21,7 @@ public class SpecialistController {
 	@Autowired
 	SpecialistService ss;
 	
-	@RequestMapping(value="/specialists", method=RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value="/specialist", method=RequestMethod.POST, consumes = "application/json")
 	public Specialist createSpecialist(@RequestBody Specialist Specialist) {
 		System.out.println(Specialist);
 		return ss.createSpecialist(Specialist);
@@ -32,19 +32,19 @@ public class SpecialistController {
 		return ss.allSpecialists();
 	}
 	
-	@GetMapping(value="/specialists/{id}")
+	@GetMapping(value="/specialist/{id}")
 	public Specialist getSpecialistById(@PathVariable("id") int id) {
 		return ss.getSpecialistById(id);
 	}
 	
 	
-	@PutMapping(value="/specialists", consumes="application/json")
+	@PutMapping(value="/specialist", consumes="application/json")
 	public Specialist updateSpecialist(@RequestBody Specialist change) {
 		return ss.updateSpecialist(change);
 	}
 	
 
-	@DeleteMapping(value="/specialists/{id}")
+	@DeleteMapping(value="/specialist/{id}")
 	public boolean removeSpecialist(@PathVariable("id") int id) {
 		return ss.deleteSpecialist(ss.getSpecialistById(id));
 	}

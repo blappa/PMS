@@ -1,21 +1,23 @@
 package com.project2.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Schedule {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="sch_id")
-	private int sch_id;
+	private int id;
 	
 	private String dates;
 	private String time;
 	private String status;
+	
+	@ManyToOne
+	private Hospital_User hospital_user;
 	
 	public Schedule() {
 		super();
@@ -26,15 +28,13 @@ public class Schedule {
 		this.dates = dates;
 		this.time = time;
 	}
-	
-	
 
-	public int getSch_id() {
-		return sch_id;
+	public int getId() {
+		return id;
 	}
 
-	public void setSch_id(int sch_id) {
-		this.sch_id = sch_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDates() {
@@ -52,7 +52,7 @@ public class Schedule {
 	public void setTime(String time) {
 		this.time = time;
 	}
-	
+
 	public String getStatus() {
 		return status;
 	}
@@ -61,10 +61,13 @@ public class Schedule {
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "Schedule [sch_id=" + sch_id + ", dates=" + dates + ", time=" + time + ", status=" + status + "]";
+	public Hospital_User getHospital_user() {
+		return hospital_user;
+	}
+
+	public void setHospital_user(Hospital_User hospital_user) {
+		this.hospital_user = hospital_user;
 	}
 	
-
+	
 }

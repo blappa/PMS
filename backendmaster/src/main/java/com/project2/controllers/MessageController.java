@@ -22,7 +22,7 @@ public class MessageController {
 	MessageService ms;
 	
 	
-	@RequestMapping(value="/messages", method=RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value="/message", method=RequestMethod.POST, consumes = "application/json")
 	public Message createMessage(@RequestBody Message message) {
 		System.out.println(message);
 		return ms.createMessage(message);
@@ -33,19 +33,19 @@ public class MessageController {
 		return ms.allMessages();
 	}
 	
-	@GetMapping(value="/messages/{id}")
+	@GetMapping(value="/message/{id}")
 	public Message getMessageById(@PathVariable("id") int id) {
 		return ms.getMessageById(id);
 	}
 	
 	
-	@PutMapping(value="/messages", consumes="application/json")
+	@PutMapping(value="/message", consumes="application/json")
 	public Message updateMessage(@RequestBody Message change) {
 		return ms.updateMessage(change);
 	}
 	
 
-	@DeleteMapping(value="/messages/{id}")
+	@DeleteMapping(value="/message/{id}")
 	public boolean removeMessage(@PathVariable("id") int id) {
 		return ms.deleteMessage(ms.getMessageById(id));
 	}

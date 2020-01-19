@@ -21,7 +21,7 @@ public class ScheduleController {
 	@Autowired
 	ScheduleService ss;
 
-	@RequestMapping(value="/schedules", method=RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value="/schedule", method=RequestMethod.POST, consumes = "application/json")
 	public Schedule createSchedule(@RequestBody Schedule Schedule) {
 		System.out.println(Schedule);
 		return ss.createSchedule(Schedule);
@@ -32,19 +32,19 @@ public class ScheduleController {
 		return ss.allSchedules();
 	}
 	
-	@GetMapping(value="/schedules/{id}")
+	@GetMapping(value="/schedule/{id}")
 	public Schedule getScheduleById(@PathVariable("id") int id) {
 		return ss.getScheduleById(id);
 	}
 	
 	
-	@PutMapping(value="/schedules", consumes="application/json")
+	@PutMapping(value="/schedule", consumes="application/json")
 	public Schedule updateSchedule(@RequestBody Schedule change) {
 		return ss.updateSchedule(change);
 	}
 	
 
-	@DeleteMapping(value="/schedules/{id}")
+	@DeleteMapping(value="/schedule/{id}")
 	public boolean removeSchedule(@PathVariable("id") int id) {
 		return ss.deleteSchedule(ss.getScheduleById(id));
 	}

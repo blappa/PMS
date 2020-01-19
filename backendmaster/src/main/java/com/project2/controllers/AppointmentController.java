@@ -21,7 +21,7 @@ public class AppointmentController {
 	@Autowired
 	AppointmentService as;
 	
-	@RequestMapping(value="/appointments", method=RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value="/appointment", method=RequestMethod.POST, consumes = "application/json")
 	public Appointment createAppointment(@RequestBody Appointment appointment) {
 		System.out.println(appointment);
 		return as.createAppointment(appointment);
@@ -32,19 +32,19 @@ public class AppointmentController {
 		return as.allAppointments();
 	}
 	
-	@GetMapping(value="/appointments/{id}")
+	@GetMapping(value="/appointment/{id}")
 	public Appointment getAppointmentById(@PathVariable("id") int id) {
 		return as.getAppointmentById(id);
 	}
 	
 	
-	@PutMapping(value="/appointments", consumes="application/json")
+	@PutMapping(value="/appointment", consumes="application/json")
 	public Appointment updateAppointment(@RequestBody Appointment change) {
 		return as.updateAppointment(change);
 	}
 	
 
-	@DeleteMapping(value="/appointments/{id}")
+	@DeleteMapping(value="/appointment/{id}")
 	public boolean removeAppointment(@PathVariable("id") int id) {
 		return as.deleteAppointment(as.getAppointmentById(id));
 	}

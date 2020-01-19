@@ -1,16 +1,19 @@
 package com.project2.entities;
 
-import javax.persistence.Column;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Hospital_User {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="u_id")
 	private int id;
 	
 	private String f_name;
@@ -22,22 +25,33 @@ public class Hospital_User {
     private String password;
     private String role;
     
+    @OneToMany(mappedBy = "hospital_user", cascade = CascadeType.ALL)
+	private List<Specialist> specialists;
+    @OneToMany(mappedBy = "hospital_user", cascade = CascadeType.ALL)
+	private List<Appointment> appointments;
+    
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+	private List<Message> message_senders;
+    
+    @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
+	private List<Message> message_receivers;
+    
+    @OneToMany(mappedBy = "hospital_user", cascade = CascadeType.ALL)
+	private List<Schedule> schedules;
+    
     
 	public Hospital_User() {
 		super();
 	}
 
 
-	public Hospital_User(String f_name, String l_name, int age, String phone, String email, String username,
-			String password) {
-		super();
-		this.f_name = f_name;
-		this.l_name = l_name;
-		this.age = age;
-		this.phone = phone;
-		this.email = email;
-		this.username = username;
-		this.password = password;
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
@@ -111,16 +125,6 @@ public class Hospital_User {
 	}
 
 
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
 	public String getRole() {
 		return role;
 	}
@@ -131,11 +135,54 @@ public class Hospital_User {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Hospital_User [id=" + id + ", f_name=" + f_name + ", l_name=" + l_name + ", age=" + age + ", phone="
-				+ phone + ", email=" + email + ", username=" + username + ", password=" + password + ", role=" + role
-				+ "]";
+	public List<Specialist> getSpecialists() {
+		return specialists;
 	}
+
+
+	public void setSpecialists(List<Specialist> specialists) {
+		this.specialists = specialists;
+	}
+
+
+	public List<Appointment> getAppointments() {
+		return appointments;
+	}
+
+
+	public void setAppointments(List<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+
+
+	public List<Message> getMessage_senders() {
+		return message_senders;
+	}
+
+
+	public void setMessage_senders(List<Message> message_senders) {
+		this.message_senders = message_senders;
+	}
+
+
+	public List<Message> getMessage_receivers() {
+		return message_receivers;
+	}
+
+
+	public void setMessage_receivers(List<Message> message_receivers) {
+		this.message_receivers = message_receivers;
+	}
+
+
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+
+
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
+	}
+
   
 }
