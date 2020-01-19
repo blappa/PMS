@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../../models/User';
+import { Users } from '../../../models/users';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -18,15 +18,15 @@ export class UserService {
 
  
   public getUsers() {
-    return this.http.get<User[]>(this.url+ "/hospital_users");
+    return this.http.get<Users[]>(this.url+ "/hospital_users");
   }
 
   public deleteUser(idu :number) {
     return this.http.delete(this.url + "/hospital_user/"+ idu);
   }
 
-  public createUser(user :User) {
-    return this.http.post<User>(this.url+ "/hospital_user", user);
+  public createUser(user :Users) {
+    return this.http.post<Users>(this.url+ "/hospital_user", user);
   }
 
 }

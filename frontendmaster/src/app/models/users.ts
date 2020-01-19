@@ -1,4 +1,4 @@
-export class User{
+export class Users{
 
     id :number;
     f_name :string;

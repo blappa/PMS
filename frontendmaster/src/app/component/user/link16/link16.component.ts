@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { UserService } from '../../menu/services/user.service';
-import { User } from '../../../models/User';
+import { Users } from '../../../models/users';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ import { User } from '../../../models/User';
 })
 export class Link16Component implements OnInit {
 
-  user :User = new User();
+  user :Users = new Users();
   issucces :boolean;
 
 
