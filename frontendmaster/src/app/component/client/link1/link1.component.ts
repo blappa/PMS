@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { Appointment } from 'src/app/models/appointment';
+import { AppointmentService }  from '../../menu/services/appointment.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,9 @@ import { Injectable } from '@angular/core';
 
 export class Link1Component implements OnInit {
 
-  constructor(public router: Router) { }
+    appointment :Appointment = new Appointment();
+
+  constructor(public router: Router, private appointmentService: AppointmentService) { }
 
   ngOnInit() {
     const body = <HTMLDivElement> document.body;
@@ -27,7 +31,15 @@ export class Link1Component implements OnInit {
   }
 
 checkin(){
-  
+  console.log(this.appointment);
+  this.appointmentService.checkin(this.appointment).subscribe( data => {
+    console.log(data);
+    /*if(data != null){
+      this.issucces =  true;
+    }else{
+      this.issucces =  false;
+    }*/
+  });
 }
 
 }
