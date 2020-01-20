@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project2.entities.Appointment;
-import com.project2.entities.Hospital_User;
 import com.project2.entities.Schedule;
 import com.project2.service.AppointmentService;
 import com.project2.service.Hospital_UserService;
@@ -23,8 +21,8 @@ import com.project2.service.ScheduleService;
 
 
 
-//@CrossOrigin(origins = "http://sitemedpark.s3-website-us-east-1.amazonaws.com/")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://sitemedpark.s3-website-us-east-1.amazonaws.com/")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping({"/portal"})
 public class AppointmentController {
@@ -45,8 +43,10 @@ public class AppointmentController {
 		appointment.setMedication_list(app[2]);
 		appointment.setAppointment_type(app[3]);
 		appointment.setPcp(app[4]);
-		appointment.setHospital_user(hs.getHospital_UserById(Integer.parseInt(app[5])));
+		appointment.setDoctor(hs.getHospital_UserById(Integer.parseInt(app[5])));
 		appointment.setSchedule(ss.getScheduleById(Integer.parseInt(app[6])));
+		appointment.setClient(hs.getHospital_UserById(Integer.parseInt(app[7])));
+		appointment.setCancel_reason("");
 		/*Hospital_User hu = hs.getHospital_UserById(appointment.getHospital_user().getAge());
 		Schedule sc =  ss.getScheduleById(appointment.getId());
 		appointment.setHospital_user(hu);
@@ -86,7 +86,7 @@ public class AppointmentController {
 		List<Appointment> apps = new ArrayList<Appointment>();
 		for(Appointment a: as.allAppointments()) {
 			try {
-			if(a.getHospital_user().getId() == id) {
+			if(a.getClient().getId() == id) {
 				apps.add(a);
 			}
 			}catch(Exception e) {
@@ -94,5 +94,49 @@ public class AppointmentController {
 		}
 		return apps;
 	}
-
+	
+	@GetMapping(value="/appointment_doctor_date/{id}/{date}")
+	public List<Appointment> getAvaillableAppointment_ByDoctor(@PathVariable("id") int id, @PathVariable("date") String date) {
+		List<Appointment> aps =  new ArrayList<Appointment>();
+		for(Appointment a: as.allAppointments()) {
+			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) && a.getSchedule().getStatus().equals("availlable")) {
+				aps.add(a);
+			}
+		}
+		return aps;
+	}
+	
+    @GetMapping(value="appointment_cancel/{id}/{reason}/{date}")
+	public List<Appointment> appointmentCancel(@PathVariable("id") int id, @PathVariable("reason") String reason, @PathVariable("date") String date) {
+    	Appointment app =  as.getAppointmentById(id);
+    	app.setStatus("cancel");
+    	app.setCancel_reason(reason);
+        as.updateAppointment(app);
+        List<Appointment> aps =  new ArrayList<Appointment>();
+		for(Appointment a: as.allAppointments()) {
+			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) && a.getSchedule().getStatus().equals("availlable")) {
+				aps.add(a);
+			}
+		}
+		return aps;
+    }
+    
+    @GetMapping(value="appointment_reschedule/{id}/{date}")
+	public List<Appointment> appointmentReschedule(@PathVariable("id") int id, @PathVariable("date") String date) {
+    	Appointment app =  as.getAppointmentById(id);
+    	Schedule sch =  app.getSchedule();
+    	sch.setTime(date);
+    	ss.updateSchedule(sch);
+    	app.setStatus("open");
+    	app.setSchedule(ss.getScheduleById(sch.getId()));
+    	app.setCancel_reason("");
+        as.updateAppointment(app);
+        List<Appointment> aps =  new ArrayList<Appointment>();
+		for(Appointment a: as.allAppointments()) {
+			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) && a.getSchedule().getStatus().equals("availlable")) {
+				aps.add(a);
+			}
+		}
+		return aps;
+    }
 }

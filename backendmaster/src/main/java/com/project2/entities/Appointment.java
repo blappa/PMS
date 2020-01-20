@@ -14,9 +14,13 @@ public class Appointment {
     private String medication_list;
     private String appointment_type;
     private String pcp;   
+    private String status;   
+    private String cancel_reason;  
     
     @ManyToOne
-	private Hospital_User hospital_user;    
+	private Hospital_User doctor;    
+    @ManyToOne
+	private Hospital_User client;   
     @ManyToOne
 	private Schedule schedule;  
 	
@@ -79,14 +83,38 @@ public class Appointment {
 	
 	public void setPcp(String pcp) {
 		this.pcp = pcp;
-	}	
-	
-	public Hospital_User getHospital_user() {
-		return hospital_user;
-	}	
-	
-	public void setHospital_user(Hospital_User hospital_user) {
-		this.hospital_user = hospital_user;
 	}
+
+	public Hospital_User getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Hospital_User doctor) {
+		this.doctor = doctor;
+	}
+
+	public Hospital_User getClient() {
+		return client;
+	}
+
+	public void setClient(Hospital_User client) {
+		this.client = client;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getCancel_reason() {
+		return cancel_reason;
+	}
+
+	public void setCancel_reason(String cancel_reason) {
+		this.cancel_reason = cancel_reason;
+	}	
 	
 }

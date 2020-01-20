@@ -28,11 +28,11 @@ public class Hospital_User {
     private String role;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "hospital_user", cascade = CascadeType.ALL)
-	private List<Specialist> specialists;
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+	private List<Appointment> appointment_doctors;
     @JsonIgnore
-    @OneToMany(mappedBy = "hospital_user", cascade = CascadeType.ALL)
-	private List<Appointment> appointments;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	private List<Appointment> appointment_clients;
     @JsonIgnore
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	private List<Message> message_senders;
@@ -139,23 +139,23 @@ public class Hospital_User {
 	}
 
 
-	public List<Specialist> getSpecialists() {
-		return specialists;
+	public List<Appointment> getAppointment_doctors() {
+		return appointment_doctors;
 	}
 
 
-	public void setSpecialists(List<Specialist> specialists) {
-		this.specialists = specialists;
+	public void setAppointment_doctors(List<Appointment> appointment_doctors) {
+		this.appointment_doctors = appointment_doctors;
 	}
 
 
-	public List<Appointment> getAppointments() {
-		return appointments;
+	public List<Appointment> getAppointment_clients() {
+		return appointment_clients;
 	}
 
 
-	public void setAppointments(List<Appointment> appointments) {
-		this.appointments = appointments;
+	public void setAppointment_clients(List<Appointment> appointment_clients) {
+		this.appointment_clients = appointment_clients;
 	}
 
 

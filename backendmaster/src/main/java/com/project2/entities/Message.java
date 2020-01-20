@@ -14,6 +14,7 @@ public class Message {
 	
 	private String message;
 	private String status;
+	private String time;
 	
 	@ManyToOne
 	private Hospital_User sender;
@@ -69,6 +70,17 @@ public class Message {
 
 	public Hospital_User getReceiver() {
 		return receiver;
+	}
+
+	
+
+	public String getTime() {
+		return time;
+	}
+
+
+	public void setTime(String time) {
+		this.time = time;
 	}
 
 
