@@ -32,13 +32,14 @@ export class AppComponent {
     this.loginService.getUser(this.username).subscribe(
       (resp) => {
         this.response = JSON.parse(resp.toString());
-        console.log(this.response);
+        //console.log(this.response);
         if(this.response['0'].toString() === this.password.toString()){
           this.ismenu  = true;
           this.islogin  = false;
           this.ismsg  = false;
           sessionStorage.setItem("name", this.response['1']);
           sessionStorage.setItem("role", this.response['2']);
+          sessionStorage.setItem("user_id", this.response['3']);
         }
         if(this.response['0'].toString() == '0'){
           this.ismenu  = false;

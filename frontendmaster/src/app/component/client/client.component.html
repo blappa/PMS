@@ -3,29 +3,15 @@
     <thead>
       <tr>
         <th scope="col">Doctor Name</th>
-        <th scope="col">Time</th>
-        <th scope="col">Date</th>
+        <th scope="col">Date - Time</th>
         <th scope="col">Appointment Type</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">Mathew Abas</th>
-        <td>3:00</td>
-        <td>9/10/2019</td>
-        <td>Consultation</td>
-      </tr>
-      <tr>
-        <th scope="row">Shady White</th>
-        <td>2:00</td>
-        <td>9/29/2019</td>
-        <td>Follow Up</td>
-      </tr>
-      <tr>
-        <th scope="row">Kristina Aker</th>
-        <td >5:00</td>
-        <td>9/17/2019</td>
-        <td>Procedure</td>
+      <tr *ngFor="let appointment of appointments">
+        <th scope="row">{{appointment.hospital_user.f_name}} {{appointment.hospital_user.l_name}}</th>
+        <td>{{appointment.schedule.time}}</td>
+        <td>{{appointment.appointment_type}}</td>
       </tr>
     </tbody>
   </table>

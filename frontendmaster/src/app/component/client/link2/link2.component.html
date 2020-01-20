@@ -2,22 +2,33 @@
 <div class="contentcomp">
   <div class="p-3 mb-2 bg-light text-dark">Choose a doctor to view their schedule</div>
    <div class="input-group">
-    <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-        <option value="mathewabas">Mathew Abas</option>
-        <option value="britanyblack">Britanny Black</option>
-        <option value="shadywhite">Shady White</option>
-        <option value="thomasakbar">Thomas Akbar</option>
-        <option value="phillipbrown">Phillip Brown</option>
-        <option value="kristinaaker">Kristina Aker</option>
-        <option value="frederickali">Frederick Ali</option>
-        <option value="johnmichalson">John Michalson</option>
-        <option value="markabram">Mark Abram</option>
-        <option value="deniseaddison">denise Addison</option>
-        <option value="saraagrin">Sara Agrin</option>
-        <option value="benallan">Ben Allan</option>
-     </select>
+
+    <select id="inputGroupSelect04" class="custom-select" [(ngModel)]="doctor" aria-label="Example select with button addon">
+      <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{doctor.l_name+" "+doctor.f_name}}</option>
+    </select>
+
     <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button">Select</button>
+      <button class="btn btn-outline-secondary" (click) = "view()">Select</button>
     </div>
+  </div>
+  <div *ngIf="isok" class="input-group-append">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Doctor Name</th>
+          <th scope="col">Date - Time</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let schedule  of schedules ">
+          <th scope="row">{{schedule.id}}</th>
+          <th scope="row">{{schedule.hospital_user.f_name}} {{schedule.hospital_user.l_name}}</th>
+          <td scope="row">{{schedule.time}}</td>
+          <td scope="row">{{schedule.status}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
  </div>

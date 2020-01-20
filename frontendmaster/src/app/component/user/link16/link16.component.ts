@@ -25,6 +25,7 @@ export class Link16Component implements OnInit {
    }
 
   ngOnInit() {
+    this.issucces =  false;
     const body = <HTMLDivElement> document.body;
     const script = document.createElement('script');
     script.innerHTML = '';
@@ -36,7 +37,7 @@ export class Link16Component implements OnInit {
 
 
   createUser() {
-    console.log(this.user);
+    //console.log(this.user);
     this.userService.createUser(this.user)
         .subscribe( data => {
           if(data != null){
@@ -48,7 +49,8 @@ export class Link16Component implements OnInit {
   };
 
   loginPage(){
-    location.replace("/");
+    //location.replace("/");
+    location.reload();
   }
 
 }

@@ -17,8 +17,12 @@ export class AppointmentService {
 
   constructor(private http :HttpClient) {}
 
-  checkin(appointment :Appointment) :Observable<Appointment> {
-    return this.http.post<Appointment>(this.url+ "/appointment", appointment);
+  public checkin(appointment :string[]){
+    return this.http.get<Appointment>(this.url+ "/appointment/"+appointment+"/add");
+  }
+
+  public getUsersAppointments(user_id :string):Observable<Appointment[]>{
+    return this.http.get<Appointment[]>(this.url+ "/appointment_user/"+user_id, {responseType: 'text' as 'json' });
   }
 
 }

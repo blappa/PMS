@@ -16,12 +16,12 @@
                     <a href="#" class="d-flex justify-content-between">
                       <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1"> -->
                       <div class="text-small">
-                        <strong>Sample Doctor Name</strong>
-                        <p class="last-message text-muted">Hello, Are you there?</p>
+                        <strong>{{message_f_name}} {{message_l_name}}</strong>
+                        <p class="last-message text-muted">{{message_message}}</p>
                       </div>
                       <div class="chat-footer">
-                        <p class="text-smaller text-muted mb-0">Just now</p>
-                        <span class="badge badge-danger float-right">1</span>
+                        <p  class="text-smaller text-muted mb-0">Unread</p>
+                        <span class="badge badge-danger float-right">{{num_msg}}</span>
                       </div>
                     </a>
                   </li>
@@ -38,51 +38,30 @@
               <div class="chat-message">
       
                 <ul class="list-unstyled chat">
-                  <li class="d-flex justify-content-between mb-4">
+                  <li *ngFor="let message of messages" class="d-flex justify-content-between mb-4">
                     <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1"> -->
                     <div class="chat-body white p-3 ml-2 z-depth-1">
                       <div class="header">
-                        <strong class="primary-font">Doctor Name</strong>
+                        <strong class="primary-font">{{message.sender.f_name}} {{message.sender.l_name}}</strong>
                         <small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>
                       </div>
                       <hr class="w-100">
                       <p class="mb-0">
-                        Doctor Text
+                        {{message.message}}
                       </p>
-                    </div>
-                  </li>
-                  <li class="d-flex justify-content-between mb-4">
-                    <div class="chat-body white p-3 z-depth-1">
-                      <div class="header">
-                        <strong class="primary-font">Sample Client Name</strong>
-                        <small class="pull-right text-muted"><i class="far fa-clock"></i> 13 mins ago</small>
-                      </div>
-                      <hr class="w-100">
-                      <p class="mb-0">
-                        Client chat text
-                      </p>
-                    </div>
-                    <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="avatar" class="avatar rounded-circle mr-0 ml-3 z-depth-1"> -->
-                  </li>
-                  <li class="d-flex justify-content-between mb-4 pb-3">
-                    <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-6.jpg" alt="avatar" class="avatar rounded-circle mr-2 ml-lg-3 ml-0 z-depth-1"> -->
-                    <div class="chat-body white p-3 ml-2 z-depth-1">
-                      <div class="header">
-                        <strong class="primary-font">Doctor name</strong>
-                        <small class="pull-right text-muted"><i class="far fa-clock"></i> 12 mins ago</small>
-                      </div>
-                      <hr class="w-100">
-                      <p class="mb-0">
-                        doctor chat
-                      </p>
+                      <button (click) = "setRead(message.id)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Read</button>
                     </div>
                   </li>
                   <li class="white">
                     <div class="form-group basic-textarea">
-                      <textarea class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3" placeholder="Type your message here..."></textarea>
+                      <textarea [(ngModel)]="message.message" class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3" placeholder="Type your message here..."></textarea>
                     </div>
+                    <h2 class="fs-title">Receiver (Receptionist)</h2>
+                    <select  [(ngModel)]="receptionist.id">
+                      <option *ngFor="let receptionist of receptionists" [ngValue]="receptionist.id">{{receptionist.l_name+" "+receptionist.f_name}}</option>
+                  </select>
                   </li>
-                  <button type="button" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
+                  <button (click) = "send()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
                 </ul>
       
               </div>

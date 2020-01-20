@@ -16,7 +16,7 @@ export class LoginService {
 
   constructor(private http :HttpClient) {}
 
-  getUser(username :string) :Observable<String> {
+  public getUser(username :string) :Observable<String> {
     return this.http.get<String>(this.url+"/hospital_username/"+username, {responseType: 'text' as 'json' });
   }
 

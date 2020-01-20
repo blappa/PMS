@@ -12,13 +12,18 @@ const httpOptions = {
 })
 export class UserService {
 
-  private url = 'http://ec2-3-135-228-192.us-east-2.compute.amazonaws.com:8081/portal';
+  //private url = 'http://ec2-3-135-228-192.us-east-2.compute.amazonaws.com:8081/portal';
+  private url = 'http://localhost:8080/portal';
 
   constructor(private http :HttpClient) {}
 
  
   public getUsers() {
     return this.http.get<Users[]>(this.url+ "/hospital_users");
+  }
+
+  public getDoctors() :Observable<Users[]>{
+    return this.http.get<Users[]>(this.url+ "/hospital_doctors");
   }
 
   public deleteUser(idu :number) {
