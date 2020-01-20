@@ -22,24 +22,24 @@ export class AppointmentService {
   }
 
   public getUsersAppointments(user_id :string):Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.url+ "/appointment_user/"+user_id, {responseType: 'text' as 'json' });
+    return this.http.get<Appointment[]>(this.url+ "/appointment_user/"+user_id);
   }
   
   public getAvaillableAppointment_ByDoctor(id :string, date :string):Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_date/"+id+"/"+date, {responseType: 'text' as 'json' });
+    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_date/"+id+"/"+date);
   }//
 
   cancelAppointment(id :string, reason :string, date :string):Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.url+ "/appointment_cancel/"+id+"/"+reason+"/"+date, {responseType: 'text' as 'json' });
+    return this.http.get<Appointment[]>(this.url+ "/appointment_cancel/"+id+"/"+reason+"/"+date);
   }
 
   
   rescheduleAppointment(id :string, date :string):Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.url+ "/appointment_reschedule/"+id+"/"+date, {responseType: 'text' as 'json' });
+    return this.http.get<Appointment[]>(this.url+ "/appointment_reschedule/"+id+"/"+date);
   }
 
   getAvaillableAppointment_ByDoctor1():Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.url+ "/appointments", {responseType: 'text' as 'json' });
+    return this.http.get<Appointment[]>(this.url+ "/appointments");
   }
 
 }
