@@ -1,17 +1,19 @@
 <div class="contentcomp">
-<table class="table table-bordered">
+  <table id="myTable" class="blueTable">
     <thead>
       <tr>
-        <th scope="col">Doctor Name</th>
+        <th scope="col">Client Name</th>
         <th scope="col">Date - Time</th>
         <th scope="col">Appointment Type</th>
+        <th scope="col">Doctor Name</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let appointment of appointments">
-        <th scope="row">{{appointment.hospital_user.f_name}} {{appointment.hospital_user.l_name}}</th>
+        <th scope="row">{{appointment.client.f_name}} {{appointment.client.l_name}}</th>
         <td>{{appointment.schedule.time}}</td>
         <td>{{appointment.appointment_type}}</td>
+        <th scope="row">{{appointment.doctor.f_name}} {{appointment.doctor.l_name}}</th>
       </tr>
     </tbody>
   </table>

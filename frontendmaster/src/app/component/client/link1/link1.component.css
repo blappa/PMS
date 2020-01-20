@@ -1,6 +1,8 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css );
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css )	;
 
+​
+
 #checkin {
   background-color: rgb(129, 152, 202);
   border: none;
@@ -303,3 +305,44 @@ select.list-dt:focus {
     width: 100%;
     object-fit: cover
 }
+
+
+
+
+
+.table-bordered{
+
+    background-color:white
+
+}
+
+​
+
+.col-md-6{
+
+    border: 2px solid gray;
+
+}
+
+​
+
+.chat-body{
+
+    /* border: 2px solid lightgray; */
+
+    background-color: rgb(129, 152, 209);
+
+    border-radius: 25px;
+
+}
+
+​
+
+.active{
+
+    border: 2px solid;
+
+    border-radius: 25px;
+
+}
+

@@ -45,11 +45,15 @@ export class Link3Component implements OnInit {
     this.allMessages.subscribe(
       (response) => {
         this.messages = response;
-        this.message_message = '';//this.messages[0].message;
+        //console.log(this.messages);
+        if(this.messages.length != 0){
+          this.message_message = this.messages[0].message;
+        }
+        this.message_message = '';
       }
     );
 
-    this.allReceptionists = this.userService.getDoctors();
+    this.allReceptionists = this.userService.getReceptionists();
     this.allReceptionists.subscribe(
       (response) => {
         this.receptionists = response;

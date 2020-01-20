@@ -1,4 +1,5 @@
 import { Users } from './users';
+import { Appointment } from './appointment';
 
 export class Schedule{
 
@@ -8,6 +9,7 @@ export class Schedule{
     status :number;
 
     doctor :Users = new Users();
+    appointments : Appointment[] =  [];
 	
     constructor(){}
 

@@ -9,3 +9,8 @@
 .table-bordered{
     background-color:white;
 }
+
+#unread{
+    background-color:red;
+}
+

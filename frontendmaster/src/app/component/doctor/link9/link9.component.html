@@ -1,6 +1,18 @@
 <div class="contentcomp">
     <!-- Your code here-->
-    <p>Link 9 <br>
-    This content need to be change</p>
+    <div class="bodyClass">
+
+        <h2>Create schedule</h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <h2 class="fs-title">Enter time</h2> 
+                  <input type="time" [(ngModel)]="date" placeholder="Reason " />  
+                  <button class="btn btn-danger" (click)="createSchedule()" >Save</button>
+                      
+                </div>
+            </div>
+        </div>
+    </div>	
 
 </div>

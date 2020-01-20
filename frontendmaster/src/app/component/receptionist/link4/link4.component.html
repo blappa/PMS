@@ -5,47 +5,49 @@
     <div class="input-group-prepend">
       <label class="input-group-text"  for="inputGroupSelect01">Physician</label>
     </div>
-    <select class="custom-select" id="inputGroupSelect01">
-      <option selected>select physician...</option>
-      <option>Ahmed Sulaiman</option>
-      <option>Buju banton</option>
-      <option>etc</option>
-    </select>
+    <select  [(ngModel)]="doctor" (change)="selectOption()">
+        <option selected>select physician...</option>
+        <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{doctor.l_name+" "+doctor.f_name}}</option>
+   </select>
   </div>
 
    <h5>Please select date</h5>
-   <input type="date">
+   <select  [(ngModel)]="date">
+     <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}}</option>
+  </select>
 
-  <button (click) = "viewAppts()"  class="btn btn-secondary">View Appointments</button>
+   <button (click) = "viewAppts()"  class="btn btn-secondary">View Appointments</button>
 
 
   <div class="contentcomp">
     <div *ngIf='tableVar' class="table-appointment">
-        <table class="table table-bordered myTable">
-            <thead>
-                <tr>
-                    <th scope="col">Patient Name</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Appointment type</th>
-                    <th scope="col"> Cancel Appointment</th>
-                    <th scope="col"> Reschedule Appointment</th>
-                </tr>
-            </thead>
-            <!-- <tr class = "hoverLine" *ngFor='let appointment of appointments' (click)="patientInfo()">
-                <td> (click)="patientInfo()"{{appointment.hospital_user.f_name}} {{appointment.hospital_user.l_name}}</td>
-                <td>{{appointment.time}} {{time}}</td>
-                <td>{{appointment.appointment_type}}</td>
-                <td><button class="btn btn-danger" (click)="cancelAppointment()"> Cancel</button></td>
-            </tr> -->
-
-            <tr class = "hoverLine">
-                <td (click)="patientInfo()">aa</td>
-                <td>dd</td>
-                <td>rr</td>
-                <td><button class="btn btn-danger" (click)="startCancel()"> Cancel</button></td>
-                <td><button class="btn btn-success" (click)="reschedulelAppointment()"> Reschedule</button></td>
-            </tr>
-        </table>
+      <table id="t01" class="table table-bordered myTable">
+        <thead>
+          <tr>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Date - Time</th>
+            <th scope="col">Appointment Type</th>
+            <th scope="col"> Cancel Appointment</th>
+            <th scope="col"> Reschedule Appointment</th>
+          </tr>
+        </thead>
+          <tr class = "hoverLine" *ngFor="let appointment of appointments">
+            <th (click)="patientInfo(appointment.client.id, appointment)">{{appointment.client.f_name}} {{appointment.client.l_name}}</th>
+            <td>{{appointment.schedule.time}}</td>
+            <td>{{appointment.appointment_type}}</td>
+            <td><button class="btn btn-danger" (click)="startCancel()"> Cancel</button></td>
+            <td><button class="btn btn-success" (click)="startReschedulelAppointment(appointment)"> Reschedule</button></td>
+          </tr>
+      </table>
+    </div>
+    <div class="form-group cancelForm"  *ngIf="rescheduleNote" >
+      <div class="form-card">
+        <h2 class="fs-title">What time will your appointment be?</h2> 
+        <select  [(ngModel)]="appointment.schedule">
+            <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}}</option>
+        </select>
+      </div>
+      <button type="button" class="btn btn-danger" (click)="reschedulelAppointment()">Send</button>
     </div>
     <div class="form-group cancelForm"  *ngIf="cancelNote" >
       <h5>Please enter reason for cancellation</h5>
@@ -58,22 +60,22 @@
        <div class="container">
             <div class="basic_info common"> 
                 <h4>Basic Information</h4>
-                <span>First Name: {{f_name}}</span><br>
-                <span>Last Name: {{l_name}}</span><br>
+                <span>First Name: {{appointment.client.f_name}}</span><br>
+                <span>Last Name: {{appointment.client.l_name}}</span><br>
                 <span>Age: {{age}}</span>
             </div>
 
             <div class="contact_info common"> 
                     <h4>Contact Information</h4>
-                    <span>Phone: {{phone}}</span><br>
-                    <span>Email: {{email}}</span>
+                    <span>Phone: {{appointment.client.phone}}</span><br>
+                    <span>Email: {{appointment.client.email}}</span>
             </div>
 
             <div class="medical_info common"> 
                     <h4>Medical Information</h4>
-                    <span>Allergy: {{allergy}}</span><br>
-                    <span>Medication List: {{medication_list}}</span><br>
-                    <span>Primary Care Physician: {{pcp}}</span><br>
+                    <span>Allergy: {{appointment.allergy}}</span><br>
+                    <span>Medication List: {{appointment.medication_list}}</span><br>
+                    <span>Primary Care Physician: {{appointment.pcp}}</span><br>
                     <span>See extra files: </span>
                     <a href="#">Download file</a><br>
             </div>
@@ -83,16 +85,14 @@
                   <div class="input-group-prepend">
                     <label class="input-group-text"  for="inputGroupSelect01">Recipient</label>
                   </div>
-                  <select class="custom-select width:70%;" id="inputGroupSelect01">
-                    <option selected>select recipient...</option>
-                    <option>Appointment Physician</option>
-                    <option>Patient</option>
+                    <select  class="custom-select width:70%;" id="inputGroupSelect01" [(ngModel)]="receptionist.id">
+                      <option *ngFor="let receptionist of receptionists" [ngValue]="receptionist.id">{{receptionist.l_name+" "+receptionist.f_name}}</option>
                   </select>
                 </div>
               
-              <textarea class="form-control sendInstructions" rows="3" [(ngModel)] = "message"></textarea>
+              <textarea class="form-control sendInstructions" rows="3" [(ngModel)] = "message.message"></textarea>
               <button type="button" class="btn btn-success" (click)="sendMsg()">Send</button>
-      </div>
+            </div>
        </div>
      </div>
 

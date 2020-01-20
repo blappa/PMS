@@ -76,6 +76,7 @@ checkin(){
   this.app[4] = this.appointment.pcp;
   this.app[5] = this.appointment.doctor.id+"";
   this.app[6] = this.appointment.schedule.id+"";
+  this.app[7] = sessionStorage.getItem("user_id");
   //console.log(this.app);
   this.appointmentService.checkin(this.app).subscribe( data => {
     //console.log(data);

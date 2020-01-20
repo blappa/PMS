@@ -11,6 +11,7 @@ export class Appointment{
     pcp: string;
 
     doctor :Users = new Users();
+    client :Users = new Users();
     schedule :Schedule = new Schedule();
 
     constructor(){
