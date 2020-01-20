@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Hospital_User {
@@ -25,17 +27,19 @@ public class Hospital_User {
     private String password;
     private String role;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "hospital_user", cascade = CascadeType.ALL)
 	private List<Specialist> specialists;
+    @JsonIgnore
     @OneToMany(mappedBy = "hospital_user", cascade = CascadeType.ALL)
 	private List<Appointment> appointments;
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	private List<Message> message_senders;
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL)
 	private List<Message> message_receivers;
-    
+    @JsonIgnore
     @OneToMany(mappedBy = "hospital_user", cascade = CascadeType.ALL)
 	private List<Schedule> schedules;
     

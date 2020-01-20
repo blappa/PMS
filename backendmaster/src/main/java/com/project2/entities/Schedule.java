@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Schedule {
 	
@@ -20,9 +22,11 @@ public class Schedule {
 	private String time;
 	private String status;
 	
+	@JsonIgnore
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
 	private List<Appointment> appointments;
 	
+	//@JsonIgnore
 	@ManyToOne
 	private Hospital_User hospital_user;
 	

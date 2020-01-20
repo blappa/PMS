@@ -48,6 +48,32 @@ public class Hospital_UserController {
 		return hu.allHospital_Users();
 	}
 	
+	@GetMapping(value="/hospital_doctors")
+	public List<Hospital_User> allHospital_Doctors() {
+		List<Hospital_User> docs = hu.allHospital_Users();
+		List<Hospital_User> docsss = new ArrayList<Hospital_User>();
+		for(Hospital_User hus: docs) {
+			if(hus.getRole().equals("doctor")) {
+				docsss.add(hus);
+			}
+		}
+		System.out.println(docsss);
+		return docsss;
+	}
+	
+	@GetMapping(value="/hospital_receptionists")
+	public List<Hospital_User> allHospital_Receptionists() {
+		List<Hospital_User> docs = hu.allHospital_Users();
+		List<Hospital_User> docsss = new ArrayList<Hospital_User>();
+		for(Hospital_User hus: docs) {
+			if(hus.getRole().equals("receptionist")) {
+				docsss.add(hus);
+			}
+		}
+		System.out.println(docsss);
+		return docsss;
+	}
+	
 	@GetMapping(value="/hospital_user/{id}")
 	public Hospital_User getHospital_UserById(@PathVariable("id") int id) {
 		return hu.getHospital_UserById(id);
@@ -66,14 +92,14 @@ public class Hospital_UserController {
 	
 	@GetMapping(value="/hospital_username/{username}")
 	public Map<String, String> login(@PathVariable("username") String username) {
-	    System.out.println(username);
+	    //System.out.println(username);
 		Hospital_User h =  hu.getHospital_UserByUsername(username);
 		Map<String, String> resp = new HashMap<String, String>();
 		if( h != null) {
 			resp.put("0",h.getPassword());
 			resp.put("1",h.getF_name()+" "+h.getL_name());
 			resp.put("2",h.getRole());
-			
+			resp.put("3",String.valueOf(h.getId()));
 		}else {
 			resp.put("0", "0");
 		}

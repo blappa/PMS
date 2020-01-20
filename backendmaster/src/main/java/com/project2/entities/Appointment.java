@@ -13,12 +13,7 @@ public class Appointment {
     private String allergy;
     private String medication_list;
     private String appointment_type;
-    
-    //private int doctor;
-    //private int appointment_time;
-    
-    private String pcp;
-    private byte[] load_file;    
+    private String pcp;   
     
     @ManyToOne
 	private Hospital_User hospital_user;    
@@ -84,14 +79,6 @@ public class Appointment {
 	
 	public void setPcp(String pcp) {
 		this.pcp = pcp;
-	}	
-	
-	public byte[] getLoad_file() {
-		return load_file;
-	}	
-	
-	public void setLoad_file(byte[] load_file) {
-		this.load_file = load_file;
 	}	
 	
 	public Hospital_User getHospital_user() {
