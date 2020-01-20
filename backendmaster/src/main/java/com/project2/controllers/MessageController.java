@@ -20,8 +20,8 @@ import com.project2.entities.Message;
 import com.project2.service.Hospital_UserService;
 import com.project2.service.MessageService;
 
-@CrossOrigin(origins = "http://sitemedpark.s3-website-us-east-1.amazonaws.com/")
-//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://sitemedpark.s3-website-us-east-1.amazonaws.com/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping({"/portal"})
 public class MessageController {

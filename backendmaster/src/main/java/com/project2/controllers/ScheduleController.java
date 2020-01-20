@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project2.entities.Schedule;
 import com.project2.service.Hospital_UserService;
 import com.project2.service.ScheduleService;
 
 
-@CrossOrigin(origins = "http://sitemedpark.s3-website-us-east-1.amazonaws.com/")
-//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://sitemedpark.s3-website-us-east-1.amazonaws.com/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping({"/portal"})
 public class ScheduleController {
