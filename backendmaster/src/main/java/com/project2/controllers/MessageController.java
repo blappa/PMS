@@ -39,17 +39,13 @@ import com.project2.service.MessageService;
 //@CrossOrigin(origins = "http://sitemedpark.s3-website-us-east-1.amazonaws.com/")
 
 @CrossOrigin(origins = "http://localhost:4200")
-
 @RestController
-
 @RequestMapping({"/portal"})
 
 public class MessageController {
 
     @Autowired
-
     MessageService ms;
-
     @Autowired
 
     Hospital_UserService hu;
@@ -57,9 +53,7 @@ public class MessageController {
     
 
     //@RequestMapping(value="/message", method=RequestMethod.POST, consumes = "application/json")
-
     @GetMapping("/message/{data}/send")
-
     public List<Message> createMessage(@PathVariable("data") String[] data) {
 
         System.out.println(data);
@@ -121,7 +115,6 @@ public class MessageController {
     
 
     @GetMapping(value="/messages")
-
     public List<Message> allMessages() {
 
         return ms.allMessages();
@@ -131,7 +124,6 @@ public class MessageController {
     
 
     @GetMapping(value="/message/{id}")
-
     public Message getMessageById(@PathVariable("id") int id) {
 
         return ms.getMessageById(id);
@@ -143,7 +135,6 @@ public class MessageController {
     
 
     @GetMapping(value="/message/all/{id}")
-
     public List<Message> allMessagesByUser(@PathVariable("id") int id) {
 
         List<Message> mss = new ArrayList<Message>();
@@ -187,7 +178,6 @@ public class MessageController {
     
 
     @GetMapping(value="/message/all/unread/{id}")
-
     public List<Message> allMessagesUnreadByUser(@PathVariable("id") int id) {
 
         List<Message> mss = new ArrayList<Message>();
