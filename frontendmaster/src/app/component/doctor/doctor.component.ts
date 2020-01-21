@@ -26,7 +26,7 @@ export class DoctorComponent implements OnInit {
   app: string[] =  [];
   doctor :Users = new Users();
   schedule :Schedule = new Schedule();
-  doctor_id : number;
+  doctor_id : string;
   date : string;
   schedule_id : number;
   doctors : Users[] =  [];
@@ -76,19 +76,24 @@ export class DoctorComponent implements OnInit {
         this.users = response;
       }
     );
+    this.dashboard();
+  }
 
-    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
+  dashboard(){
+    this.doctor_id = sessionStorage.getItem("user_id");
+    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor2(this.doctor_id);
     this.allUserAppointments.subscribe(
       (response) => {
-        console.log();
+        console.log("oo" + this.appmnts);
         this.appmnts = response;
       }
     );
   }
 
-  startCancel(){
+  startCancel(appointment : Appointment){
     this.cancelNote = true;
     this.rescheduleNote = false;
+    this.appointment = appointment;
   }
 
   startReschedulelAppointment(appointment :Appointment){
@@ -103,10 +108,11 @@ export class DoctorComponent implements OnInit {
     this.rescheduleNote = true;
   }
 
-  patientInfo(){
+  patientInfo(appointment : Appointment){
     // make a reference to the patient information
     this.client_info = false;
-    console.log("check row click");
+    this.appointment = appointment;
+    console.log("client name" + this.appointment.client.f_name);
   }
 
   showAppointments(){
@@ -123,24 +129,25 @@ export class DoctorComponent implements OnInit {
   
 
   cancelAppointment(){
-    //cancel an appointment
+    console.log("cancel an appointment");
     this.cancelNote = false;
     this.rescheduleNote = false;
-    this.appointmentService.cancelAppointment(this.appointment.id.toString(), this.cancelReason, this.date)
+    this.appointmentService.cancelAppointment1(this.appointment.id + "", this.cancelReason)
      .subscribe(
       (response) => {
         this.appmnts = response;
+        this.dashboard();
       }
     );
     console.log("Canceled");
   }
 
-  sendToReceptionist(){
+  sendToReceptionist(userss : Users){
     this.instructions = '';
     this.user_id = sessionStorage.getItem("user_id");
     this.data[0] = this.message.message;
     this.data[1] = this.user_id;
-    this.data[2] = this.userss.id+"";
+    this.data[2] = userss.id+"";
     this.data[3] = 'unread';
     this.allMessages = this.messageService.sendMessage(this.data);
     this.allMessages.subscribe(

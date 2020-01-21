@@ -67,11 +67,11 @@ export class Link6Component implements OnInit {
   }
 
 
-  send(){
+  send(receptionist : Users){
     this.user_id = sessionStorage.getItem("user_id");
     this.data[0] = this.message.message;
     this.data[1] = this.user_id;
-    this.data[2] = this.users.id+"";
+    this.data[2] = receptionist.id+"";
     this.data[3] = 'unread';
     this.allMessages = this.messageService.sendMessage(this.data);
     this.allMessages.subscribe(

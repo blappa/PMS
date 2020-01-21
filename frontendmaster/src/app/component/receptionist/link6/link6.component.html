@@ -58,11 +58,11 @@
                       <textarea [(ngModel)]="message.message" class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3" placeholder="Type your message here..."></textarea>
                     </div>
                     <h2 class="fs-title">Receiver (Receptionist)</h2>
-                    <select  [(ngModel)]="receptionist.id">
-                      <option *ngFor="let receptionist of receptionists" [ngValue]="receptionist.id">{{receptionist.l_name+" "+receptionist.f_name}}</option>
+                    <select  [(ngModel)]="receptionist">
+                      <option *ngFor="let receptionist of receptionists" [ngValue]="receptionist">{{receptionist.l_name+" "+receptionist.f_name}}</option>
                   </select>
                   </li>
-                  <button (click) = "send()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
+                  <button (click) = "send(receptionist)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
                 </ul>
       
               </div>

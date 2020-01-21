@@ -76,11 +76,21 @@ export class Link7Component implements OnInit {
         this.users = response;
       }
     );
+
+    this.allSchedules = this.scheduleService.getAllScheduleByDoctor3(sessionStorage.getItem("user_id"));
+    this.allSchedules.subscribe(
+      (response) => {
+        this.schedules = response;
+        //console.log(this.schedules);
+      }
+    );
+
   }
 
-  startCancel(){
+  startCancel(appointment : Appointment){
     this.cancelNote = true;
     this.rescheduleNote = false;
+    this.appointment = appointment;
   }
 
   startReschedulelAppointment(appointment :Appointment){
@@ -95,22 +105,23 @@ export class Link7Component implements OnInit {
     this.rescheduleNote = true;
   }
 
-  patientInfo(){
+  patientInfo(appointment : Appointment){
     // make a reference to the patient information
     this.client_info = false;
+    this.appointment = appointment;
     console.log("check row click");
   }
 
   showAppointments(){
     // make a reference to the patient information
     this.appointments = false;
-    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor(this.doctor.id.toString(), this.date);
+    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor4(sessionStorage.getItem("user_id"), this.schedule.dates, this.schedule.time);
     this.allUserAppointments.subscribe(
       (response) => {
         this.appmnts = response;
       }
     );
-    console.log("show list of appointments");
+    console.log("show list of appointments " +  sessionStorage.getItem("user_id") +  " " + this.schedule.dates);
   }
   
 
@@ -118,10 +129,11 @@ export class Link7Component implements OnInit {
     //cancel an appointment
     this.cancelNote = false;
     this.rescheduleNote = false;
-    this.appointmentService.cancelAppointment(this.appointment.id.toString(), this.cancelReason, this.date)
+    this.appointmentService.cancelAppointment1(this.appointment.id + "", this.cancelReason)
      .subscribe(
       (response) => {
         this.appmnts = response;
+        this.showAppointments()
       }
     );
     console.log("Canceled");
