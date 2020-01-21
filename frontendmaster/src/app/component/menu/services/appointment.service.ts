@@ -29,8 +29,17 @@ export class AppointmentService {
     return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_date/"+id+"/"+date);
   }//
 
+  public getAvaillableAppointment_ByDoctor4(id :string, date :string, time : string):Observable<Appointment[]>{
+    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_date_time/"+id+"/"+date+"/"+time);
+  }//
+
   cancelAppointment(id :string, reason :string, date :string):Observable<Appointment[]>{
     return this.http.get<Appointment[]>(this.url+ "/appointment_cancel/"+id+"/"+reason+"/"+date);
+  }
+
+  //nicole
+  cancelAppointment1(id :string, reason :string,):Observable<Appointment[]>{
+    return this.http.get<Appointment[]>(this.url+ "/appointment_cancel1/"+id+"/"+reason);
   }
 
   
@@ -40,6 +49,11 @@ export class AppointmentService {
 
   getAvaillableAppointment_ByDoctor1():Observable<Appointment[]>{
     return this.http.get<Appointment[]>(this.url+ "/appointments");
+  }
+
+  //nicole
+  getAvaillableAppointment_ByDoctor2(id : string):Observable<Appointment[]>{
+    return this.http.get<Appointment[]>(this.url+ "/appointmentsByDoctor/"+id);
   }
 
 }

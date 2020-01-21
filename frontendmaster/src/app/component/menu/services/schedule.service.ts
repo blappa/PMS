@@ -37,7 +37,7 @@ export class ScheduleService {
       return this.http.get<Schedule[]>(this.url+"/schedule_doctor/"+id+"/all");
     }
 
-    createSchedule(id :string, date :string) :Observable<Schedule[]> {
-      return this.http.get<Schedule[]>(this.url+"/create_schedule_doctor/"+id+"/"+date);
+    createSchedule(id :string, date :string, time :string) :Observable<Schedule[]> {
+      return this.http.get<Schedule[]>(this.url+"/create_schedule_doctor/"+id+"/"+date+"/"+time);
     }
 }

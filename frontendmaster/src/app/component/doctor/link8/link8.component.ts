@@ -26,6 +26,11 @@ export class Link8Component implements OnInit {
   constructor(private userService: UserService, private scheduleService: ScheduleService) { }
 
   ngOnInit() {
+    this.updateSch();
+        
+  }
+
+  updateSch(){
     this.doctor_id = sessionStorage.getItem("user_id");
     this.allSchedules = this.scheduleService.getAllScheduleByDoctor3(this.doctor_id);
     this.allSchedules.subscribe(
@@ -36,11 +41,12 @@ export class Link8Component implements OnInit {
     );
   }
 
-  updateSchedule() {
-    this.scheduleService.updateSchedule(this.schedule.id)
+  updateSchedule(id : number) {
+    this.scheduleService.updateSchedule(id)
      .subscribe(
       (response) => {
         this.schedules = response;
+        this.updateSch();
       }
     );
     console.log("Updateschedule");

@@ -17,7 +17,7 @@
                         <td>{{schedule.id}}</td>
                         <td>{{schedule.dates}} {{schedule.time}}</td>
                         <td>{{schedule.status}}</td>
-                        <button class="btn btn-danger" (click)="updateSchedule()" >Unavailable</button>
+                        <button class="btn btn-danger" (click)="updateSchedule(schedule.id)" >Unavailable</button>
                       </tr>
                   </table>
             </div>
