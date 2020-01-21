@@ -35,6 +35,9 @@ export class Link3Component implements OnInit {
   messages : Messages[] =  [];
   receptionists : Users[] =  [];
 
+  read :boolean;
+  unread :boolean;
+
   constructor(public router: Router, private messageService: MessageService, private userService: UserService) {}
 
   ngOnInit() {
@@ -99,6 +102,8 @@ export class Link3Component implements OnInit {
     this.allMessages.subscribe(
       (response) => {
         this.num_msg = response.length;
+        this.messages = response;
+        this.getUnread();
       }
     );
   }
