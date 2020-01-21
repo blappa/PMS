@@ -17,7 +17,6 @@ export class UserService {
 
   constructor(private http :HttpClient) {}
 
-<<<<<<< HEAD
  
   public getUsers() {
     return this.http.get<Users[]>(this.url+ "/hospital_users");
@@ -41,10 +40,6 @@ export class UserService {
 
   public createUser(user :Users) {
     return this.http.post<Users>(this.url+ "/hospital_user", user);
-=======
-  addUser(poke :User) :Observable<User> {
-    return this.http.post<User>("http://localhost:8080/PokeApp/addPokemon.do", poke, {headers: this.headers});
->>>>>>> master
   }
 
 }
