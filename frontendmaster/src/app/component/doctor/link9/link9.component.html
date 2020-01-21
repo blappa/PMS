@@ -7,12 +7,34 @@
             <div class="input-group-prepend">
                 <div class="input-group-text">
                   <h2 class="fs-title">Enter time</h2> 
-                  <input type="time" [(ngModel)]="date" placeholder="Reason " />  
-                  <button class="btn btn-danger" (click)="createSchedule()" >Save</button>
+                  <input type="time" [(ngModel)]="date" placeholder="Time " />  
+                  <button class="btn btn-danger" (click)="createSchedule()" > Save </button>
                       
                 </div>
             </div>
         </div>
     </div>	
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+
+                <table id="t01" class="table table-bordered myTable">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Date - Time</th>
+                        <th scope="col">Status</th>
+                      </tr>
+                    </thead>
+                      <tr class = "hoverLine" *ngFor="let schedule of schedules">
+                        <td>{{schedule.id}}</td>
+                        <td>{{schedule.dates}} {{schedule.time}}</td>
+                        <td>{{schedule.status}}</td>
+                        <button class="btn btn-danger" (click)="updateSchedule()" >Unavailable</button>
+                      </tr>
+                  </table>
+            </div>
+        </div>
+    </div>
 
 </div>
