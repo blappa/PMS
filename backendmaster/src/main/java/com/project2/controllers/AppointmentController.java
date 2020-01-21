@@ -47,6 +47,7 @@ public class AppointmentController {
 		appointment.setSchedule(ss.getScheduleById(Integer.parseInt(app[6])));
 		appointment.setClient(hs.getHospital_UserById(Integer.parseInt(app[7])));
 		appointment.setCancel_reason("");
+		appointment.setStatus("available");
 		/*Hospital_User hu = hs.getHospital_UserById(appointment.getHospital_user().getAge());
 		Schedule sc =  ss.getScheduleById(appointment.getId());
 		appointment.setHospital_user(hu);
@@ -97,28 +98,76 @@ public class AppointmentController {
 	
 	@GetMapping(value="/appointment_doctor_date/{id}/{date}")
 	public List<Appointment> getAvaillableAppointment_ByDoctor(@PathVariable("id") int id, @PathVariable("date") String date) {
+		System.out.println("Check the apps" + date + "time");
 		List<Appointment> aps =  new ArrayList<Appointment>();
 		for(Appointment a: as.allAppointments()) {
-			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) && a.getSchedule().getStatus().equals("availlable")) {
-				aps.add(a);
+			try {
+			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) &&
+					a.getSchedule().getStatus().equals("available") && 
+					a.getStatus().equals("available")) {
+					aps.add(a);
+				}
+			} catch(Exception e) {
+				
 			}
+			
+		}
+		return aps;
+	}
+	
+	@GetMapping(value="/appointment_doctor_date_time/{id}/{date}/{time}")
+	public List<Appointment> getAvaillableAppointment_ByDoctor(@PathVariable("id") int id, @PathVariable("date") String date, @PathVariable("time") String time) {
+		System.out.println("Check the apps" + date + "time" + time);
+		List<Appointment> aps =  new ArrayList<Appointment>();
+		for(Appointment a: as.allAppointments()) {
+			try {
+			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) &&
+					a.getSchedule().getStatus().equals("available") && 
+					a.getStatus().equals("available") && (a.getSchedule().getTime().equals(time))) {
+					aps.add(a);
+				}
+			} catch(Exception e) {
+				
+			}
+			
 		}
 		return aps;
 	}
 	
     @GetMapping(value="appointment_cancel/{id}/{reason}/{date}")
 	public List<Appointment> appointmentCancel(@PathVariable("id") int id, @PathVariable("reason") String reason, @PathVariable("date") String date) {
+    	System.out.println("check the canceld appois" + reason);
     	Appointment app =  as.getAppointmentById(id);
     	app.setStatus("cancel");
     	app.setCancel_reason(reason);
         as.updateAppointment(app);
         List<Appointment> aps =  new ArrayList<Appointment>();
 		for(Appointment a: as.allAppointments()) {
-			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) && a.getSchedule().getStatus().equals("availlable")) {
+			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) && a.getSchedule().getStatus().equals("available")) {
 				aps.add(a);
 			}
 		}
 		return aps;
+    }
+    @GetMapping(value="appointment_cancel1/{id}/{reason}")
+    public List<Appointment> appointmentCancel1(@PathVariable("id") int id, @PathVariable("reason") String reason) {
+    	System.out.println("check the canceld appois" + reason);
+    	Appointment app =  as.getAppointmentById(id);
+    	app.setStatus("cancel");
+    	app.setCancel_reason(reason);
+    	as.updateAppointment(app);
+    	List<Appointment> aps =  new ArrayList<Appointment>();
+    	for(Appointment a: as.allAppointments()) {
+    		try {
+    			if((a.getDoctor().getId() == id) && a.getSchedule().getStatus().equals("available")) {
+        			aps.add(a);
+        		}
+    		} catch (Exception e) {
+    			
+    		}
+ 
+    	}
+    	return aps;
     }
     
     @GetMapping(value="appointment_reschedule/{id}/{date}")
@@ -133,10 +182,26 @@ public class AppointmentController {
         as.updateAppointment(app);
         List<Appointment> aps =  new ArrayList<Appointment>();
 		for(Appointment a: as.allAppointments()) {
-			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) && a.getSchedule().getStatus().equals("availlable")) {
+			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date) && a.getSchedule().getStatus().equals("available")) {
 				aps.add(a);
 			}
 		}
 		return aps;
+    }
+    @GetMapping(value="/appointmentsByDoctor/{id}")
+    public List<Appointment> appointmentsByDoctor(@PathVariable("id") int id) {
+
+    	List<Appointment> aps =  new ArrayList<Appointment>();
+    	for(Appointment a: as.allAppointments()) {
+    		System.out.println(a.getDoctor());
+    		try {
+    		if((a.getDoctor().getId() == id) && a.getStatus().equals("available")) {
+    			aps.add(a);
+    		}
+    		} catch(Exception e) {
+    		
+    		}
+    	}
+    	return aps;
     }
 }

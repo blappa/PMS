@@ -31,12 +31,13 @@ public class ScheduleController {
 	Hospital_UserService hu;
 
 	//@RequestMapping(value="/schedule", method=RequestMethod.POST, consumes = "application/json")
-	@GetMapping(value="/create_schedule_doctor/{id}/{date}")
-	public List<Schedule> getScheduleById(@PathVariable("id") int id, @PathVariable("date") String date) {
+	@GetMapping(value="/create_schedule_doctor/{id}/{date}/{time}")
+	public List<Schedule> getScheduleById(@PathVariable("id") int id, @PathVariable("date") String date, @PathVariable("time") String time) {
 		Schedule sch = new Schedule();
-		sch.setStatus("availlable");
-		sch.setTime(date);
-		sch.setDates(LocalTime.now().toString());
+		sch.setStatus("available");
+		sch.setDates(date);
+		sch.setTime(time);
+		//sch.setTime(LocalTime.now().toString());
 		sch.setHospital_user(hu.getHospital_UserById(id));
 		ss.createSchedule(sch);
 		List<Schedule> schs =  new ArrayList<Schedule>();
@@ -74,7 +75,7 @@ public class ScheduleController {
 	public List<Schedule> getAvaillableScheduleByDoctor(@PathVariable("id") int id, @PathVariable("date") String date) {
 		List<Schedule> schs =  new ArrayList<Schedule>();
 		for(Schedule s: ss.allSchedules()) {
-			if((s.getHospital_user().getId() == id) && s.getDates().equals(date) && s.getStatus().equals("availlable")) {
+			if((s.getHospital_user().getId() == id) && s.getDates().equals(date) && s.getStatus().equals("available")) {
 				schs.add(s);
 			}
 		}
@@ -85,7 +86,7 @@ public class ScheduleController {
 	public List<Schedule> getUpdateScheduleByDoctor(@PathVariable("id") int id) {
 		List<Schedule> schs =  new ArrayList<Schedule>();
 		Schedule sch = ss.getScheduleById(id);
-		sch.setStatus("unavaillable");
+		sch.setStatus("unavailable");
 		ss.updateSchedule(sch);
 		for(Schedule s: ss.allSchedules()) {
 			if(s.getHospital_user().getId() == id) {
@@ -110,7 +111,7 @@ public class ScheduleController {
 	public List<Schedule> getAllScheduleByDoctor(@PathVariable("id") int id) {
 		List<Schedule> schs =  new ArrayList<Schedule>();
 		for(Schedule s: ss.allSchedules()) {
-			if(s.getHospital_user().getId() == id) {
+			if((s.getHospital_user().getId() == id) && (s.getStatus().equals("available"))) {
 				schs.add(s);
 			}
 		}
