@@ -26,9 +26,12 @@ export class Link3Component implements OnInit {
   user_id :string;
 
   data: string[] =  [];
+  members : Users[] =  [];
+  allMembers:Observable<Users[]>;
 
   allMessages :Observable<Messages[]>;
   message : Messages =  new Messages();
+  member : Users = new Users();
 
   receptionist :Users = new Users();
   allReceptionists:Observable<Users[]>;
@@ -65,10 +68,29 @@ export class Link3Component implements OnInit {
       }
     );
 
+    this.allMembers = this.userService.getUsers();
+    this.allMembers.subscribe(
+      (response) => {
+        this.members = response;
+      }
+    );
+
     this.getUnread();
 
   }
+  
 
+  getMessage(member: Users){
+    this.messageService.getAllMessage(member.id + "" ).subscribe(
+      (response) => {
+        this.messages = response;
+        this.member = member;
+      }
+    );
+
+
+
+  }
 
   send(){
     this.user_id = sessionStorage.getItem("user_id");
