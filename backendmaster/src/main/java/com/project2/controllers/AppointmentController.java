@@ -93,6 +93,7 @@ public class AppointmentController {
 			}catch(Exception e) {
 			}
 		}
+		System.out.println("vvv");
 		return apps;
 	}
 	
