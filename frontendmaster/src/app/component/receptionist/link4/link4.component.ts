@@ -34,6 +34,7 @@ export class Link4Component implements OnInit {
   doctors : Users[] =  [];
   allDoctors:Observable<Users[]>;
   allSchedules:Observable<Schedule[]>;
+  schedule :Schedule= new Schedule();
   schedules : Schedule[] =  [];
   cancelNote :boolean;
   rescheduleNote :boolean;
@@ -72,6 +73,18 @@ export class Link4Component implements OnInit {
     );
   }
 
+  selectOption() {
+    //console.log(this.appointment.doctor.id);
+    this.allSchedules = this.scheduleService.getAllScheduleByDoctor1(this.doctor.id);
+    this.allSchedules.subscribe(
+      (response) => {
+        this.schedules = response;
+        //console.log(this.schedules);
+      }
+    );
+
+  }
+
 
   startCancel(){
     this.tableVar = false;
@@ -95,7 +108,7 @@ export class Link4Component implements OnInit {
   viewAppts(){
     this.tableVar = true;
     this.infoVar = false;
-    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor(this.doctor.id.toString(), this.date);
+    this.allUserAppointments = this.appointmentService.getAppointment_ByDoctorByDay(this.doctor.id.toString(), this.schedule.dates);
     this.allUserAppointments.subscribe(
       (response) => {
         this.appointments = response;
@@ -122,10 +135,10 @@ export class Link4Component implements OnInit {
     //cancel an appointment
     this.tableVar = true;
     this.cancelNote = false;
-    this.appointmentService.cancelAppointment(this.appointment.id.toString(), this.cancelReason, this.date)
+    this.appointmentService.cancelAppointment2(this.appointment.id.toString(), this.cancelReason)
      .subscribe(
       (response) => {
-        this.appointments = response;
+        this.appointment = response;
       }
     );
   }
