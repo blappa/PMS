@@ -106,6 +106,18 @@ public class AppointmentController {
 		return aps;
 	}
 	
+	//shef
+	@GetMapping(value="/appointment_doctor_ondate/{id}/{date}")
+	public List<Appointment> getAppointments_ByDoctor(@PathVariable("id") int id, @PathVariable("date") String date) {
+		List<Appointment> aps =  new ArrayList<Appointment>();
+		for(Appointment a: as.allAppointments()) {
+			if((a.getDoctor().getId() == id) && a.getSchedule().getDates().equals(date)) {
+				aps.add(a);
+			}
+		}
+		return aps;
+	}
+	
     @GetMapping(value="appointment_cancel/{id}/{reason}/{date}")
 	public List<Appointment> appointmentCancel(@PathVariable("id") int id, @PathVariable("reason") String reason, @PathVariable("date") String date) {
     	Appointment app =  as.getAppointmentById(id);
@@ -120,6 +132,29 @@ public class AppointmentController {
 		}
 		return aps;
     }
+    
+    @GetMapping(value="appointment_cancel/{id}/{reason}")
+   	public boolean appointmentCancel(@PathVariable("id") int id, @PathVariable("reason") String reason) {
+       	Appointment app =  as.getAppointmentById(id);
+       	app.setStatus("cancel");
+       	app.setCancel_reason(reason);
+           as.updateAppointment(app);
+        
+   		return true;
+       }
+    
+    @GetMapping(value="appointment_complete/{id}")
+   	public boolean appointmentComplete(@PathVariable("id") int id) {
+       	Appointment app =  as.getAppointmentById(id);
+       	app.setStatus("complete");
+       	
+           as.updateAppointment(app);
+        
+   		return true;
+       }
+    
+    
+    
     
     @GetMapping(value="appointment_reschedule/{id}/{date}")
 	public List<Appointment> appointmentReschedule(@PathVariable("id") int id, @PathVariable("date") String date) {
