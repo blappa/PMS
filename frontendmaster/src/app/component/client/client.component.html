@@ -6,14 +6,16 @@
         <th scope="col">Date - Time</th>
         <th scope="col">Appointment Type</th>
         <th scope="col">Doctor Name</th>
+        <th scope="col">Time Left</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let appointment of appointments">
         <th scope="row">{{appointment.client.f_name}} {{appointment.client.l_name}}</th>
-        <td>{{appointment.schedule.time}}</td>
+        <td>{{appointment.schedule.dates}} {{appointment.schedule.time}}</td>
         <td>{{appointment.appointment_type}}</td>
         <th scope="row">{{appointment.doctor.f_name}} {{appointment.doctor.l_name}}</th>
+        <th scope="row"><p id='{{appointment.id}}'></p></th>
       </tr>
     </tbody>
   </table>
