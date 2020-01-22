@@ -47,9 +47,9 @@ export class MenuComponent implements OnInit {
   }
 
   logout(){
-    //location.reload();
     //this.router.navigate(['/']);
     this.router.navigate(['']);
+    location.reload();
   }
   
   clink1(){
