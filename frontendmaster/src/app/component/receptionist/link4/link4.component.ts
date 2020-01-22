@@ -73,9 +73,9 @@ export class Link4Component implements OnInit {
     );
   }
 
-  selectOption() {
+  selectOption(doctor: Users) {
     //console.log(this.appointment.doctor.id);
-    this.allSchedules = this.scheduleService.getAllScheduleByDoctor1(this.doctor.id);
+    this.allSchedules = this.scheduleService.getAllScheduleByDoctor1(doctor.id);
     this.allSchedules.subscribe(
       (response) => {
         this.schedules = response;
