@@ -33,6 +33,9 @@ export class Link5Component implements OnInit {
   schedules : Schedule[] =  [];
   options : string;
   issucces : boolean;
+  allUsers:Observable<Users[]>;
+  allusers :Users[] =[];
+  client :Users = new Users();
 
   constructor(public router: Router, private appointmentService: AppointmentService, private userService: UserService, private scheduleService: ScheduleService) { }
 
@@ -44,6 +47,24 @@ export class Link5Component implements OnInit {
     script.async = false;
     script.defer = true;
     body.appendChild(script);
+
+
+    this.allUsers = this.userService.getUsers();
+    this.allUsers.subscribe(
+      (response) => {
+        this.allusers = response;
+        //console.log(this.doctors[0].f_name);
+      }
+    );
+
+    this.allDoctors = this.userService.getDoctors();
+    this.allDoctors.subscribe(
+      (response) => {
+        this.doctors = response;
+        //console.log(this.doctors[0].f_name);
+      }
+    );
+
   }
 
   selectOption() {
@@ -55,7 +76,11 @@ export class Link5Component implements OnInit {
         //console.log(this.schedules);
       }
     );
+
+
+    
   }
+
 
 checkin(){
   this.app[0] = this.appointment.visit_reason;
@@ -65,7 +90,7 @@ checkin(){
   this.app[4] = this.appointment.pcp;
   this.app[5] = this.appointment.doctor.id+"";
   this.app[6] = this.appointment.schedule.id+"";
-  this.app[7] = sessionStorage.getItem("user_id");
+  this.app[7] = this.appointment.client.id+"";
   //console.log(this.app);
   this.appointmentService.checkin(this.app).subscribe( data => {
     //console.log(data);

@@ -18,7 +18,7 @@ export class UserService {
   constructor(private http :HttpClient) {}
 
  
-  public getUsers() {
+  public getUsers() :Observable<Users[]>{
     return this.http.get<Users[]>(this.url+ "/hospital_users");
   }
 
