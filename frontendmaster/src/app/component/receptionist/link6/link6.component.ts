@@ -26,16 +26,23 @@ export class Link6Component implements OnInit {
   user_id :string;
 
   data: string[] =  [];
+  members : Users[] =  [];
+  allMembers:Observable<Users[]>;
 
   allMessages :Observable<Messages[]>;
   message : Messages =  new Messages();
+  member : Users = new Users();
 
-  users :Users = new Users();
+  receptionist :Users = new Users();
   allReceptionists:Observable<Users[]>;
   messages : Messages[] =  [];
   receptionists : Users[] =  [];
 
+  read :boolean;
+  unread :boolean;
+
   constructor(public router: Router, private messageService: MessageService, private userService: UserService) {}
+
 
   ngOnInit() {
 
@@ -53,7 +60,7 @@ export class Link6Component implements OnInit {
       }
     );
 
-    this.allReceptionists = this.userService.getDoctors();
+    this.allReceptionists = this.userService.getReceptionists();
     this.allReceptionists.subscribe(
       (response) => {
         this.receptionists = response;
@@ -62,22 +69,42 @@ export class Link6Component implements OnInit {
       }
     );
 
+    this.allMembers = this.userService.getUsers();
+    this.allMembers.subscribe(
+      (response) => {
+        this.members = response;
+      }
+    );
+
     this.getUnread();
 
   }
+  
+
+  getMessage(member: Users){
+    this.messageService.getAllMessage(member.id + "" ).subscribe(
+      (response) => {
+        this.messages = response;
+        this.member = member;
+      }
+    );
 
 
-  send(receptionist : Users){
+
+  }
+
+  send(){
     this.user_id = sessionStorage.getItem("user_id");
     this.data[0] = this.message.message;
     this.data[1] = this.user_id;
-    this.data[2] = receptionist.id+"";
+    this.data[2] = this.member.id+"";
     this.data[3] = 'unread';
     this.allMessages = this.messageService.sendMessage(this.data);
     this.allMessages.subscribe(
       (response) => {
-        console.log(response);
-        this.messages = response;
+        /*console.log(response);
+        this.messages = response;*/
+        this.getMessage(this.member);
       }
     );
   }
@@ -99,6 +126,8 @@ export class Link6Component implements OnInit {
     this.allMessages.subscribe(
       (response) => {
         this.num_msg = response.length;
+        this.messages = response;
+        this.getUnread();
       }
     );
   }

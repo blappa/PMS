@@ -8,8 +8,7 @@
               <th scope="col">Patient Name</th>
               <th scope="col">Date - Time</th>
               <th scope="col">Appointment Type</th>
-              <th scope="col"> Cancel Appointment</th>
-              <th scope="col"> Reschedule Appointment</th>
+              <th scope="col">Time Left</th>
             </tr>
           </thead>
             <tr class = "hoverLine" *ngFor="let appointment of appointments">
@@ -17,6 +16,7 @@
               <td>{{appointment.client.f_name}} {{appointment.client.l_name}}</td>
               <td>{{appointment.schedule.time}}</td>
               <td>{{appointment.appointment_type}}</td>
+              <td><p id='{{appointment.id}}'></p></td>
               <td><button class="btn btn-danger" (click)="startCancel()"> Cancel</button></td>
               <td><button class="btn btn-success" (click)="startReschedulelAppointment(appointment)"> Reschedule</button></td>
             </tr>

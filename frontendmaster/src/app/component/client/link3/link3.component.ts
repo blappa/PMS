@@ -96,13 +96,14 @@ export class Link3Component implements OnInit {
     this.user_id = sessionStorage.getItem("user_id");
     this.data[0] = this.message.message;
     this.data[1] = this.user_id;
-    this.data[2] = this.receptionist.id+"";
+    this.data[2] = this.member.id+"";
     this.data[3] = 'unread';
     this.allMessages = this.messageService.sendMessage(this.data);
     this.allMessages.subscribe(
       (response) => {
         console.log(response);
-        this.messages = response;
+        //this.messages = response;
+        this.getMessage(this.member);
       }
     );
   }
