@@ -12,7 +12,7 @@ const httpOptions = {
 })
 export class ScheduleService {
 
-    //private url = 'http://ec2-3-135-228-192.us-east-2.compute.amazonaws.com:8081/portal';
+     //private url = 'http://ec2-3-135-228-192.us-east-2.compute.amazonaws.com:8081/portal';
     private url = 'http://localhost:8080/portal';
 
     constructor(private http :HttpClient) {}
@@ -37,7 +37,7 @@ export class ScheduleService {
       return this.http.get<Schedule[]>(this.url+"/schedule_doctor/"+id+"/all");
     }
 
-    createSchedule(id :string, date :string) :Observable<Schedule[]> {
-      return this.http.get<Schedule[]>(this.url+"/create_schedule_doctor/"+id+"/"+date);
+    createSchedule(id :string, date :string, time :string) :Observable<Schedule[]> {
+      return this.http.get<Schedule[]>(this.url+"/create_schedule_doctor/"+id+"/"+date+"/"+time);
     }
 }

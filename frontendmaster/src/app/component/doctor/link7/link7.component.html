@@ -3,33 +3,32 @@
             <div class="col mb-3 dateApp">
                 <label for="date">Choose date to see appointments:</label>
                 <br>
-                <select  [(ngModel)]="date" class="form-control manydates" required>
-                    <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}}</option>
-                 </select>
+                <select  [(ngModel)]="schedule" class="form-control manydates" required>
+                    <option *ngFor="let schedule of schedules" [ngValue]="schedule" >Date: {{schedule.dates}} Time : {{schedule.time}}</option>
+                 </select><br>
                 <button class="btn btn-success" (click)="showAppointments()" >See Appointments</button>
             </div>
-        </div>
-        
-    
+    </div>
+      
         <div *ngIf='!appointments'>
             <div *ngIf='client_info' class="table-appointment">
                 <h1 class="text-center">Appointments</h1>
-                <table id="t01" class="table table-bordered myTable">
+                <table id="t01" class="table table-bordered blueTable">
                     <thead>
                       <tr>
                         <th scope="col">Patient Name</th>
                         <th scope="col">Date - Time</th>
                         <th scope="col">Appointment Type</th>
                         <th scope="col"> Cancel Appointment</th>
-                        <th scope="col"> Reschedule Appointment</th>
+                        <!-- <th scope="col"> Reschedule Appointment</th> -->
                       </tr>
                     </thead>
-                      <tr class = "hoverLine" *ngFor="let appointment of appointments">
-                        <th (click)="patientInfo(appointment.client.id, appointment)">{{appointment.client.f_name}} {{appointment.client.l_name}}</th>
+                      <tr class = "hoverLine" *ngFor="let appointment of appmnts">
+                        <th (click)="patientInfo(appointment)">{{appointment.client.f_name}} {{appointment.client.l_name}}</th>
                         <td>{{appointment.schedule.time}}</td>
                         <td>{{appointment.appointment_type}}</td>
-                        <td><button class="btn btn-danger" (click)="startCancel()"> Cancel</button></td>
-                        <td><button class="btn btn-success" (click)="startReschedulelAppointment(appointment)"> Reschedule</button></td>
+                        <td><button class="btn btn-danger" (click)="startCancel(appointment)"> Cancel</button></td>
+                        <!-- <td><button class="btn btn-success" (click)="startReschedulelAppointment(appointment)"> Reschedule</button></td> -->
                       </tr>
                   </table>
             </div>
@@ -47,7 +46,7 @@
                 </div>
                 <button type="button" class="btn btn-danger" (click)="reschedulelAppointment()">Send</button>
               </div>
-        <div *ngIf='!client_info' class="table-appointment">
+        <div *ngIf='!client_info' class="table-appointment patientInfo">
             <div class="container">
                 <div class="basic_info common"> 
                     <h4>Basic Information</h4>

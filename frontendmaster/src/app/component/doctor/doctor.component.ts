@@ -26,7 +26,7 @@ export class DoctorComponent implements OnInit {
   app: string[] =  [];
   doctor :Users = new Users();
   schedule :Schedule = new Schedule();
-  doctor_id : number;
+  doctor_id : string;
   date : string;
   schedule_id : number;
   doctors : Users[] =  [];
@@ -60,6 +60,7 @@ export class DoctorComponent implements OnInit {
   users : Users[] =  [];
 
   allUserAppointments:Observable<Appointment[]>;
+  apmnts : Appointment[] =  [];
   message : Messages =  new Messages();
   appmnts : Appointment[] =  [];
   cancelNote :boolean;
@@ -77,18 +78,36 @@ export class DoctorComponent implements OnInit {
       }
     );
 
-    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
+    this.dashboard();
+
+    this.user_id = sessionStorage.getItem("user_id");
+    this.allUserAppointments = this.appointmentService.getUsersAppointments(this.user_id);
     this.allUserAppointments.subscribe(
       (response) => {
-        console.log();
+        this.apmnts = response;
+        this.apmnts.forEach(element => {
+          //console.log("----"+element);
+          this.count(element.schedule.dates+" "+element.schedule.time, element.id+"")
+        });
+      }
+    );
+  }
+
+  dashboard(){
+    this.doctor_id = sessionStorage.getItem("user_id");
+    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor2(this.doctor_id);
+    this.allUserAppointments.subscribe(
+      (response) => {
+        console.log("oo" + this.appmnts);
         this.appmnts = response;
       }
     );
   }
 
-  startCancel(){
+  startCancel(appointment : Appointment){
     this.cancelNote = true;
     this.rescheduleNote = false;
+    this.appointment = appointment;
   }
 
   startReschedulelAppointment(appointment :Appointment){
@@ -103,10 +122,11 @@ export class DoctorComponent implements OnInit {
     this.rescheduleNote = true;
   }
 
-  patientInfo(){
+  patientInfo(appointment : Appointment){
     // make a reference to the patient information
     this.client_info = false;
-    console.log("check row click");
+    this.appointment = appointment;
+    console.log("client name" + this.appointment.client.f_name);
   }
 
   showAppointments(){
@@ -123,24 +143,25 @@ export class DoctorComponent implements OnInit {
   
 
   cancelAppointment(){
-    //cancel an appointment
+    console.log("cancel an appointment");
     this.cancelNote = false;
     this.rescheduleNote = false;
-    this.appointmentService.cancelAppointment(this.appointment.id.toString(), this.cancelReason, this.date)
+    this.appointmentService.cancelAppointment1(this.appointment.id + "", this.cancelReason)
      .subscribe(
       (response) => {
         this.appmnts = response;
+        this.dashboard();
       }
     );
     console.log("Canceled");
   }
 
-  sendToReceptionist(){
+  sendToReceptionist(userss : Users){
     this.instructions = '';
     this.user_id = sessionStorage.getItem("user_id");
     this.data[0] = this.message.message;
     this.data[1] = this.user_id;
-    this.data[2] = this.userss.id+"";
+    this.data[2] = userss.id+"";
     this.data[3] = 'unread';
     this.allMessages = this.messageService.sendMessage(this.data);
     this.allMessages.subscribe(
@@ -163,6 +184,44 @@ export class DoctorComponent implements OnInit {
       }
     );
     console.log("Reschedule appointment");
+  }
+
+  count(date: string, tagId: string){
+    // Set the date we're counting down to
+	  var countDownDate = new Date(date).getTime();
+	  // Update the count down every 1 second
+	  var x = setInterval(function() {
+	  // Get today's date and time
+	  var now = new Date().getTime();
+	  // Find the distance between now and the count down date
+	  var distance = countDownDate - now;
+
+	  // Time calculations for days, hours, minutes and seconds
+	  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+	  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+	  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+	  // If the count down is finished, write some text
+	  if (days >= 0 && days <= 14) {
+	    // Display the result in the element with id="demo"
+	    //clearInterval(x);
+	     document.getElementById(tagId).innerHTML = 
+			  days + "d " 
+			  + hours + "h "
+		    + minutes + "m " 
+		    + seconds + "s ";
+	  }else if (days > 14) {
+		    clearInterval(x);
+		    document.getElementById(tagId).innerHTML = "UP COMING";
+	  }else if (days == 0) {
+      clearInterval(x);
+      document.getElementById(tagId).innerHTML = "TODAY";
+    }else if (days <= 0) {
+    clearInterval(x);
+    document.getElementById(tagId).innerHTML = "DONE";
+    }
+	 }, 1000);
   }
 
 }

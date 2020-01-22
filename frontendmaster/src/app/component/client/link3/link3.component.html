@@ -13,17 +13,28 @@
               <div class="white z-depth-1 px-3 pt-3 pb-0">
                 <ul class="list-unstyled friend-list">
                   <li class="active grey lighten-3 p-2">
-                    <a href="#" class="d-flex justify-content-between">
+                    <!-- <a href="#" class="d-flex justify-content-between"> -->
                       <!-- <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-8.jpg" alt="avatar" class="avatar rounded-circle d-flex align-self-center mr-2 z-depth-1"> -->
-                      <div class="text-small">
-                        <strong>{{message_f_name}} {{message_l_name}}</strong>
-                        <p class="last-message text-muted">{{message_message}}</p>
+                      <div   class="text-small">
+                        <ul>
+                          
+                          <li *ngFor= "let member of members">
+                            
+                              <button (click) = "getMessage(member)" class="d-flex justify-content-between">
+                            <strong>{{member.f_name}} {{member.l_name}}</strong>
+                          </button>  
+                          
+                          </li>
+                        
+                        </ul>
+                      
+                        <!-- <p class="last-message text-muted">{{message_message}}</p><br/> -->
                       </div>
                       <div class="chat-footer">
                         <p  class="text-smaller text-muted mb-0">Unread</p>
                         <span class="badge badge-danger float-right">{{num_msg}}</span>
                       </div>
-                    </a>
+                    <!-- </a> -->
                   </li>
                  
                 </ul>
@@ -36,6 +47,7 @@
             <div class="col-md-6 col-xl-8 pl-md-3 px-lg-auto px-0">
       
               <div class="chat-message">
+                <p>{{member.f_name}} {{member.l_name}}</p>
       
                 <ul class="list-unstyled chat">
                   <li *ngFor="let message of messages" class="d-flex justify-content-between mb-4">
@@ -43,24 +55,23 @@
                     <div class="chat-body white p-3 ml-2 z-depth-1">
                       <div class="header">
                         <strong class="primary-font">{{message.sender.f_name}} {{message.sender.l_name}}</strong>
-                        <small class="pull-right text-muted"><i class="far fa-clock"></i> {{message.time}}} mins ago</small>
+                        <small class="pull-right text-muted"><i class="far fa-clock"></i> {{message.time}} mins ago</small>
                       </div>
                       <hr class="w-100">
                       <p class="mb-0">
                         {{message.message}}
                       </p>
-                      <button *ngIf="message.status != 'unread'"  (click) = "setRead(message.id)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Read</button>
-                      <button *ngIf="message.status == 'unread'" id="unread" (click) = "setRead(message.id)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">UnRead</button>
+                      <button *ngIf="message.read == 0"  (click) = "setRead(message.id)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Read</button>
                     </div>
                   </li>
                   <li class="white">
                     <div class="form-group basic-textarea">
                       <textarea [(ngModel)]="message.message" class="form-control pl-2 my-0" id="exampleFormControlTextarea2" rows="3" placeholder="Type your message here..."></textarea>
                     </div>
-                    <h2 class="fs-title">Receiver (Receptionist)</h2>
-                    <select  [(ngModel)]="receptionist.id">
-                      <option *ngFor="let receptionist of receptionists" [ngValue]="receptionist.id">{{receptionist.l_name+" "+receptionist.f_name}}</option>
-                  </select>
+                    <!-- <h2 class="fs-title">Receiver (Receptionist)</h2> -->
+                    <!-- <select  [(ngModel)]="receptionist.id"> -->
+                      <!-- <option *ngFor="let receptionist of receptionists" [ngValue]="receptionist.id">{{receptionist.l_name+" "+receptionist.f_name}}</option> -->
+                  <!-- </select> -->
                   </li>
                   <button (click) = "send()" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Send</button>
                 </ul>
