@@ -1,6 +1,7 @@
 <div class="contentcomp">
       <div *ngIf='tableVar' class="table-appointment">
         <h4>Today's Appointment List</h4>
+        
         <table id="t01" class="table table-bordered myTable">
           <thead>
             <tr>
@@ -10,24 +11,27 @@
               <th scope="col">Appointment Type</th>
               <th scope="col"> Cancel Appointment</th>
               <th scope="col"> Reschedule Appointment</th>
+              <th scope="col">Checkout</th>
             </tr>
           </thead>
-            <tr class = "hoverLine" *ngFor="let appointment of appointments">
-              <th (click)="patientInfo(appointment.client.id, appointment)">{{appointment.id}}</th>
-              <td>{{appointment.client.f_name}} {{appointment.client.l_name}}</td>
-              <td>{{appointment.schedule.time}}</td>
+            <tr class = "hoverLine" *ngFor= "let appointment of appointments">
+              <th (click)="patientInfo(appointment)">{{appointment.id}}</th>
+              <td></td>
+              <td></td>
               <td>{{appointment.appointment_type}}</td>
-              <td><button class="btn btn-danger" (click)="startCancel()"> Cancel</button></td>
+              <td><button class="btn btn-danger" (click)="startCancel(appointment)">Cancel</button></td>
               <td><button class="btn btn-success" (click)="startReschedulelAppointment(appointment)"> Reschedule</button></td>
+              <td><button class="btn btn-danger"  (click)="checkout(appointment)"> Checkout</button></td>
             </tr>
         </table>
-      </div>
+      
+    </div>
   </div>
   <div class="form-group cancelForm"  *ngIf="rescheduleNote" >
     <div class="form-card">
       <h2 class="fs-title">What time will your appointment be?</h2> 
       <select  [(ngModel)]="appointment.schedule">
-          <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}}</option>
+          <option *ngFor="let schedule of schedules" [ngValue]="schedule">{{schedule.dates}}</option>
       </select>
     </div>
     <button type="button" class="btn btn-danger" (click)="reschedulelAppointment()">Send</button>

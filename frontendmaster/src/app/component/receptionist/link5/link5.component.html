@@ -21,47 +21,44 @@
                             </ul> <!-- fieldsets -->
                             <fieldset>
                               <div class="form-card">
-                                  <h2 class="fs-title">Search for patient</h2>
+                                  <h2 class="fs-title">Please select patient name</h2> 
                                   <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                      <button class="btn btn-outline-secondary" type="button" id="button-addon1">Search</button>
+                                      <label class="input-group-text"  for="inputGroupSelect01">Patient</label>
                                     </div>
-                                    <input type="text" class="form-control width:60%" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                  </div> 
-                                  
-                                <input type="text" name="name" placeholder="name" id="patient"/>   
+                                    <select class="custom-select width:50%;" id="inputGroupSelect01" [(ngModel)]="appointment.client">
+                                      <option *ngFor="let client of allusers" [ngValue]="client">{{client.l_name+" "+client.f_name}}</option>
+                                      </select>
+                                  </div>
                               </div> 
                               <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                               <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">What is the reason for your visit?</h2> 
-                                    <input type="text" name="reason" placeholder="Reason " />  
-                                </div> 
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">List any allergies</h2> 
-                                    <input type="text" name="reason" placeholder="Allergies " />  
-                                </div> 
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
+                          </fieldset>
+                          <fieldset>
+                              <div class="form-card">
+                                  <h2 class="fs-title">What is the reason for your visit?</h2> 
+                                  <input type="text" [(ngModel)]="appointment.visit_reason" placeholder="Reason " />  
+                              </div> 
+                              <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                              <input type="button" name="next" class="next action-button" value="Next Step"/>
+                          </fieldset>
+                          <fieldset>
+                            <div class="form-card">
+                                <h2 class="fs-title">List any allergies</h2> 
+                                <input type="text" [(ngModel)]="appointment.allergy" placeholder="Allergies" />  
+                            </div> 
+                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                            <input type="button" name="next" class="next action-button" value="Next Step" />
+                          </fieldset>
                            
-                            <fieldset>
-                                <div class="form-card">
-                                    <h2 class="fs-title">List the medications you are currently taking</h2> 
-                                    <input type="text" name="medication1" placeholder="Medication 1" /> 
-                                    <input type="text" name="medication2" placeholder="Medication 2" /> 
-                                    <input type="text" name="medication3" placeholder="Medication 3" /> 
-                                    <input type="text" name="medication4" placeholder="Medication 4" />
-                                </div> 
-                                <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
-                                <input type="button" name="next" class="next action-button" value="Next Step" />
-                            </fieldset>
+                          <fieldset>
+                            <div class="form-card">
+                                <h2 class="fs-title">List the medications you are currently taking</h2> 
+                                <input type="text" [(ngModel)]="appointment.medication_list" placeholder="Medication..."/>
+                            </div> 
+                            <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> 
+                            <input type="button" name="next" class="next action-button" value="Next Step" />
+                          </fieldset>
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">What type of appointment will this be?</h2> 
@@ -69,11 +66,11 @@
                                       <div class="input-group-prepend">
                                         <label class="input-group-text"  for="inputGroupSelect01">Appointment Type</label>
                                       </div>
-                                      <select class="custom-select width: 40%;" id="inputGroupSelect01">
+                                      <select class="custom-select width: 40%;" id="inputGroupSelect01"  [(ngModel)]="appointment.appointment_type">
                                         <option selected>select appointment type...</option>
-                                        <option>Consultation</option>
-                                        <option>Follow-up</option>
-                                        <option>Procedure</option>
+                                        <option value="consultation">Consultation</option>
+                                        <option value="followup">Follow Up</option>
+                                        <option value="procedure">Procedure</option>
                                       </select>
                                     </div>
                                 </div> 
@@ -87,12 +84,9 @@
                                       <div class="input-group-prepend">
                                         <label class="input-group-text"  for="inputGroupSelect01">Physician</label>
                                       </div>
-                                      <select class="custom-select width:50%;" id="inputGroupSelect01">
-                                        <option selected>select physician...</option>
-                                        <option>Ahmed Sulaiman</option>
-                                        <option>Buju banton</option>
-                                        <option>etc</option>
-                                      </select>
+                                      <select class="custom-select width:50%;" id="inputGroupSelect01" [(ngModel)]="appointment.doctor" (change)="selectOption()">
+                                        <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{doctor.l_name+" "+doctor.f_name}}</option>
+                                       </select>
                                     </div>
                                 </div> 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
@@ -101,19 +95,16 @@
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">What time will your appointment be?</h2> 
-                                    <input type="date"/>
+                                    
                                     <div class="input-group mb-3">
-                                      
-                                      <select class="custom-select" id="inputGroupSelect01">
-                                        <option selected>available time...</option>
-                                        <option type = "time"></option>
-                                        
-                                      </select>
+                                        <select  [(ngModel)]="appointment.schedule"  class="custom-select" id="inputGroupSelect01">
+                                          <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}}  {{schedule.time}} </option>
+                                        </select>
                                     </div>  
                                 </div> 
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                                 <!--call checkin method-->
-                                <input type="button" name="next" class="next action-button" (click) = "createAppt()" value="Next Step" />
+                                <input type="button" name="next" class="next action-button" (click) = "checkin()" value="Next Step" />
                             </fieldset>
                             <fieldset>
                                 <div class="form-card">

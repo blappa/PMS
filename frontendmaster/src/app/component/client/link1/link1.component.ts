@@ -34,11 +34,13 @@ export class Link1Component implements OnInit {
   schedules : Schedule[] =  [];
   options : string;
   issucces : boolean;
+  
 
 
   constructor(public router: Router, private appointmentService: AppointmentService, private userService: UserService, private scheduleService: ScheduleService) { }
 
   ngOnInit() {
+    
     this.issucces =  false;
     const body = <HTMLDivElement> document.body;
     const script = document.createElement('script');
@@ -55,6 +57,8 @@ export class Link1Component implements OnInit {
         //console.log(this.doctors[0].f_name);
       }
     );
+      
+
   }
 
   selectOption() {

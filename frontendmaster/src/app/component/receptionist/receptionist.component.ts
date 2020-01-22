@@ -33,7 +33,7 @@ export class ReceptionistComponent implements OnInit {
   appointment_type :string;
   cancelReason:string;
   doctor :Users = new Users();
-  client :Users = new Users();
+ 
   appointment :Appointment = new Appointment();
   doctors : Users[] =  [];
   allDoctors:Observable<Users[]>;
@@ -58,10 +58,11 @@ export class ReceptionistComponent implements OnInit {
   allReceptionists:Observable<Users[]>;
   messages : Messages[] =  [];
   receptionists : Users[] =  [];
+  
 
   allUserAppointments:Observable<Appointment[]>;
   appointments : Appointment[] =  [];
-
+ 
   constructor( private messageService: MessageService, private appointmentService: AppointmentService, private userService: UserService, private scheduleService: ScheduleService) {
   }
 
@@ -73,19 +74,44 @@ export class ReceptionistComponent implements OnInit {
         //console.log(this.doctors[0].f_name);
       }
     );
-    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
-    this.allUserAppointments.subscribe(
-      (response) => {
-        console.log();
-        this.appointments = response;
-      }
-    );
+    
+      this.dash();
+   
   }
 
-  startCancel(){
+
+  dash(){
+  this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
+  this.allUserAppointments.subscribe(
+    (response) => {
+      console.log();
+      this.appointments = response;
+    }
+  );
+  }
+
+
+
+ 
+
+
+  startCancel(appointment : Appointment){
     this.tableVar = false;
     this.cancelNote = true;
     this.rescheduleNote = false;
+    this.appointment = appointment;
+  }
+
+  cancelAppointment(){
+    //cancel an appointment
+    this.tableVar = true;
+    this.cancelNote = false;
+    this.appointmentService.cancelAppointment2(this.appointment.id.toString(), this.cancelReason)
+     .subscribe(
+      (response) => {
+        this.appointment = response;
+      }
+    );
   }
 
   startReschedulelAppointment(appointment :Appointment){
@@ -127,16 +153,18 @@ export class ReceptionistComponent implements OnInit {
     console.log("check row click");
   }
 
-  cancelAppointment(){
-    //cancel an appointment
-    this.tableVar = true;
-    this.cancelNote = false;
-    this.appointmentService.cancelAppointment(this.appointment.id.toString(), this.cancelReason, this.date)
+  
+
+  checkout(appointment : Appointment){
+    this.appointment = appointment;
+
+    this.appointmentService.completeAppointment(this.appointment.id.toString())
      .subscribe(
       (response) => {
-        this.appointments = response;
+        this.appointment = response;
       }
     );
+
   }
 
 

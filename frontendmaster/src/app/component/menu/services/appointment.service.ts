@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Appointment } from 'src/app/models/appointment';
+import { stringify } from 'querystring';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -41,5 +42,21 @@ export class AppointmentService {
   getAvaillableAppointment_ByDoctor1():Observable<Appointment[]>{
     return this.http.get<Appointment[]>(this.url+ "/appointments");
   }
+
+  cancelAppointment2( id : string, reason :string): Observable<Appointment>{
+    return this.http.get<Appointment> (this.url+ "/appointment_cancel/"+id+"/"+reason);
+
+  }
+
+  completeAppointment(id :string) : Observable<Appointment>{
+    return this.http.get<Appointment> (this.url+ "/appointment_complete/"+id);
+
+  }
+
+  public getAppointment_ByDoctorByDay(id :string, date :string):Observable<Appointment[]>{
+    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_ondate/"+id+"/"+date);
+  }
+
+  
 
 }

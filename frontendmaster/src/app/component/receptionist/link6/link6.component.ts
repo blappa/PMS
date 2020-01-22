@@ -30,10 +30,13 @@ export class Link6Component implements OnInit {
   allMessages :Observable<Messages[]>;
   message : Messages =  new Messages();
 
-  users :Users = new Users();
+  receptionist :Users = new Users();
   allReceptionists:Observable<Users[]>;
   messages : Messages[] =  [];
   receptionists : Users[] =  [];
+
+  read :boolean;
+  unread :boolean;
 
   constructor(public router: Router, private messageService: MessageService, private userService: UserService) {}
 
@@ -53,7 +56,7 @@ export class Link6Component implements OnInit {
       }
     );
 
-    this.allReceptionists = this.userService.getDoctors();
+    this.allReceptionists = this.userService.getReceptionists();
     this.allReceptionists.subscribe(
       (response) => {
         this.receptionists = response;
@@ -71,7 +74,7 @@ export class Link6Component implements OnInit {
     this.user_id = sessionStorage.getItem("user_id");
     this.data[0] = this.message.message;
     this.data[1] = this.user_id;
-    this.data[2] = this.users.id+"";
+    this.data[2] = this.receptionist.id+"";
     this.data[3] = 'unread';
     this.allMessages = this.messageService.sendMessage(this.data);
     this.allMessages.subscribe(
@@ -99,6 +102,8 @@ export class Link6Component implements OnInit {
     this.allMessages.subscribe(
       (response) => {
         this.num_msg = response.length;
+        this.messages = response;
+        this.getUnread();
       }
     );
   }
