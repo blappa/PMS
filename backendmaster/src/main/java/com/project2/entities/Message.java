@@ -15,6 +15,7 @@ public class Message {
 	private String message;
 	private String status;
 	private String time;
+	private int read;
 	
 	@ManyToOne
 	private Hospital_User sender;
@@ -86,6 +87,16 @@ public class Message {
 
 	public void setReceiver(Hospital_User receiver) {
 		this.receiver = receiver;
+	}
+
+
+	public int isRead() {
+		return read;
+	}
+
+
+	public void setRead(int read) {
+		this.read = read;
 	}
 
 

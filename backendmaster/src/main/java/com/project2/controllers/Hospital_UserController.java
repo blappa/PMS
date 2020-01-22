@@ -20,8 +20,6 @@ import com.project2.entities.Hospital_User;
 import com.project2.service.Hospital_UserService;
 
 
-//@CrossOrigin(origins = "http://sitemedpark.s3-website-us-east-1.amazonaws.com")
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping({"/portal"})
 public class Hospital_UserController {
