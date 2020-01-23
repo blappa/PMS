@@ -81,6 +81,18 @@ h4 {
     margin-bottom: 10px;
 }
 
+
+.table-appointment {
+    padding: 5%;
+}
+
+.sendInstructions {
+    margin-bottom: 10px;
+}
+
+.patientInfo {
+  background-color: white;
+}
 /* .manyDates {
 } */
 

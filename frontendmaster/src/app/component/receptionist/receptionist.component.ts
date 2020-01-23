@@ -55,9 +55,13 @@ export class ReceptionistComponent implements OnInit {
   allMessages :Observable<Messages[]>;
 
   receptionist :Users = new Users();
+  userss :Users = new Users();
+  allUsers:Observable<Users[]>;
+  usersss:Observable<Users>;
+  receptionists : Users[] =  [];
   allReceptionists:Observable<Users[]>;
   messages : Messages[] =  [];
-  receptionists : Users[] =  [];
+  users : Users[] =  [];
 
   allUserAppointments:Observable<Appointment[]>;
   appointments : Appointment[] =  [];
@@ -77,20 +81,41 @@ export class ReceptionistComponent implements OnInit {
     this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
     this.allUserAppointments.subscribe(
       (response) => {
-        console.log();
+        console.log(response);
         this.appointments = response;
       }
     );
 
-    this.user_id = sessionStorage.getItem("user_id");
-    this.allUserAppointments = this.appointmentService.getUsersAppointments(this.user_id);
+    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
     this.allUserAppointments.subscribe(
       (response) => {
         this.apmnts = response;
         this.apmnts.forEach(element => {
           //console.log("----"+element);
-          this.count(element.schedule.dates+" "+element.schedule.time, element.id+"")
+          //this.count(element.schedule.dates+" "+element.schedule.time, element.id+"")
         });
+      }
+    );
+  }
+
+  getUsers() {
+    //console.log(this.appointment.doctor.id);
+    this.allUsers = this.userService.getUsers();
+    this.allUsers.subscribe(
+      (response) => {
+        this.users= response;
+        //console.log(this.schedules);
+      }
+    );
+  }
+
+  selectOption(user) {
+    //console.log(this.appointment.doctor.id);
+    this.usersss = this.userService.getUser(user.id);
+    this.usersss.subscribe(
+      (response) => {
+        this.userss= response;
+        //console.log(this.schedules);
       }
     );
   }
@@ -136,7 +161,10 @@ export class ReceptionistComponent implements OnInit {
         this.appointment = appointment;
       }
     );*/
+    this.tableVar = false;
+    this.infoVar = true;
     this.appointment = appointment;
+    this.getUsers();
     console.log("check row click");
   }
 
@@ -144,7 +172,7 @@ export class ReceptionistComponent implements OnInit {
     //cancel an appointment
     this.tableVar = true;
     this.cancelNote = false;
-    this.appointmentService.cancelAppointment(this.appointment.id.toString(), this.cancelReason, this.date)
+    this.appointmentService.cancelAppointment(this.appointment.id+"", this.cancelReason, this.date)
      .subscribe(
       (response) => {
         this.appointments = response;
@@ -153,11 +181,11 @@ export class ReceptionistComponent implements OnInit {
   }
 
 
-  sendMessage(){
+  sendMsg(){
     this.user_id = sessionStorage.getItem("user_id");
     this.data[0] = this.message.message;
     this.data[1] = this.user_id;
-    this.data[2] = this.receptionist.id+"";
+    this.data[2] = this.userss.id+"";
     this.data[3] = 'unread';
     this.allMessages = this.messageService.sendMessage(this.data);
     this.allMessages.subscribe(
@@ -168,15 +196,25 @@ export class ReceptionistComponent implements OnInit {
     );
   }
 
+  checkout(appointment : Appointment){
+    this.appointment = appointment;   
+     this.appointmentService.completeAppointment(this.appointment.id+"")
+     .subscribe(
+      (response) => {
+        this.appointments = response;
+      }
+    );  
+  }
+
   reschedulelAppointment(){
     //this should cancel appointment and make new appointment
-    this.appointmentService.rescheduleAppointment(this.appointment.id.toString(),this.date)
+    this.appointmentService.rescheduleAppointment(this.appointment.id+"",this.date)
      .subscribe(
       (response) => {
         this.appointments = response;
       }
     );
-    console.log("Reschedule appointment");
+    //console.log("Reschedule appointment");
   }
 
   count(date: string, tagId: string){

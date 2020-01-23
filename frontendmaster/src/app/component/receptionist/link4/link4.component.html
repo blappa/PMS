@@ -5,7 +5,7 @@
     <div class="input-group-prepend">
       <label class="input-group-text"  for="inputGroupSelect01">Physician</label>
     </div>
-    <select class="custom-select width: 50%;" id="inputGroupSelect01" [(ngModel)]="doctor"  (change)="selectOption()">
+    <select class="custom-select width: 50%;" id="inputGroupSelect01" [(ngModel)]="doctor"  (change)="selectOption(doctor)">
         <option selected>select physician...</option>
         <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{doctor.l_name+" "+doctor.f_name}}</option>
    </select>
@@ -14,9 +14,9 @@
     <div class="input-group-prepend">
       <label class="input-group-text"  for="inputGroupSelect01">Please select dates</label>
     </div>
-    <select class="custom-select width: 50%;" id="inputGroupSelect01" [(ngModel)]="schedule">
+    <select class="custom-select width: 50%;" id="inputGroupSelect01" [(ngModel)]="schedule" (change)="selectOption1(schedule)">
         <option selected>select date...</option>
-        <option *ngFor="let schedule of schedules" [ngValue]="schedule">{{schedule.dates}}</option>
+        <option *ngFor="let schedule of schedules" [ngValue]="schedule">{{schedule.dates}} {{schedule.time}}</option>
    </select>
   </div>
 
@@ -24,7 +24,7 @@
 
    <button (click) = "viewAppts()"  class="btn btn-primary">View Appointments</button>
 
-
+  <br>
   <div class="contentcomp">
     <div *ngIf='tableVar' class="table-appointment">
       <table id="t01" class="table table-bordered myTable">

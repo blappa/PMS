@@ -1,7 +1,8 @@
 <div class="contentcomp">
+  
       <div *ngIf='tableVar' class="table-appointment">
         <h4>Today's Appointment List</h4>
-        <table id="t01" class="table table-bordered myTable">
+        <table id="t01" class="table table-bordered blueTable">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -11,19 +12,22 @@
               <th scope="col">Time Left</th>
             </tr>
           </thead>
-            <tr class = "hoverLine" *ngFor="let appointment of appointments">
-              <th (click)="patientInfo(appointment.client.id, appointment)">{{appointment.id}}</th>
-              <td>{{appointment.client.f_name}} {{appointment.client.l_name}}</td>
-              <td>{{appointment.schedule.time}}</td>
-              <td>{{appointment.appointment_type}}</td>
-              <td><p id='{{appointment.id}}'></p></td>
-              <td><button class="btn btn-danger" (click)="startCancel()"> Cancel</button></td>
-              <td><button class="btn btn-success" (click)="startReschedulelAppointment(appointment)"> Reschedule</button></td>
-            </tr>
+          <tbody>  
+                <tr class = "hoverLine" *ngFor="let appmnt of appointments">
+                  <th scope="row" (click)="patientInfo(appmnt.client.id, appmnt)">{{appmnt.id}}</th>
+                  <td>{{appmnt.client.f_name}} {{appmnt.client.l_name}}</td>
+                  <td>{{appmnt.schedule.dates}} {{appmnt.schedule.time}}</td>
+                  <td>{{appmnt.appointment_type}}</td>
+                  <th scope="row"><p id='{{appmnt.id}}'></p></th>
+                  <td><button  (click)="checkout(appmnt)"> Checkout</button></td>
+                  <td><button  (click)="startCancel(appmnt)">Cancel</button></td>
+                  <td><button  (click)="startReschedulelAppointment(appmnt)"> Reschedule</button></td>
+                </tr>
+          </tbody>
         </table>
       </div>
   </div>
-  <div class="form-group cancelForm"  *ngIf="rescheduleNote" >
+   <div class="form-group cancelForm"  *ngIf="rescheduleNote" >
     <div class="form-card">
       <h2 class="fs-title">What time will your appointment be?</h2> 
       <select  [(ngModel)]="appointment.schedule">
@@ -38,7 +42,7 @@
     <button type="button" class="btn btn-danger" (click)="cancelAppointment()">Send</button>
   </div>
 
-  <div *ngIf='infoVar' class="table-appointment">
+  <div *ngIf='infoVar' class="patientInfo">
     <div class="container">
          <div class="basic_info common"> 
              <h4>Basic Information</h4>
@@ -67,10 +71,10 @@
                <div class="input-group-prepend">
                  <label class="input-group-text"  for="inputGroupSelect01">Recipient</label>
                </div>
-                 <select  class="custom-select width:70%;" id="inputGroupSelect01" [(ngModel)]="receptionist.id">
-                   <option *ngFor="let receptionist of receptionists" [ngValue]="receptionist.id">{{receptionist.l_name+" "+receptionist.f_name}}</option>
+                 <select  class="custom-select width:70%;" id="inputGroupSelect01" [(ngModel)]="user" (change)="selectOption(user)">
+                   <option *ngFor="let user of users" [ngValue]="user">{{user.f_name}} {{user.l_name}}</option>
                </select>
-             </div>
+           </div>
            
            <textarea class="form-control sendInstructions" rows="3" [(ngModel)] = "message.message"></textarea>
            <button type="button" class="btn btn-success" (click)="sendMsg()">Send</button>

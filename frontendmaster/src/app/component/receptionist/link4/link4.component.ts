@@ -75,6 +75,7 @@ export class Link4Component implements OnInit {
 
   selectOption(doctor: Users) {
     //console.log(this.appointment.doctor.id);
+    this.doctor = doctor;
     this.allSchedules = this.scheduleService.getAllScheduleByDoctor1(doctor.id);
     this.allSchedules.subscribe(
       (response) => {
@@ -83,6 +84,11 @@ export class Link4Component implements OnInit {
       }
     );
 
+  }
+
+  selectOption1(schedule: Schedule) {
+    this.schedule =  schedule;
+    console.log(this.schedule);
   }
 
 
@@ -108,7 +114,17 @@ export class Link4Component implements OnInit {
   viewAppts(){
     this.tableVar = true;
     this.infoVar = false;
-    this.allUserAppointments = this.appointmentService.getAppointment_ByDoctorByDay(this.doctor.id.toString(), this.schedule.dates);
+    console.log(this.schedule);
+    this.allUserAppointments = this.appointmentService.getAppointment_ByDoctorByDay(this.doctor.id+"", this.schedule.dates);
+    this.allUserAppointments.subscribe(
+      (response) => {
+        this.appointments = response;
+      }
+    );
+  }
+
+  dashboard(appointment: Appointment){
+    this.allUserAppointments = this.appointmentService.getAppointment_ByDoctorByDay(appointment.doctor.id+"", this.appointment.schedule.dates);
     this.allUserAppointments.subscribe(
       (response) => {
         this.appointments = response;
@@ -135,10 +151,11 @@ export class Link4Component implements OnInit {
     //cancel an appointment
     this.tableVar = true;
     this.cancelNote = false;
-    this.appointmentService.cancelAppointment2(this.appointment.id.toString(), this.cancelReason)
+    this.appointmentService.cancelAppointment1(this.appointment.id+"", this.cancelReason)
      .subscribe(
       (response) => {
-        this.appointment = response;
+        //this.appointments = response;
+        this.dashboard(this.appointment);
       }
     );
   }
