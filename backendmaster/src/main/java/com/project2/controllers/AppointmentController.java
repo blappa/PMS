@@ -215,5 +215,23 @@ public class AppointmentController {
         }
         return aps;
     }
+    
+    @GetMapping(value="appointment_complete/{id}")
+   	public List<Appointment> appointmentComplete(@PathVariable("id") int id) {
+       	Appointment app =  as.getAppointmentById(id);
+       	app.setStatus("complete");           
+       	as.updateAppointment(app);   		
+        List<Appointment> aps =  new ArrayList<Appointment>();
+        for(Appointment a: as.allAppointments()) {
+          try {
+             if(a.getStatus().equals("available")) {
+                 aps.add(a);
+           }
+          } catch(Exception e) {
+        }
+      }
+        return  aps;
+    }
+    
 }
 
