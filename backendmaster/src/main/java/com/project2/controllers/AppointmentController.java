@@ -1,8 +1,11 @@
 
 package com.project2.controllers;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +66,22 @@ public class AppointmentController {
     
     @GetMapping(value="/appointments")
     public List<Appointment> allAppointments() {
-        return as.allAppointments();
+    	List<Appointment> apps = new ArrayList<Appointment>(); 
+        LocalDate localDate = LocalDate.now();
+        for(Appointment a: as.allAppointments()) {
+        	String date1;
+            String date2;
+            try {
+            	date1 = a.getSchedule().getDates();
+                date2 = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
+              if( date1.equals(date2)) {
+            	  System.out.println(date1+"  and "+a.getSchedule().getDates());
+                  apps.add(a);
+              }
+             }catch(Exception e) {
+            }
+        }
+        return apps;
     }
 
     
@@ -186,7 +204,7 @@ public class AppointmentController {
         Schedule sch =  app.getSchedule();
         sch.setTime(date);
         ss.updateSchedule(sch);
-        app.setStatus("open");
+        app.setStatus("available");
         app.setSchedule(ss.getScheduleById(sch.getId()));
         app.setCancel_reason("");
         as.updateAppointment(app);

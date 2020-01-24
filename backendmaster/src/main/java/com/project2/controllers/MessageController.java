@@ -78,13 +78,13 @@ public class MessageController {
         return ms.getMessageById(id);
     }
     
-
-    @GetMapping(value="/message/all/{id}")
-    public List<Message> allMessagesByUser(@PathVariable("id") int id) {
+    
+    @GetMapping(value="/message/all/{idu}/{id}")
+    public List<Message> allMessages(@PathVariable("idu") int idu, @PathVariable("id") int id) {
         List<Message> mss = new ArrayList<Message>();
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         for(Message m: ms.allMessages()) {
-            if((m.getSender().getId() == id) || (m.getReceiver().getId() == id)) {
+            if((m.getSender().getId() == idu) && (m.getReceiver().getId() == id)) {
                 Date date1;
                 Date date2;
                 try {
