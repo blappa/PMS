@@ -22,7 +22,7 @@ export class Link6Component implements OnInit {
   message_f_name :string;
   message_l_name :string;
   message_message :string;
-
+  msgs : Messages[] = [];
   user_id :string;
 
   data: string[] =  [];
@@ -68,22 +68,28 @@ export class Link6Component implements OnInit {
   
 
   getMessage(member: Users){
+    this.msgs = [];
     this.user_id = sessionStorage.getItem("user_id");
     this.messageService.getAllMessage(this.user_id , member.id + "" ).subscribe(
       (response) => {
         this.messages = response;
+        this.messages.forEach(element => {
+          //console.log(element.status);
+          if((element.receiver.id+"" == this.user_id+"") && (element.status == "unread")){
+            element.read = 0;
+          }
+          this.msgs.push(element);
+        });
         this.member = member;
       }
     );
-
-
 
   }
 
   send(){
     this.user_id = sessionStorage.getItem("user_id");
     this.data[0] = this.message.message;
-    this.data[1] = this.user_id;
+    this.data[1] = this.user_id+"";
     this.data[2] = this.member.id+"";
     this.data[3] = 'unread';
     this.allMessages = this.messageService.sendMessage(this.data);
@@ -106,15 +112,15 @@ export class Link6Component implements OnInit {
     );
   }
 
-  setRead(message_id :number){
+  setRead(message :Messages){
     this.user_id = sessionStorage.getItem("user_id");
-    this.message.id = message_id;
-    this.allMessages = this.messageService.setUnreadMessage(this.user_id, this.message.id);
+    this.allMessages = this.messageService.setUnreadMessage(this.user_id, message.id);
     this.allMessages.subscribe(
       (response) => {
         this.num_msg = response.length;
         this.messages = response;
         this.getUnread();
+        this.getMessage(message.sender);
       }
     );
   }

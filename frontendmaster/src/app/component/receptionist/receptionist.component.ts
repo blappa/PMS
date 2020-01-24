@@ -120,10 +120,19 @@ export class ReceptionistComponent implements OnInit {
     );
   }
 
-  startCancel(){
+  startCancel(appmnt : Appointment){
+    this.allSchedules = this.scheduleService.getAllScheduleByDoctor1(appmnt.doctor.id);
+    this.allSchedules.subscribe(
+      (response) => {
+        this.schedules = response;
+        //console.log(this.schedules);
+      }
+    );
     this.tableVar = false;
     this.cancelNote = true;
     this.rescheduleNote = false;
+    this.infoVar = false;
+    this.appointment = appmnt;
   }
 
   startReschedulelAppointment(appointment :Appointment){
@@ -137,6 +146,7 @@ export class ReceptionistComponent implements OnInit {
     this.tableVar = false;
     this.cancelNote = false;
     this.rescheduleNote = true;
+    this.infoVar = false;
   }
 
   viewAppts(){
@@ -178,6 +188,10 @@ export class ReceptionistComponent implements OnInit {
         this.appointments = response;
       }
     );
+    this.tableVar = true;
+    this.cancelNote = false;
+    this.rescheduleNote = false;
+    this.infoVar = false;
   }
 
 
@@ -194,6 +208,10 @@ export class ReceptionistComponent implements OnInit {
         console.log("Sent to message");
       }
     );
+    this.tableVar = true;
+    this.cancelNote = false;
+    this.rescheduleNote = false;
+    this.infoVar = false;
   }
 
   checkout(appointment : Appointment){
@@ -204,6 +222,10 @@ export class ReceptionistComponent implements OnInit {
         this.appointments = response;
       }
     );  
+    this.tableVar = true;
+    this.cancelNote = false;
+    this.rescheduleNote = false;
+    this.infoVar = false;
   }
 
   reschedulelAppointment(){
@@ -215,6 +237,10 @@ export class ReceptionistComponent implements OnInit {
       }
     );
     //console.log("Reschedule appointment");
+    this.tableVar = true;
+    this.cancelNote = false;
+    this.rescheduleNote = false;
+    this.infoVar = false;
   }
 
   count(date: string, tagId: string){
@@ -242,15 +268,15 @@ export class ReceptionistComponent implements OnInit {
 			  + hours + "h "
 		    + minutes + "m " 
 		    + seconds + "s ";
-	  }else if (days > 14) {
+	  /*}else if (days > 14) {
 		    clearInterval(x);
 		    document.getElementById(tagId).innerHTML = "UP COMING";
 	  }else if (days == 0) {
       clearInterval(x);
-      document.getElementById(tagId).innerHTML = "TODAY";
-    }else if (days <= 0) {
+      document.getElementById(tagId).innerHTML = "TODAY";*/
+    }else if (days < 0) {
     clearInterval(x);
-    document.getElementById(tagId).innerHTML = "DONE";
+    //document.getElementById(tagId).innerHTML = "DONE";
     }
 	 }, 1000);
   }

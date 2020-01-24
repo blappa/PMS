@@ -61,7 +61,7 @@
                     <p class="mb-0">
                       {{message.message}}
                     </p>
-                    <button *ngIf="message.read == 0"  (click) = "setRead(message.id)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Read</button>
+                    <button *ngIf="message.read == 0"  (click) = "setRead(message)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Read</button>
                   </div>
                 </li>
                 <li class="white">

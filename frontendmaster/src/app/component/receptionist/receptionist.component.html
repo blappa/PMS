@@ -7,7 +7,7 @@
             <tr>
               <th scope="col">ID</th>
               <th scope="col">Patient Name</th>
-              <th scope="col">Date - Time</th>
+              <th scope="col">Time</th>
               <th scope="col">Appointment Type</th>
               <th scope="col">Status</th>
               <th scope="col">Time Left</th>
@@ -17,7 +17,7 @@
                 <tr class = "hoverLine" *ngFor="let appmnt of appointments">
                   <th scope="row" (click)="patientInfo(appmnt.client.id, appmnt)">{{appmnt.id}}</th>
                   <td>{{appmnt.client.f_name}} {{appmnt.client.l_name}}</td>
-                  <td>{{appmnt.schedule.dates}} {{appmnt.schedule.time}}</td>
+                  <td>{{appmnt.schedule.time}}</td>
                   <td>{{appmnt.appointment_type}}</td>
                   <td>{{appmnt.status}}</td>
                   <th scope="row"><p id='{{appmnt.id}}'></p></th>
@@ -33,14 +33,16 @@
     <div class="form-card">
       <h2 class="fs-title">What time will your appointment be?</h2> 
       <select  [(ngModel)]="appointment.schedule">
-          <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}}</option>
+          <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}} {{schedule.time}}</option>
       </select>
     </div>
+    <br>
     <button type="button" class="btn btn-danger" (click)="reschedulelAppointment()">Send</button>
   </div>
   <div class="form-group cancelForm"  *ngIf="cancelNote" >
     <h5>Please enter reason for cancellation</h5>
     <textarea class="form-control sendInstructions" rows="3" [(ngModel)] = "cancelReason"></textarea>
+    <br>
     <button type="button" class="btn btn-danger" (click)="cancelAppointment()">Send</button>
   </div>
 

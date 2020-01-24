@@ -8,7 +8,7 @@ status:string;
 time:string;
 read: number;
 
-snder :Users = new Users();
+sender :Users = new Users();
 receiver :Users = new Users();
 
 constructor(){}

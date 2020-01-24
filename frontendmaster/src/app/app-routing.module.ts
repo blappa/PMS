@@ -20,7 +20,7 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
-  {path : 'logout', component : Link1Component},
+  {path : 'logout', component : AppComponent},
   {path : 'link1', component : Link1Component},
   {path : 'link2', component : Link2Component},
   {path : 'link3', component : Link3Component},

@@ -178,7 +178,7 @@ export class Link4Component implements OnInit {
 
   reschedulelAppointment(){
     //this should cancel appointment and make new appointment
-    this.appointmentService.rescheduleAppointment(this.appointment.id.toString(),this.date)
+    this.appointmentService.rescheduleAppointment(this.appointment.id+"",this.date)
      .subscribe(
       (response) => {
         this.appointments = response;

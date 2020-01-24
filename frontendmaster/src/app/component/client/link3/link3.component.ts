@@ -22,7 +22,7 @@ export class Link3Component implements OnInit {
   message_f_name :string;
   message_l_name :string;
   message_message :string;
-
+  msgs : Messages[] = [];
   user_id :string;
 
   data: string[] =  [];
@@ -67,16 +67,22 @@ export class Link3Component implements OnInit {
   
 
   getMessage(member: Users){
+    this.msgs = [];
     this.user_id = sessionStorage.getItem("user_id");
     this.messageService.getAllMessage(this.user_id , member.id + "" ).subscribe(
       (response) => {
         this.messages = response;
+        this.messages.forEach(element => {
+          //console.log(element.receiver.id+""+" -- "+this.user_id+"");
+          if((element.receiver.id+"" == this.user_id+"") && (element.status == "unread")){
+            element.read = 0;
+            //console.log(element);
+          }
+          this.msgs.push(element);
+        });
         this.member = member;
       }
     );
-
-
-
   }
 
   send(){
@@ -107,12 +113,14 @@ export class Link3Component implements OnInit {
 
   setRead(message :Messages){
     this.user_id = sessionStorage.getItem("user_id");
-    this.allMessages = this.messageService.setUnreadMessage(this.user_id, this.message.id);
+    //console.log(message.id+" / "+this.user_id);
+    this.allMessages = this.messageService.setUnreadMessage(this.user_id, message.id);
     this.allMessages.subscribe(
       (response) => {
         this.num_msg = response.length;
         this.messages = response;
         this.getUnread();
+        this.getMessage(message.sender);
       }
     );
   }

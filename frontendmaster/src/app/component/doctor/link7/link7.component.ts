@@ -160,7 +160,7 @@ export class Link7Component implements OnInit {
     //sheffulai has a component to view the schedule, so we can call the component here, and make changes
     //into appointment
     //thanks Nicole @Bertrick
-    this.appointmentService.rescheduleAppointment(this.appointment.id.toString(),this.date)
+    this.appointmentService.rescheduleAppointment(this.appointment.id+"",this.date)
      .subscribe(
       (response) => {
         this.appmnts = response;

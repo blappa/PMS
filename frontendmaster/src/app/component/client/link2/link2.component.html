@@ -16,7 +16,7 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Doctor Name</th>
+          <!--<th scope="col">Doctor Name</th>-->
           <th scope="col">Date - Time</th>
           <th scope="col">Status</th>
         </tr>
@@ -24,7 +24,7 @@
       <tbody>
         <tr *ngFor="let schedule  of schedules ">
           <th scope="row">{{schedule.id}}</th>
-          <th scope="row">{{schedule.hospital_user.f_name}} {{schedule.hospital_user.l_name}}</th>
+          <!--<th scope="row">{{schedule.hospital_user.f_name}} {{schedule.hospital_user.l_name}}</th>-->
           <td scope="row">{{schedule.time}}</td>
           <td scope="row">{{schedule.status}}</td>
         </tr>
