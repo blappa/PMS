@@ -184,7 +184,9 @@ export class Link4Component implements OnInit {
         this.appointments = response;
       }
     );
-    console.log("Reschedule appointment");
+    //console.log("Reschedule appointment");
+    this.rescheduleNote = false;
   }
+ 
   
 }

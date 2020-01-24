@@ -48,7 +48,7 @@ export class MenuComponent implements OnInit {
 
   logout(){
     //this.router.navigate(['/']);
-    this.router.navigate(['']);
+    this.router.navigate(['logout']);
     location.reload();
   }
   

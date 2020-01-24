@@ -16,8 +16,11 @@ import { Link13Component } from './component/about/link13/link13.component';
 import { Link14Component } from './component/about/link14/link14.component';
 import { Link15Component } from './component/about/link15/link15.component';
 import { Link16Component } from './component/user/link16/link16.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'app', pathMatch: 'full' },
+  {path : 'logout', component : Link1Component},
   {path : 'link1', component : Link1Component},
   {path : 'link2', component : Link2Component},
   {path : 'link3', component : Link3Component},

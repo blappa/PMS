@@ -21,26 +21,28 @@
   </div>
 
   
-
+    
    <button (click) = "viewAppts()"  class="btn btn-primary">View Appointments</button>
 
-  <br>
+  <br><br>
   <div class="contentcomp">
-    <div *ngIf='tableVar' class="table-appointment">
+    <div *ngIf='tableVar'>
       <table id="t01" class="table table-bordered myTable">
         <thead>
           <tr>
             <th scope="col">Patient Name</th>
             <th scope="col">Date - Time</th>
             <th scope="col">Appointment Type</th>
+            <th scope="col">Status</th>
             <th scope="col"> Cancel Appointment</th>
             <th scope="col"> Reschedule Appointment</th>
           </tr>
         </thead>
           <tr class = "hoverLine" *ngFor="let appointment of appointments">
             <th (click)="patientInfo(appointment.client.id, appointment)">{{appointment.client.f_name}} {{appointment.client.l_name}}</th>
-            <td>{{appointment.schedule.time}}</td>
+            <td>{{appointment.schedule.dates}} {{appointment.schedule.time}}</td>
             <td>{{appointment.appointment_type}}</td>
+            <td>{{appointment.status}}</td>
             <td><button class="btn btn-danger" (click)="startCancel()"> Cancel</button></td>
             <td><button class="btn btn-success" (click)="startReschedulelAppointment(appointment)"> Reschedule</button></td>
           </tr>
@@ -53,6 +55,7 @@
             <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}}</option>
         </select>
       </div>
+      <br><br>
       <button type="button" class="btn btn-danger" (click)="reschedulelAppointment()">Send</button>
     </div>
     <div class="form-group cancelForm"  *ngIf="cancelNote" >
@@ -60,7 +63,6 @@
       <textarea class="form-control sendInstructions" rows="3" [(ngModel)] = "cancelReason"></textarea>
       <button type="button" class="btn btn-danger" (click)="cancelAppointment()">Send</button>
     </div>
-
 
     <div *ngIf='infoVar' class="table-appointment">
        <div class="container">

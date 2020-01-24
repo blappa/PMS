@@ -59,7 +59,7 @@ export class AppointmentService {
   }
 
   public getAppointment_ByDoctorByDay(id :string, date :string):Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_ondate/"+id+"/"+date);
+    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_date/"+id+"/"+date);
   }
 
   //nicole

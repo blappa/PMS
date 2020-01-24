@@ -38,6 +38,10 @@ export class UserService {
     return this.http.get<Users>(this.url + "/hospital_user/"+ idu);
   }
 
+  public getUser1(idu :string) :Observable<Users> {
+    return this.http.get<Users>(this.url + "/hospital_user/"+ idu);
+  }
+
   public createUser(user :Users) {
     return this.http.post<Users>(this.url+ "/hospital_user", user);
   }

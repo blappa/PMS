@@ -46,20 +46,6 @@ export class Link6Component implements OnInit {
 
   ngOnInit() {
 
-    this.user_id = sessionStorage.getItem("user_id");
-    console.log(this.user_id);
-    this.allMessages = this.messageService.getAllMessage(this.user_id);
-    this.allMessages.subscribe(
-      (response) => {
-        this.messages = response;
-        //console.log(this.messages);
-        if(this.messages.length != 0){
-          this.message_message = this.messages[0].message;
-        }
-        this.message_message = '';
-      }
-    );
-
     this.allReceptionists = this.userService.getReceptionists();
     this.allReceptionists.subscribe(
       (response) => {
@@ -82,7 +68,8 @@ export class Link6Component implements OnInit {
   
 
   getMessage(member: Users){
-    this.messageService.getAllMessage(member.id + "" ).subscribe(
+    this.user_id = sessionStorage.getItem("user_id");
+    this.messageService.getAllMessage(this.user_id , member.id + "" ).subscribe(
       (response) => {
         this.messages = response;
         this.member = member;

@@ -92,7 +92,7 @@ export class ReceptionistComponent implements OnInit {
         this.apmnts = response;
         this.apmnts.forEach(element => {
           //console.log("----"+element);
-          //this.count(element.schedule.dates+" "+element.schedule.time, element.id+"")
+          this.count(element.schedule.dates+" "+element.schedule.time, element.id+"");
         });
       }
     );

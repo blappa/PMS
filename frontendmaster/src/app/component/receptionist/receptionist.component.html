@@ -9,6 +9,7 @@
               <th scope="col">Patient Name</th>
               <th scope="col">Date - Time</th>
               <th scope="col">Appointment Type</th>
+              <th scope="col">Status</th>
               <th scope="col">Time Left</th>
             </tr>
           </thead>
@@ -18,6 +19,7 @@
                   <td>{{appmnt.client.f_name}} {{appmnt.client.l_name}}</td>
                   <td>{{appmnt.schedule.dates}} {{appmnt.schedule.time}}</td>
                   <td>{{appmnt.appointment_type}}</td>
+                  <td>{{appmnt.status}}</td>
                   <th scope="row"><p id='{{appmnt.id}}'></p></th>
                   <td><button  (click)="checkout(appmnt)"> Checkout</button></td>
                   <td><button  (click)="startCancel(appmnt)">Cancel</button></td>

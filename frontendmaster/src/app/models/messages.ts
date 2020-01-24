@@ -6,7 +6,7 @@ id :number;
 message :string;
 status:string;
 time:string;
-read: boolean;
+read: number;
 
 snder :Users = new Users();
 receiver :Users = new Users();

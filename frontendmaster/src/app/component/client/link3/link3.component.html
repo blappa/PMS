@@ -20,7 +20,7 @@
                           
                           <li *ngFor= "let member of members">
                             
-                              <button (click) = "getMessage(member)" class="d-flex justify-content-between">
+                          <button (click) = "getMessage(member)" class="myButton">
                             <strong>{{member.f_name}} {{member.l_name}}</strong>
                           </button>  
                           
@@ -61,7 +61,7 @@
                       <p class="mb-0">
                         {{message.message}}
                       </p>
-                      <button *ngIf="message.read == 0"  (click) = "setRead(message.id)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Read</button>
+                      <button *ngIf="message.read == 0"  (click) = "setRead(message)" class="btn btn-info btn-rounded btn-sm waves-effect waves-light float-right">Read</button>
                     </div>
                   </li>
                   <li class="white">
