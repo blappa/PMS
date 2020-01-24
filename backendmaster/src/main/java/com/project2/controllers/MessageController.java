@@ -84,7 +84,7 @@ public class MessageController {
         List<Message> mss = new ArrayList<Message>();
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         for(Message m: ms.allMessages()) {
-            if((m.getSender().getId() == idu) && (m.getReceiver().getId() == id)) {
+            if((m.getSender().getId() == idu) && (m.getReceiver().getId() == id) || (m.getReceiver().getId() == idu) && (m.getSender().getId() == id)) {
                 Date date1;
                 Date date2;
                 try {
@@ -128,6 +128,7 @@ public class MessageController {
         Message message = ms.getMessageById(message_id);
         message.setStatus("read");
         message.setRead(1);
+        ms.updateMessage(message);
         List<Message> mss = new ArrayList<Message>();
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
         for(Message m: ms.allMessages()) {

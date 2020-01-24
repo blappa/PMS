@@ -223,7 +223,7 @@ public class AppointmentController {
     public List<Appointment> appointmentsByDoctor(@PathVariable("id") int id) {
         List<Appointment> aps =  new ArrayList<Appointment>();
         for(Appointment a: as.allAppointments()) {
-            System.out.println(a.getDoctor());
+            //System.out.println(a.getDoctor());
             try {
             if((a.getDoctor().getId() == id) && a.getStatus().equals("available")) {
                 aps.add(a);
@@ -242,9 +242,9 @@ public class AppointmentController {
         List<Appointment> aps =  new ArrayList<Appointment>();
         for(Appointment a: as.allAppointments()) {
           try {
-             if(a.getStatus().equals("available")) {
-                 aps.add(a);
-           }
+        	  if((a.getDoctor().getId() == app.getDoctor().getId())  && a.getSchedule().getDates().equals(app.getSchedule().getDates()) && a.getStatus().equals("available")) {
+                  aps.add(a);
+              }
           } catch(Exception e) {
         }
       }
