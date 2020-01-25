@@ -156,6 +156,7 @@ export class ReceptionistComponent implements OnInit {
     this.allUserAppointments.subscribe(
       (response) => {
         this.appointments = response;
+        console.log("Get the appointments")
       }
     );
   }
@@ -186,6 +187,7 @@ export class ReceptionistComponent implements OnInit {
      .subscribe(
       (response) => {
         this.appointments = response;
+        console.log("Cancel an appointment")
       }
     );
     this.tableVar = true;
