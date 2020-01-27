@@ -58,7 +58,7 @@ body{
 	position: absolute;
 	top: calc(44% - 35px);
 	left: calc(45% - 42px);
-	top: 163px;
+	top: 130px;
 	position: absolute;
 }
 
@@ -71,6 +71,12 @@ body{
 	font-size: 25px;
 	margin-right: 93px;
     font-size: 18px;
+}
+
+.line{
+	background-color: rgb(23, 158, 180);
+	color: rgb(23, 158, 180);
+	margin-right: 90px;
 }
 
 .login{
@@ -166,7 +172,22 @@ body{
 }
 
 
-.button {
+.button0 {
+   background-color:rgb(22, 63, 153);
+   border: none;
+   color:white;
+   padding: 20px 15px;
+   border-radius: 8px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 0px 0px;
+   cursor: pointer;
+  }
+
+
+  .button1 {
     background-color: rgb(22, 63, 153);
     border: none;
     color: white;
@@ -177,5 +198,5 @@ body{
     display: inline-block;
     font-size: 16px;
     margin: 25px 0px;
-    cursor: pointer;
+	cursor: pointer;
   }

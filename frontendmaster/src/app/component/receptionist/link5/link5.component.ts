@@ -76,9 +76,6 @@ export class Link5Component implements OnInit {
         //console.log(this.schedules);
       }
     );
-
-
-    
   }
 
 

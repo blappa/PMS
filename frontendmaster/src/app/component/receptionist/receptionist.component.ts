@@ -53,8 +53,9 @@ export class ReceptionistComponent implements OnInit {
   data: string[] =  [];
 
   allMessages :Observable<Messages[]>;
-
+  aptt :Appointment = new Appointment();
   receptionist :Users = new Users();
+  schedule :Schedule = new Schedule();
   userss :Users = new Users();
   allUsers:Observable<Users[]>;
   usersss:Observable<Users>;
@@ -81,7 +82,7 @@ export class ReceptionistComponent implements OnInit {
     this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
     this.allUserAppointments.subscribe(
       (response) => {
-        console.log(response);
+        //console.log(response);
         this.appointments = response;
       }
     );
@@ -121,13 +122,13 @@ export class ReceptionistComponent implements OnInit {
   }
 
   startCancel(appmnt : Appointment){
-    this.allSchedules = this.scheduleService.getAllScheduleByDoctor1(appmnt.doctor.id);
+    /*this.allSchedules = this.scheduleService.getAllScheduleByDoctor1(appmnt.doctor.id);
     this.allSchedules.subscribe(
       (response) => {
         this.schedules = response;
         //console.log(this.schedules);
       }
-    );
+    );*/
     this.tableVar = false;
     this.cancelNote = true;
     this.rescheduleNote = false;
@@ -143,6 +144,7 @@ export class ReceptionistComponent implements OnInit {
         //console.log(this.schedules);
       }
     );
+    this.aptt = appointment;
     this.tableVar = false;
     this.cancelNote = false;
     this.rescheduleNote = true;
@@ -152,6 +154,8 @@ export class ReceptionistComponent implements OnInit {
   viewAppts(){
     this.tableVar = true;
     this.infoVar = false;
+    this.rescheduleNote = true;
+    this.cancelNote = false;
     this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor(this.doctor.id.toString(), this.date);
     this.allUserAppointments.subscribe(
       (response) => {
@@ -182,16 +186,25 @@ export class ReceptionistComponent implements OnInit {
     //cancel an appointment
     this.tableVar = true;
     this.cancelNote = false;
+    this.rescheduleNote = false;
+    this.infoVar = false;
+    this.appointments = [];
     this.appointmentService.cancelAppointment(this.appointment.id+"", this.cancelReason, this.date)
      .subscribe(
       (response) => {
-        this.appointments = response;
+        //this.appointments = response;
       }
     );
-    this.tableVar = true;
-    this.cancelNote = false;
-    this.rescheduleNote = false;
-    this.infoVar = false;
+    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
+    this.allUserAppointments.subscribe(
+      (response) => {
+        this.appointments = response;
+        this.appointments.forEach(element => {
+          //console.log("----"+element);
+          this.count(element.schedule.dates+" "+element.schedule.time, element.id+"");
+        });
+      }
+    );
   }
 
 
@@ -201,6 +214,7 @@ export class ReceptionistComponent implements OnInit {
     this.data[1] = this.user_id;
     this.data[2] = this.userss.id+"";
     this.data[3] = 'unread';
+    this.messages = [];
     this.allMessages = this.messageService.sendMessage(this.data);
     this.allMessages.subscribe(
       (response) => {
@@ -219,9 +233,17 @@ export class ReceptionistComponent implements OnInit {
      this.appointmentService.completeAppointment(this.appointment.id+"")
      .subscribe(
       (response) => {
+        //this.appointments = response;
+      }
+    ); 
+    this.appointments = [];
+    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
+    this.allUserAppointments.subscribe(
+      (response) => {
+        console.log(response);
         this.appointments = response;
       }
-    );  
+    ); 
     this.tableVar = true;
     this.cancelNote = false;
     this.rescheduleNote = false;
@@ -230,18 +252,27 @@ export class ReceptionistComponent implements OnInit {
 
   reschedulelAppointment(){
     //this should cancel appointment and make new appointment
-    this.appointmentService.rescheduleAppointment(this.appointment.id+"",this.date)
+    console.log(this.aptt.id+" "+this.schedule.id);
+    this.appointmentService.rescheduleAppointmentShef(this.aptt.id, this.schedule.id)
      .subscribe(
       (response) => {
         this.appointments = response;
       }
     );
+    this.appointments = [];
+    this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor1();
+    this.allUserAppointments.subscribe(
+      (response) => {
+        console.log(response);
+        this.appointments = response;
+      }
+    ); 
     //console.log("Reschedule appointment");
     this.tableVar = true;
     this.cancelNote = false;
     this.rescheduleNote = false;
     this.infoVar = false;
-  }
+  } 
 
   count(date: string, tagId: string){
     // Set the date we're counting down to

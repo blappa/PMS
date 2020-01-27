@@ -97,6 +97,7 @@ export class Link3Component implements OnInit {
         console.log(response);
         //this.messages = response;
         this.getMessage(this.member);
+        this.message =  new Messages();
       }
     );
   }

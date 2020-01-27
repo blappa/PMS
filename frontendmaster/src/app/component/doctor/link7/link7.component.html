@@ -16,18 +16,21 @@
                 <table id="t01" class="table table-bordered blueTable">
                     <thead>
                       <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Patient Name</th>
                         <th scope="col">Date - Time</th>
                         <th scope="col">Appointment Type</th>
-                        <th scope="col"> Cancel Appointment</th>
+                        <th scope="col"> Status </th>
                         <!-- <th scope="col"> Reschedule Appointment</th> -->
                       </tr>
                     </thead>
                       <tr class = "hoverLine" *ngFor="let appointment of appmnts">
+                        <td>{{appointment.id}}</td>
                         <th (click)="patientInfo(appointment)">{{appointment.client.f_name}} {{appointment.client.l_name}}</th>
                         <td>{{appointment.schedule.time}}</td>
                         <td>{{appointment.appointment_type}}</td>
-                        <td><button class="btn btn-danger" (click)="startCancel(appointment)"> Cancel</button></td>
+                        <td>{{appointment.status}}</td>
+                        <td><button *ngIf="appointment.status == 'available'" class="btn btn-danger" (click)="startCancel(appointment)"> Cancel</button></td>
                         <!-- <td><button class="btn btn-success" (click)="startReschedulelAppointment(appointment)"> Reschedule</button></td> -->
                       </tr>
                   </table>

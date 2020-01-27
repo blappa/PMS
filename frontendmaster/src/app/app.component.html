@@ -29,7 +29,8 @@
         <p class="msg" *ngIf="ismsg">{{msg}}</p>
 				<input type="text" placeholder="Username" [(ngModel)]="username"><br>
         <input type="password" placeholder="Password" [(ngModel)]="password"><br>
-        <button  (click) = "loginUser()" class="button" >Login</button><br>
-        <button  (click) = "registerPage()" class="button" >Create account</button>
+        <button class="button1" (click) = "loginUser()" >Login</button>
+        <p class="line">===================</p>
+        <button class="button1" (click) = "registerPage()" >Create account</button>
   </div>
 </div>

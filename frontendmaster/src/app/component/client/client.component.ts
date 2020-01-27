@@ -63,7 +63,7 @@ export class ClientComponent implements OnInit {
         this.apmnts = response;
         this.apmnts.forEach(element => {
           //console.log("----"+element);
-           this.count(element.schedule.dates+" "+element.schedule.time, element.id+"")
+          this.count(element.schedule.dates+" "+element.schedule.time, element);
         });
       }
     );
@@ -72,7 +72,7 @@ export class ClientComponent implements OnInit {
 
   }
 
-  count(date: string, tagId: string){
+  count(date: string, element: Appointment){
     // Set the date we're counting down to
 	  var countDownDate = new Date(date).getTime();
 	  // Update the count down every 1 second
@@ -90,7 +90,7 @@ export class ClientComponent implements OnInit {
 	  if (days >= 0 && days <= 14) {
 	    // Display the result in the element with id="demo"
 	    //clearInterval(x);
-	     document.getElementById(tagId).innerHTML = 
+	     document.getElementById(element.id+"").innerHTML = 
 			  days + "d " 
 			  + hours + "h "
 		    + minutes + "m " 
@@ -101,9 +101,14 @@ export class ClientComponent implements OnInit {
 	  }else if (days == 0) {
       clearInterval(x);
       document.getElementById(tagId).innerHTML = "TODAY";*/
+      this.user_id = sessionStorage.getItem("user_id");
+      if(element.client.id == this.user_id){
+        document.getElementById(element.client.id+"").style.backgroundColor = "green";
+      }
+      
     }else if (days < 0) {
        clearInterval(x);
-       document.getElementById(tagId).innerHTML = "DONE";
+       //document.getElementById(tagId).innerHTML = "DONE";
     }
 	 }, 1000);
 
@@ -126,10 +131,14 @@ export class ClientComponent implements OnInit {
     this.tab1 = true;
     this.tab2 = true;
     this.tab3 = false;
+    this.appointments = [];
     this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor2(this.doctor.id + "");
     this.allUserAppointments.subscribe(
       (response) => {
         this.appointments = response;
+        this.appointments.forEach(element => {
+           this.count(element.schedule.dates+" "+element.schedule.time, element);
+        });
       }
     );
   }

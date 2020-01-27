@@ -43,6 +43,10 @@ select {
     /*color:#00ff7f*/
     }
 
+    .mybtn {
+      margin: 10px;
+    }
+
 
     table.blueTable {
       border: 1px solid #1C6EA4;

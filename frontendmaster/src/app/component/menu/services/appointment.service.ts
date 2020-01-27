@@ -13,7 +13,8 @@ const httpOptions = {
 })
 export class AppointmentService {
 
-  private url = 'http://ec2-3-135-228-192.us-east-2.compute.amazonaws.com:8081/portal';
+  //private url = 'http://ec2-3-135-228-192.us-east-2.compute.amazonaws.com:8081/portal';
+  private url = 'http://3.16.31.69:8081/portal';
   //private url = 'http://localhost:8080/portal';
 
   constructor(private http :HttpClient) {}
@@ -58,8 +59,12 @@ export class AppointmentService {
 
   }
 
-  public getAppointment_ByDoctorByDay(id :string, date :string):Observable<Appointment[]>{
-    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_date/"+id+"/"+date);
+  public getAppointment_ByDoctorByDay0(id :string, date :string):Observable<Appointment[]>{
+    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_date0/"+id+"/"+date);
+  }
+
+  public getAppointment_ByDoctorByDay1(id :string, date :string):Observable<Appointment[]>{
+    return this.http.get<Appointment[]>(this.url+ "/appointment_doctor_date1/"+id+"/"+date);
   }
 
   //nicole
@@ -67,4 +72,7 @@ export class AppointmentService {
     return this.http.get<Appointment[]>(this.url+ "/appointmentsByDoctor/"+id);
   }
 
+  rescheduleAppointmentShef(id :number, schNum :number):Observable<Appointment[]>{
+    return this.http.get<Appointment[]>(this.url+ "/appointment_reschedule_shef/"+id+"/"+schNum);
+  }
 }

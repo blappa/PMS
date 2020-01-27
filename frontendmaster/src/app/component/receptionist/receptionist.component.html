@@ -9,7 +9,7 @@
               <th scope="col">Patient Name</th>
               <th scope="col">Time</th>
               <th scope="col">Appointment Type</th>
-              <th scope="col">Status</th>
+              <th scope="col">Doctor Name</th>
               <th scope="col">Time Left</th>
             </tr>
           </thead>
@@ -19,7 +19,7 @@
                   <td>{{appmnt.client.f_name}} {{appmnt.client.l_name}}</td>
                   <td>{{appmnt.schedule.time}}</td>
                   <td>{{appmnt.appointment_type}}</td>
-                  <td>{{appmnt.status}}</td>
+                  <td>{{appmnt.doctor.f_name}} {{appmnt.doctor.l_name}}</td>
                   <th scope="row"><p id='{{appmnt.id}}'></p></th>
                   <td><button  (click)="checkout(appmnt)"> Checkout</button></td>
                   <td><button  (click)="startCancel(appmnt)">Cancel</button></td>
@@ -29,10 +29,11 @@
         </table>
       </div>
   </div>
-   <div class="form-group cancelForm"  *ngIf="rescheduleNote" >
+  <div class="form-group cancelForm"  *ngIf="rescheduleNote" >
     <div class="form-card">
       <h2 class="fs-title">What time will your appointment be?</h2> 
-      <select  [(ngModel)]="appointment.schedule">
+      <select  [(ngModel)]="schedule">
+          <option></option>
           <option *ngFor="let schedule of schedules" [ngValue]="schedule" >{{schedule.dates}} {{schedule.time}}</option>
       </select>
     </div>

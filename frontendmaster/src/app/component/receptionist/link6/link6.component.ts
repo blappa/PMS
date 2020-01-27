@@ -98,6 +98,7 @@ export class Link6Component implements OnInit {
         /*console.log(response);
         this.messages = response;*/
         this.getMessage(this.member);
+        this.message =  new Messages();
       }
     );
   }

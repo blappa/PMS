@@ -35,6 +35,8 @@ export class MenuComponent implements OnInit {
   link14 :boolean;
   link15 :boolean;
   link16 :boolean;
+  abt :boolean;
+  cntct :boolean;
   showdasbord :boolean;
   
   constructor(public router: Router) {
@@ -118,6 +120,16 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['link16']);
   }
 
+  about(){
+    this.checkLink('about');
+    this.router.navigate(['about']);
+  }
+
+  contact(){
+    this.checkLink('contact');
+    this.router.navigate(['contact']);
+  }
+
   showDashboard(){
     this.name = sessionStorage.getItem("name");
     this.role = sessionStorage.getItem("role");
@@ -142,6 +154,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link2"){
@@ -161,6 +175,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link3"){
@@ -180,6 +196,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link4"){
@@ -199,6 +217,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link5"){
@@ -218,6 +238,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link6"){
@@ -237,6 +259,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link7"){
@@ -256,6 +280,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link8"){
@@ -275,6 +301,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link9"){
@@ -294,6 +322,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link10"){
@@ -313,6 +343,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link11"){
@@ -332,6 +364,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link12"){
@@ -351,6 +385,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link13"){
@@ -370,6 +406,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link14"){
@@ -389,6 +427,8 @@ export class MenuComponent implements OnInit {
       this.link14 = true;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link15"){
@@ -408,6 +448,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = true;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "link16"){
@@ -427,6 +469,8 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = true;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = false;
     }
     if(link == "showdasbord"){
@@ -446,7 +490,53 @@ export class MenuComponent implements OnInit {
       this.link14 = false;
       this.link15 = false;
       this.link16 = false;
+      this.abt = false;
+      this.cntct = false;
       this.showdasbord = true;
+    }
+
+    if(link == "about"){
+      this.link1 = false;
+      this.link2 = false;
+      this.link3 = false;
+      this.link4 = false;
+      this.link5 = false;
+      this.link6 = false;
+      this.link7 = false;
+      this.link8 = false;
+      this.link9 = false;
+      this.link10 = false;
+      this.link11 = false;
+      this.link12 = false;
+      this.link13 = false;
+      this.link14 = false;
+      this.link15 = false;
+      this.link16 = false;
+      this.abt = true;
+      this.cntct = false;
+      this.showdasbord = false;
+    }
+
+    if(link == "contact"){
+      this.link1 = false;
+      this.link2 = false;
+      this.link3 = false;
+      this.link4 = false;
+      this.link5 = false;
+      this.link6 = false;
+      this.link7 = false;
+      this.link8 = false;
+      this.link9 = false;
+      this.link10 = false;
+      this.link11 = false;
+      this.link12 = false;
+      this.link13 = false;
+      this.link14 = false;
+      this.link15 = false;
+      this.link16 = false;
+      this.abt = false;
+      this.cntct = true;
+      this.showdasbord = false;
     }
   }
 

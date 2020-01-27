@@ -6,7 +6,7 @@
       <select  [(ngModel)]="doctor" (change)="selectDoctor(doctor)">
           <option *ngFor="let doctor of doctors" [ngValue]="doctor">{{doctor.l_name+" "+doctor.f_name}}</option>
       </select>
-      <button class="btn btn-success" (click)="showQueue()" >View Waiting List</button>
+      <button class="btn btn-success mybtn" (click)="showQueue()" >View Waiting List</button>
       <button class="btn btn-success" (click)="showDashboard()" >Go Back</button>
   </div>     <div  *ngIf='tab2' >
   <table id="myTable" class="blueTable">
@@ -21,7 +21,7 @@
       <tr *ngFor="let appointment of appointments">
         <td scope="row">{{appointment.id}}</td>
         <td scope="row">{{appointment.client.f_name}} {{appointment.client.l_name}}</td>
-        <td scope="row"><p id='{{appointment.id}}'></p></td>
+        <td id="{{appointment.client.id}}" scope="row"><p id='{{appointment.id}}'></p></td>
       </tr>
     </tbody>
   </table>

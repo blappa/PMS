@@ -12,13 +12,22 @@ const httpOptions = {
 })
 export class ScheduleService {
 
-    private url = 'http://ec2-3-135-228-192.us-east-2.compute.amazonaws.com:8081/portal';
+    //private url = 'http://ec2-3-135-228-192.us-east-2.compute.amazonaws.com:8081/portal';
+    private url = 'http://3.16.31.69:8081/portal';
     //private url = 'http://localhost:8080/portal';
 
     constructor(private http :HttpClient) {}
   
     getAllScheduleByDoctor(id :number, date :string) :Observable<Schedule[]> {
       return this.http.get<Schedule[]>(this.url+"/schedule_doctor_date/"+id+"/"+date);
+    }
+
+    getAllScheduleByDoctor0(id :number) :Observable<Schedule[]> {
+      return this.http.get<Schedule[]>(this.url+"/schedule_doctor_all/"+id);
+    }
+
+    getAllScheduleByDoctor00(id :string) :Observable<Schedule[]> {
+      return this.http.get<Schedule[]>(this.url+"/schedule_doctor_all/"+id);
     }
 
     getAllScheduleByDoctor1(id :number) :Observable<Schedule[]> {

@@ -108,6 +108,10 @@ export class DoctorComponent implements OnInit {
       (response) => {
         console.log("oo" + this.appmnts);
         this.appmnts = response;
+        this.appmnts.forEach(element => {
+          //console.log("----"+element);
+          this.count(element.schedule.dates+" "+element.schedule.time, element.id+"")
+        });
       }
     );
   }
@@ -134,7 +138,7 @@ export class DoctorComponent implements OnInit {
     // make a reference to the patient information
     this.client_info = false;
     this.appointment = appointment;
-    console.log("client name" + this.appointment.client.f_name);
+    //console.log("client name" + this.appointment.client.f_name);
   }
 
   showAppointments(){
@@ -146,7 +150,7 @@ export class DoctorComponent implements OnInit {
         this.appmnts = response;
       }
     );
-    console.log("show list of appointments");
+    //console.log("show list of appointments");
   }
   
 
@@ -161,7 +165,11 @@ export class DoctorComponent implements OnInit {
         this.dashboard();
       }
     );
-    console.log("Canceled");
+    //console.log("Canceled");
+    this.client_info = true;
+    this.cancelNote = false;
+    this.rescheduleNote = false;
+    this.appointments = false;
   }
 
   sendToReceptionist(userss : Users){
@@ -178,7 +186,11 @@ export class DoctorComponent implements OnInit {
         this.messages = response;
       }
     );
-    console.log("Sent to receptionist");
+    //console.log("Sent to receptionist");
+    this.client_info = true;
+    this.cancelNote = false;
+    this.rescheduleNote = false;
+    this.appointments = false;
   }
 
   reschedulelAppointment(){
@@ -191,7 +203,11 @@ export class DoctorComponent implements OnInit {
         this.appmnts = response;
       }
     );
-    console.log("Reschedule appointment");
+    //console.log("Reschedule appointment");
+    this.client_info = true;
+    this.cancelNote = false;
+    this.rescheduleNote = false;
+    this.appointments = false;
   }
 
   count(date: string, tagId: string){
@@ -219,15 +235,15 @@ export class DoctorComponent implements OnInit {
 			  + hours + "h "
 		    + minutes + "m " 
 		    + seconds + "s ";
-	  }else if (days > 14) {
+	  /*}else if (days > 14) {
 		    clearInterval(x);
 		    document.getElementById(tagId).innerHTML = "UP COMING";
 	  }else if (days == 0) {
       clearInterval(x);
-      document.getElementById(tagId).innerHTML = "TODAY";
-    }else if (days <= 0) {
+      document.getElementById(tagId).innerHTML = "TODAY";*/
+    }else if (days < 0) {
     clearInterval(x);
-    document.getElementById(tagId).innerHTML = "DONE";
+    //document.getElementById(tagId).innerHTML = "DONE";
     }
 	 }, 1000);
   }

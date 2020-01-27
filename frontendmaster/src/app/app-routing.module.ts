@@ -17,10 +17,14 @@ import { Link14Component } from './component/about/link14/link14.component';
 import { Link15Component } from './component/about/link15/link15.component';
 import { Link16Component } from './component/user/link16/link16.component';
 import { AppComponent } from './app.component';
+import { AboutComponent } from './component/about/about.component';
+import { ContactComponent } from './component/contact/contact.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'app', pathMatch: 'full' },
   {path : 'logout', component : AppComponent},
+  {path : 'about', component : AboutComponent},
+  {path : 'contact', component : ContactComponent},
   {path : 'link1', component : Link1Component},
   {path : 'link2', component : Link2Component},
   {path : 'link3', component : Link3Component},

@@ -25,6 +25,18 @@ select {
     box-shadow:inset 0 0 10px 0 rgba(0,0,0,0.6);
     outline:none
     }
+
     select:hover {
     color:#00ff7f
     }
+
+    .contact{
+        text-align: center;
+        padding:30px;
+        font-size: larger;
+    }
+
+    
+    
+    
+

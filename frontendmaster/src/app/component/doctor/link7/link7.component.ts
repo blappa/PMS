@@ -77,7 +77,7 @@ export class Link7Component implements OnInit {
       }
     );
 
-    this.allSchedules = this.scheduleService.getAllScheduleByDoctor3(sessionStorage.getItem("user_id"));
+    this.allSchedules = this.scheduleService.getAllScheduleByDoctor00(sessionStorage.getItem("user_id"));
     this.allSchedules.subscribe(
       (response) => {
         this.schedules = response;
@@ -115,6 +115,7 @@ export class Link7Component implements OnInit {
   showAppointments(){
     // make a reference to the patient information
     this.appointments = false;
+    this.appmnts = [];
     this.allUserAppointments = this.appointmentService.getAvaillableAppointment_ByDoctor4(sessionStorage.getItem("user_id"), this.schedule.dates, this.schedule.time);
     this.allUserAppointments.subscribe(
       (response) => {

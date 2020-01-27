@@ -5,19 +5,20 @@
         <div class="input-group-prepend">
             <div class="input-group-text">
 
-                <table id="t01" class="table table-bordered myTable">
+              <table id="myTable" class="blueTable">
                     <thead>
                       <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Date - Time</th>
                         <th scope="col">Status</th>
+                        <th scope="col"></th>
                       </tr>
                     </thead>
                       <tr class = "hoverLine" *ngFor="let schedule of schedules">
                         <td>{{schedule.id}}</td>
                         <td>{{schedule.dates}} {{schedule.time}}</td>
                         <td>{{schedule.status}}</td>
-                        <button class="btn btn-danger" (click)="updateSchedule(schedule.id)" >Unavailable</button>
+                        <td  class="myButton"><button class="btn btn-danger myButton" (click)="updateSchedule(schedule.id)" >Unavailable</button></td>
                       </tr>
                   </table>
             </div>
