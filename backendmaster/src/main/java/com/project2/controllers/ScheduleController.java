@@ -113,7 +113,18 @@ public class ScheduleController {
         }
         return schs;
     }
-
+    
+    @GetMapping(value="/schedule_doctor_all/{id}")
+    public List<Schedule> getAvaillableScheduleByDoctor0(@PathVariable("id") int id) {
+        List<Schedule> schs =  new ArrayList<Schedule>();
+        for(Schedule s: ss.allSchedules()) {
+            if((s.getHospital_user().getId() == id)) {
+                schs.add(s);
+            }
+        }
+        return schs;
+    }
+   
     
 
     @GetMapping(value="/schedule_doctor/{id}/all")
